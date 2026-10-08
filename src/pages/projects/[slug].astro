@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import { caseStudies, isPreview, type Project } from '../../data/projects';
-import { copy } from '../../data/site';
+import { site, copy } from '../../data/site';
 import { responsive, shotSizes } from '../../lib/images';
 
 export function getStaticPaths() {
@@ -17,8 +17,28 @@ const s = p.sections!;
 const hasNext = next.slug !== p.slug;
 const t = copy.caseStudy;
 const sec = t.sections;
+const home = new URL('/', Astro.site).href;
+const pageUrl = new URL(`/projects/${p.slug}/`, Astro.site).href;
+const abs = (path: string) => new URL(path, Astro.site).href;
+// schema.org MobileApplication for this case study; store listings go in sameAs.
+const appLd = {
+  '@type': 'MobileApplication',
+  '@id': `${pageUrl}#app`,
+  name: p.title,
+  ...(p.nativeTitle ? { alternateName: p.nativeTitle } : {}),
+  description: p.seoDescription ?? p.tagline,
+  operatingSystem: p.platform.split(' · ').filter((x) => x === 'iOS' || x === 'Android').join(', '),
+  ...(p.appCategory ? { applicationCategory: p.appCategory } : {}),
+  url: pageUrl,
+  sameAs: p.links.map((l) => l.href),
+  ...(p.links[0] ? { installUrl: p.links[0].href } : {}),
+  ...(p.icon ? { image: abs(p.icon) } : {}),
+  screenshot: p.screenshots.map((sh) => abs(sh.src)),
+  author: { '@type': 'Person', '@id': `${home}#person`, name: site.name, url: home },
+  ...(p.storePublisher ? { publisher: { '@type': 'Organization', name: p.storePublisher } } : {}),
+};
 ---
-<BaseLayout title={`${p.title} ${t.pageTitleSuffix}`} description={p.summary} share={p.ogImage ? { src: p.ogImage, alt: `${p.title} — ${p.tagline}` } : undefined} ogType="article">
+<BaseLayout title={`${p.title} ${t.pageTitleSuffix}`} description={p.seoDescription ?? p.summary} jsonLd={[appLd]} share={p.ogImage ? { src: p.ogImage, alt: `${p.title} — ${p.tagline}` } : undefined} ogType="article">
   <article class="cs" style={`--pa:${p.accent.base};--pink:${p.accent.ink};--pglow:${p.accent.glow}`}>
     <header class="cs-hero">
       <div class="container hero-grid">

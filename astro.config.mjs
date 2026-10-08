@@ -6,6 +6,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://salahyasser.github.io',
   trailingSlash: 'always',
-  integrations: [sitemap()],
+  // /projects/ is only a redirect to /#work, so it stays out of the sitemap (404 is excluded automatically).
+  integrations: [sitemap({ filter: (page) => !page.endsWith('/projects/') })],
   build: { inlineStylesheets: 'auto' },
 });

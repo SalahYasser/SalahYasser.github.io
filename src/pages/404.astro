@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { copy } from '../data/site';
 const n = copy.notFound;
 ---
-<BaseLayout title={n.pageTitle}>
+<BaseLayout title={n.pageTitle} noindex>
   <section class="container nf">
     <p class="eyebrow">{n.eyebrow}</p>
     <h1>{n.titleBefore} <span class="serif">{n.titleSerif}</span></h1>

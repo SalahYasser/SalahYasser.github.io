@@ -1,0 +1,20 @@
+---
+// /projects/ has no listing page of its own: send visitors (and old links) to the work section.
+// Static redirect for GitHub Pages: meta refresh + location.replace, with a visible link as a fallback.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { copy } from '../../data/site';
+const r = copy.projectsIndex;
+const target = '/#work';
+---
+<BaseLayout title={r.pageTitle} noindex>
+  <meta slot="head" http-equiv="refresh" content={`0; url=${target}`} />
+  <script slot="head" is:inline define:vars={{ target }}>location.replace(target);</script>
+  <section class="container redirect">
+    <p>{r.body}</p>
+    <a class="btn btn-primary" href={target}>{r.cta}</a>
+  </section>
+</BaseLayout>
+<style>
+  .redirect { min-height: 50vh; display: grid; align-content: center; justify-items: start; gap: 1.25rem; padding-block: 5rem; }
+  p { color: var(--muted); }
+</style>

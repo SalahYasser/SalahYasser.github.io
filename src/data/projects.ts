@@ -43,6 +43,12 @@ export type Project = {
     result: string;
   };
   approvalNote?: string;
+  /** Meta description for the case-study page (<= 155 characters). */
+  seoDescription?: string;
+  /** schema.org applicationCategory, matching the app's primary store category. */
+  appCategory?: string;
+  /** Store publisher, when it isn't Salah's own developer account. */
+  storePublisher?: string;
 };
 
 export const projects: Project[] = [
@@ -62,6 +68,9 @@ export const projects: Project[] = [
     accent: { base: '#D9B76A', ink: '#0E1A14', glow: 'rgba(217,183,106,0.28)' },
     icon: '/images/projects/al-burda/icon.webp',
     ogImage: '/og/al-burda.png',
+    seoDescription:
+      'Al-Burda: a calm, fully offline Arabic Flutter app for reading and listening to the Burda, with an iOS lock-screen widget. On the App Store & Google Play.',
+    appCategory: 'ReferenceApplication', // App Store: Books / Reference
     heroShot: 2,
     status: 'Live on the App Store & Google Play',
     links: [
@@ -129,6 +138,10 @@ export const projects: Project[] = [
     accent: { base: '#F4F4F2', ink: '#0B0B0C', glow: 'rgba(244,244,242,0.18)' },
     icon: '/images/projects/el-madrasah/icon.webp',
     ogImage: '/og/el-madrasah.png',
+    seoDescription:
+      'El Madrasah: a Flutter school app for parents, students and teachers, with offline-first sync and live bus tracking. On the App Store & Google Play.',
+    appCategory: 'EducationalApplication', // App Store: Education
+    storePublisher: 'BDC for Business Services',
     status: 'Live on the App Store & Google Play · published by BDC for Business Services',
     links: [
       { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/id6755660500', icon: 'apple' },
@@ -191,6 +204,9 @@ export const projects: Project[] = [
     accent: { base: '#EB9C00', ink: '#1A1100', glow: 'rgba(235,156,0,0.2)' },
     icon: '/images/projects/flexi/icon.webp',
     ogImage: '/og/flexi.png',
+    seoDescription:
+      'FLEXI: a role-based Flutter HR app for Fit4Less staff, with location-verified attendance, QR check-in, leave requests and payroll. Live on the App Store.',
+    appCategory: 'BusinessApplication', // App Store: Business
     status: 'Live on the App Store',
     links: [
       { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/id6805243501' },

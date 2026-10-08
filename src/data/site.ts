@@ -14,8 +14,12 @@ export const site = {
   // Set to a path under /public (e.g. '/cv/Salah-Yasser-CV.pdf') once a public CV
   // without private details is approved. Left null so no broken link ships.
   cvPath: null as string | null,
+  /** Homepage meta description (<= 155 characters). */
   description:
-    'Salah Yasser is a Flutter developer in Cairo who builds and ships production mobile apps: clean architecture, offline-first behaviour and end-to-end iOS release.',
+    'Salah Yasser is a Flutter developer in Cairo building iOS & Android apps from requirements to release, with apps live on the App Store & Google Play.',
+  /** Used in JSON-LD (Person.address). */
+  locality: 'Cairo',
+  countryCode: 'EG',
   brandMark: 'SY',
 };
 
@@ -118,6 +122,12 @@ export const copy = {
     newTab: ' (opens in a new tab)',
     pendingPrefix: 'Pending:',
   },
+  /** /projects/ has no page of its own; it forwards to the work section. */
+  projectsIndex: {
+    pageTitle: 'Selected work',
+    body: 'Taking you to my selected work…',
+    cta: 'View selected work',
+  },
   notFound: {
     pageTitle: 'Page not found',
     eyebrow: '404',
@@ -134,6 +144,7 @@ export const experience = [
     org: 'BDC Business Services',
     place: 'Cairo, Egypt',
     period: 'Nov 2025 – Present',
+    current: true,
     points: [
       'Builds Flutter apps for education, HR and AI products, shipped through the App Store, Google Play and TestFlight.',
       'Owns iOS provisioning, signing and distribution workflows for the team’s releases.',
@@ -144,7 +155,7 @@ export const experience = [
 ];
 
 export const education = [
-  { title: 'B.Sc. Computer Science', org: 'Higher Technological Institute (HTI)', period: '2023' },
+  { title: 'B.Sc. Computer Science', org: 'Higher Technological Institute (HTI)', period: '2023', degree: true },
   { title: 'Flutter Advanced Mobile Development', org: 'Senior Steps Academy', period: '2023' },
   { title: 'Front-end Development Diploma', org: 'Senior Steps Academy', period: '2022' },
   { title: 'Flutter Cross Mobile Diploma', org: 'Senior Steps Academy', period: '2021' },
