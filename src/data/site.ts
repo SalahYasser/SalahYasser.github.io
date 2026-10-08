@@ -159,7 +159,7 @@ export const skills = [
   },
   {
     group: 'Data & integration',
-    items: ['REST APIs', 'Offline-first sync (PowerSync)', 'Firebase & FCM', 'WebSockets', 'Hive · Drift', 'Stripe · PayPal · Google Maps'],
+    items: ['REST APIs', 'Offline-first sync (PowerSync)', 'Firebase & FCM', 'WebSockets', 'Hive · Drift', 'Stripe · PayPal', 'Google Maps'],
   },
   {
     group: 'Shipping & quality',
