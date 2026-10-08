@@ -102,9 +102,9 @@ const c = copy.contact;
             <div class="job-head">
               <div>
                 <h3>{e.role}</h3>
-                <p class="org">{e.org} · {e.place}</p>
+                <p class="org">{e.org}{e.place && ` · ${e.place}`}</p>
               </div>
-              <p class="period">{e.period}</p>
+              {e.period && <p class="period">{e.period}</p>}
             </div>
             <ul>{e.points.map((pt) => <li>{pt}</li>)}</ul>
           </article>

@@ -152,6 +152,14 @@ export const experience = [
       'Builds reusable widgets and a shared theming system to keep screens consistent across features.',
     ],
   },
+  {
+    role: 'Freelance Flutter Developer',
+    org: 'Client projects',
+    points: [
+      'Built client apps from scratch as a solo developer, from the client’s requirements to release.',
+      'Owned architecture, UI, APIs and store releases under my own developer account, including Al-Burda (App Store & Google Play) and FLEXI (App Store).',
+    ],
+  },
 ];
 
 export const education = [
