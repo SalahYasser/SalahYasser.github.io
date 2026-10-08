@@ -57,7 +57,7 @@ export const projects: Project[] = [
     caseStudy: true,
     accent: { base: '#D9B76A', ink: '#0E1A14', glow: 'rgba(217,183,106,0.28)' },
     icon: '/images/projects/al-burda/icon.webp',
-    status: 'Live on the App Store · v1.5.1 (Aug 2026)',
+    status: 'Live on the App Store · v1.5.1',
     links: [
       { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/id6784274940' },
     ],
@@ -72,7 +72,7 @@ export const projects: Project[] = [
       product:
         'Al-Burda is a quiet companion for people who read or listen to the Burda of Imam al-Busiri. Readers open a gilded, verse-by-verse page, play a recitation, get a gentle verse reminder through the day, and see the verse of the day on their lock screen without opening the app.',
       roleDetail:
-        'A personal project, published under my own developer account. I took it from idea to App Store: the Flutter architecture, the Arabic right-to-left interface, the native iOS widget, audio, notifications and every release since launch in July 2026.',
+        'A personal project, published under my own developer account. I took it from idea to App Store: the Flutter architecture, the Arabic right-to-left interface, the native iOS widget, audio, notifications and every release since launch.',
       problem:
         'A devotional app has to feel calm and trustworthy. That meant three hard constraints: it had to work with no internet connection, collect no data at all, and still feel alive through reminders, a lock-screen widget and audio that behaves properly around calls and Bluetooth devices.',
       decisions: [
@@ -102,7 +102,7 @@ export const projects: Project[] = [
         'A library of the Burda and other poems with search',
       ],
       result:
-        'Shipped to the App Store in July 2026 and maintained through regular updates (v1.5.1 in August 2026). Free, offline, and free of ads and tracking.',
+        'Shipped to the App Store and maintained through regular updates (currently v1.5.1). Free, offline, and free of ads and tracking.',
     },
   },
   {
@@ -179,7 +179,7 @@ export const projects: Project[] = [
     caseStudy: true,
     accent: { base: '#7FD1FF', ink: '#06121C', glow: 'rgba(127,209,255,0.22)' },
     icon: '/images/projects/flexi/icon.webp',
-    status: 'Live on the App Store · v1.0.3 (Sep 2026)',
+    status: 'Live on the App Store · v1.0.3',
     links: [
       { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/id6805243501' },
     ],
@@ -193,7 +193,7 @@ export const projects: Project[] = [
       product:
         'FLEXI brings a company’s day-to-day HR services into one app for Fit4Less staff. Employees check in and out, scan a QR code for attendance, follow their schedules and shifts, request leave, permissions and salary advances, and view payroll documents. Managers get the employee data and approval actions their role allows.',
       roleDetail:
-        'A personal project that I built and published under my own Apple developer account: the Flutter app, its architecture, the API integration and the App Store release, launched in September 2026.',
+        'A personal project that I built and published under my own Apple developer account: the Flutter app, its architecture, the API integration and the App Store release.',
       problem:
         'Attendance has to be trustworthy, so a check-in should only count when the employee is really at work. And the same app serves employees and managers, so every screen and action has to respect the permissions of the signed-in account.',
       decisions: [
@@ -219,7 +219,7 @@ export const projects: Project[] = [
         'Notifications for request status and approvals',
         'Manager tools for authorised employee actions',
       ],
-      result: 'Shipped to the App Store in September 2026 (v1.0.3), available to authorised Fit4Less staff.',
+      result: 'Shipped to the App Store (v1.0.3), available to authorised Fit4Less staff.',
     },
   },
   {
