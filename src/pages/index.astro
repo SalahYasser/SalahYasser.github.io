@@ -16,6 +16,7 @@ const shipped = caseStudies.filter((p) => /app store|google play/i.test(p.status
 const h = copy.hero;
 const w = copy.work;
 const sk = copy.skills;
+const hw = copy.howIWork;
 const ex = copy.experience;
 const c = copy.contact;
 ---
@@ -87,6 +88,24 @@ const c = copy.contact;
           </div>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section id="how-i-work" class="section how" aria-labelledby="how-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">{hw.eyebrow}</p>
+        <h2 id="how-title">{hw.titleBefore} <span class="serif">{hw.titleSerif}</span></h2>
+      </div>
+      <ol class="steps">
+        {hw.steps.map((st, i) => (
+          <li class="step reveal">
+            <p class="step-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</p>
+            <h3>{st.title}</h3>
+            <p>{st.body}</p>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
@@ -200,6 +219,16 @@ const c = copy.contact;
   .skill ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; color: var(--muted); }
   .skill li { padding-left: 1rem; position: relative; }
   .skill li::before { content: ''; position: absolute; left: 0; top: .7em; width: .35rem; height: 1px; background: var(--accent); }
+
+  @media (min-width: 720px) { .how h2 .serif { white-space: nowrap; } }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; }
+  @media (min-width: 640px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+  .step { padding: 1.75rem; border-radius: var(--radius); background: linear-gradient(180deg, var(--surface), var(--bg-2)); border: 1px solid var(--line); display: grid; gap: 0.9rem; align-content: start; }
+  .step-num { font-family: var(--font-mono); font-size: .78rem; color: var(--faint); display: flex; align-items: center; gap: 0.75rem; }
+  .step-num::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+  .step h3 { font-size: 1.3rem; }
+  .step p:last-child { color: var(--muted); }
 
   .exp-grid { display: grid; gap: 2rem; }
   @media (min-width: 960px) { .exp-grid { grid-template-columns: 0.8fr 1.2fr; align-items: start; } .exp-grid .section-head { position: sticky; top: 6rem; } }

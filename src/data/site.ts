@@ -80,6 +80,29 @@ export const copy = {
     titleSerif: 'the work above.',
     body: 'Grouped by how I actually use them in shipped projects.',
   },
+  howIWork: {
+    eyebrow: 'How I work',
+    titleBefore: 'From a requirements doc',
+    titleSerif: 'to a live store listing.',
+    steps: [
+      {
+        title: 'Requirements',
+        body: 'I start from your requirements, turn them into screens and user flows, and agree on scope before writing code.',
+      },
+      {
+        title: 'Architecture',
+        body: 'I set up a clean Flutter structure with Bloc for state management, so the app stays easy to extend as features grow.',
+      },
+      {
+        title: 'Build',
+        body: 'I build the UI, connect the APIs, and handle the hard parts like offline sync and performance.',
+      },
+      {
+        title: 'Release',
+        body: 'I handle iOS signing, TestFlight builds and App Store & Google Play submissions, through to a live app.',
+      },
+    ],
+  },
   experience: {
     eyebrow: 'Experience',
     titleBefore: 'Where I’ve',
