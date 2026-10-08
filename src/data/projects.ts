@@ -27,6 +27,8 @@ export type Project = {
   caseStudy: boolean;
   accent: { base: string; ink: string; glow: string };
   icon?: string;
+  /** Purpose-made 1200×630 PNG share image (og:image) for the case-study page. */
+  ogImage?: string;
   status: string;
   links: Link[];
   screenshots: Screenshot[];
@@ -59,6 +61,7 @@ export const projects: Project[] = [
     caseStudy: true,
     accent: { base: '#D9B76A', ink: '#0E1A14', glow: 'rgba(217,183,106,0.28)' },
     icon: '/images/projects/al-burda/icon.webp',
+    ogImage: '/og/al-burda.png',
     heroShot: 2,
     status: 'Live on the App Store & Google Play',
     links: [
@@ -125,6 +128,7 @@ export const projects: Project[] = [
     caseStudy: true,
     accent: { base: '#F4F4F2', ink: '#0B0B0C', glow: 'rgba(244,244,242,0.18)' },
     icon: '/images/projects/el-madrasah/icon.webp',
+    ogImage: '/og/el-madrasah.png',
     status: 'Live on the App Store & Google Play · published by BDC for Business Services',
     links: [
       { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/id6755660500', icon: 'apple' },
@@ -186,6 +190,7 @@ export const projects: Project[] = [
     caseStudy: true,
     accent: { base: '#7FD1FF', ink: '#06121C', glow: 'rgba(127,209,255,0.22)' },
     icon: '/images/projects/flexi/icon.webp',
+    ogImage: '/og/flexi.png',
     status: 'Live on the App Store',
     links: [
       { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/id6805243501' },

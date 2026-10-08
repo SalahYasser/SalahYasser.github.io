@@ -17,7 +17,7 @@ const hasNext = next.slug !== p.slug;
 const t = copy.caseStudy;
 const sec = t.sections;
 ---
-<BaseLayout title={`${p.title} ${t.pageTitleSuffix}`} description={p.summary} image={p.screenshots[0]?.src}>
+<BaseLayout title={`${p.title} ${t.pageTitleSuffix}`} description={p.summary} share={p.ogImage ? { src: p.ogImage, alt: `${p.title} — ${p.tagline}` } : undefined} ogType="article">
   <article class="cs" style={`--pa:${p.accent.base};--pink:${p.accent.ink};--pglow:${p.accent.glow}`}>
     <header class="cs-hero">
       <div class="container hero-grid">
