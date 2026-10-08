@@ -57,7 +57,7 @@ export const projects: Project[] = [
     caseStudy: true,
     accent: { base: '#D9B76A', ink: '#0E1A14', glow: 'rgba(217,183,106,0.28)' },
     icon: '/images/projects/al-burda/icon.webp',
-    status: 'Live on the App Store · v1.5.1',
+    status: 'Live on the App Store',
     links: [
       { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/id6784274940' },
     ],
@@ -90,7 +90,7 @@ export const projects: Project[] = [
         },
         {
           title: 'Audio that respects the phone',
-          body: 'Release 1.5.1 focused on playback robustness: no overlap between the full recitation and verse clips, correct pausing during calls and Bluetooth route changes, and steadier lock-screen and background controls.',
+          body: 'A dedicated release focused on playback robustness: no overlap between the full recitation and verse clips, correct pausing during calls and Bluetooth route changes, and steadier lock-screen and background controls.',
         },
       ],
       implemented: [
@@ -102,7 +102,7 @@ export const projects: Project[] = [
         'A library of the Burda and other poems with search',
       ],
       result:
-        'Shipped to the App Store and maintained through regular updates (currently v1.5.1). Free, offline, and free of ads and tracking.',
+        'Shipped to the App Store and maintained through regular updates. Free, offline, and free of ads and tracking.',
     },
   },
   {
@@ -179,7 +179,7 @@ export const projects: Project[] = [
     caseStudy: true,
     accent: { base: '#7FD1FF', ink: '#06121C', glow: 'rgba(127,209,255,0.22)' },
     icon: '/images/projects/flexi/icon.webp',
-    status: 'Live on the App Store · v1.0.3',
+    status: 'Live on the App Store',
     links: [
       { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/id6805243501' },
     ],
@@ -219,7 +219,7 @@ export const projects: Project[] = [
         'Notifications for request status and approvals',
         'Manager tools for authorised employee actions',
       ],
-      result: 'Shipped to the App Store (v1.0.3), available to authorised Fit4Less staff.',
+      result: 'Shipped to the App Store, available to authorised Fit4Less staff.',
     },
   },
   {
