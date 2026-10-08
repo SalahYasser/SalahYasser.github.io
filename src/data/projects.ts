@@ -10,7 +10,7 @@
  */
 
 export type Screenshot = { src: string; alt: string; caption: string };
-export type Link = { label: string; href: string };
+export type Link = { label: string; href: string; icon?: 'apple' | 'play' };
 
 export type Project = {
   slug: string;
@@ -49,20 +49,21 @@ export const projects: Project[] = [
     title: 'Al-Burda',
     nativeTitle: 'البُردة الشريفة',
     kind: 'Client project',
-    platform: 'iOS · Flutter',
-    tagline: 'A calm, fully offline Arabic reading and listening companion, shipped to the App Store.',
+    platform: 'iOS · Android · Flutter',
+    tagline: 'A calm, fully offline Arabic reading and listening companion, shipped to the App Store and Google Play.',
     summary:
-      'An Arabic (RTL) app for reading and listening to Imam al-Busiri’s Burda and other poems, with gentle daily reminders, a lock-screen widget and reading stats. It runs entirely on the device, with no account and no tracking.',
-    role: 'Built from scratch as a solo project: Flutter app, Arabic RTL UI, iOS widget, audio and App Store release under my own account.',
+      'An Arabic (RTL) app for reading and listening to Imam al-Busiri’s Burda and other poems, with gentle daily reminders, a lock-screen widget and reading stats. It runs entirely on the device, with no account and no tracking. Live on the App Store and Google Play.',
+    role: 'Built from scratch as a solo project: Flutter app, Arabic RTL UI, iOS widget, audio, and App Store & Google Play release under my own account.',
     technologies: ['Flutter', 'Dart', 'Clean Architecture', 'Bloc', 'WidgetKit', 'Local notifications', 'Background audio'],
     approval: 'approved',
     caseStudy: true,
     accent: { base: '#D9B76A', ink: '#0E1A14', glow: 'rgba(217,183,106,0.28)' },
     icon: '/images/projects/al-burda/icon.webp',
     heroShot: 2,
-    status: 'Live on the App Store',
+    status: 'Live on the App Store & Google Play',
     links: [
-      { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/id6784274940' },
+      { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/id6784274940', icon: 'apple' },
+      { label: 'View on Google Play', href: 'https://play.google.com/store/apps/details?id=com.salah.alburda', icon: 'play' },
     ],
     screenshots: [
       { src: '/images/projects/al-burda/01_onboarding.webp', alt: 'Al-Burda onboarding screen in Arabic, asking permission for notifications and reminders.', caption: 'Onboarding: notifications and reminder permissions, explained up front.' },
@@ -75,7 +76,7 @@ export const projects: Project[] = [
       product:
         'Al-Burda is a quiet companion for people who read or listen to the Burda of Imam al-Busiri. Readers open a gilded, verse-by-verse page, play a recitation, get a gentle verse reminder through the day, and see the verse of the day on their lock screen without opening the app.',
       roleDetail:
-        'Built from scratch as a solo project for a client, from their requirements. I owned it end to end: the Flutter app and its architecture, the Arabic right-to-left UI, the native iOS lock-screen widget, audio and notifications, through to the App Store release under my own developer account and every update since.',
+        'Built from scratch as a solo project for a client, from their requirements. I owned it end to end: the Flutter app and its architecture, the Arabic right-to-left UI, the native iOS lock-screen widget, audio and notifications, through to shipping it on the App Store and Google Play under my own developer account and every update since.',
       problem:
         'A devotional app has to feel calm and trustworthy. That meant three hard constraints: it had to work with no internet connection, collect no data at all, and still feel alive through reminders, a lock-screen widget and audio that behaves properly around calls and Bluetooth devices.',
       decisions: [
@@ -101,11 +102,12 @@ export const projects: Project[] = [
         'Offline recitation with lock-screen and background playback controls',
         'Daily reminder engine with interactive notification cards',
         'iOS lock-screen widget showing the verse of the day',
+        'Released on both the App Store and Google Play',
         'Reading statistics, progress and streaks',
         'A library of the Burda and other poems with search',
       ],
       result:
-        'Shipped to the App Store and maintained through regular updates. Free, offline, and free of ads and tracking.',
+        'Shipped to the App Store and Google Play, and maintained through regular updates. Free, offline, and free of ads and tracking.',
     },
   },
   {

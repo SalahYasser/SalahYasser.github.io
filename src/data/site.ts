@@ -44,15 +44,15 @@ export const copy = {
     serif: 'from requirements',
     serifAccent: 'to release.',
     lede:
-      'Production Flutter apps with clean architecture, offline-first behaviour and polished iOS delivery. Some of them are shipped on the App Store and in real people’s hands today.',
+      'Production Flutter apps with clean architecture, offline-first behaviour and polished iOS and Android delivery. Some of them are shipped on the App Store and Google Play, and in real people’s hands today.',
     primaryCta: 'View selected work',
     secondaryCta: 'Get in touch',
     cvCta: 'Download CV',
     proofAria: 'At a glance',
     proof: {
       appsLive: {
-        singular: 'app featured here, live on the App Store',
-        plural: 'apps featured here, live on the App Store',
+        singular: 'app featured here, live on the stores',
+        plural: 'apps featured here, live on the stores',
       },
       ios: { k: 'iOS', v: 'provisioning, signing and release, end to end' },
       arabic: { k: 'ع', v: 'Arabic RTL and bilingual interfaces' },
@@ -105,7 +105,7 @@ export const copy = {
       result: { num: '06', title: 'Result' },
       seeIt: { num: '07', title: 'See it' },
     },
-    screenshotsNote: 'Screenshots from the app’s public App Store listing.',
+    screenshotsNote: 'Screenshots from the app’s public store listings.',
     askAboutIt: 'Ask me about it',
     nextLabel: 'Next case study',
     enlargePrefix: 'Enlarge:',
@@ -163,6 +163,6 @@ export const skills = [
   },
   {
     group: 'Shipping & quality',
-    items: ['App Store & TestFlight releases', 'iOS signing & provisioning', 'bloc_test · Mockito', 'Git & GitHub'],
+    items: ['App Store, Google Play & TestFlight', 'iOS signing & provisioning', 'bloc_test · Mockito', 'Git & GitHub'],
   },
 ];

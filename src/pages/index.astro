@@ -11,7 +11,7 @@ const firstPerProject = caseStudies
   .filter(Boolean);
 const fill = caseStudies[0]?.screenshots.slice(1, 2) ?? [];
 const hero = [...firstPerProject, ...fill].slice(0, 2);
-const shipped = caseStudies.filter((p) => p.status.toLowerCase().includes('app store')).length;
+const shipped = caseStudies.filter((p) => /app store|google play/i.test(p.status)).length;
 const h = copy.hero;
 const w = copy.work;
 const sk = copy.skills;
