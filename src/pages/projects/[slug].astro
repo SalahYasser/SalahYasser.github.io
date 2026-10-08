@@ -34,7 +34,7 @@ const appLd = {
   ...(p.links[0] ? { installUrl: p.links[0].href } : {}),
   ...(p.icon ? { image: abs(p.icon) } : {}),
   screenshot: p.screenshots.map((sh) => abs(sh.src)),
-  author: { '@type': 'Person', '@id': `${home}#person`, name: site.name, url: home },
+  [p.kind === 'Built at BDC' ? 'contributor' : 'author']: { '@type': 'Person', '@id': `${home}#person`, name: site.name, url: home },
   ...(p.storePublisher ? { publisher: { '@type': 'Organization', name: p.storePublisher } } : {}),
 };
 ---
