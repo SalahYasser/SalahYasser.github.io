@@ -116,9 +116,9 @@ export const projects: Project[] = [
     nativeTitle: 'المدرسة',
     kind: 'Built at BDC',
     platform: 'iOS · Android · Flutter',
-    tagline: 'A multi-role school platform connecting parents, students and teachers, with offline-first sync.',
+    tagline: 'A multi-role school platform connecting parents, students and teachers, with offline-first sync — shipped to the App Store and Google Play.',
     summary:
-      'A school management app that brings parents, students and teachers into one place: live school-bus tracking, grades, assignments, attendance, schedules, achievements and an AI tutor, in Arabic and English, and usable offline.',
+      'A school management app that brings parents, students and teachers into one place: live school-bus tracking, grades, assignments, attendance, schedules, achievements and an AI tutor, in Arabic and English, and usable offline. Live on the App Store and Google Play.',
     role: 'BDC mobile team member. Built various features across the app and handled iOS signing and shipping to both Play Store & App Store.',
     technologies: ['Flutter', 'Bloc', 'PowerSync', 'Offline-first sync', 'ElevenLabs AI', 'REST APIs', 'Real-time tracking'],
     approval: 'approved',
@@ -127,7 +127,8 @@ export const projects: Project[] = [
     icon: '/images/projects/el-madrasah/icon.webp',
     status: 'Live on the App Store & Google Play · published by BDC for Business Services',
     links: [
-      { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/id6755660500' },
+      { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/id6755660500', icon: 'apple' },
+      { label: 'View on Google Play', href: 'https://play.google.com/store/apps/details?id=com.elmadrasah.app', icon: 'play' },
     ],
     screenshots: [
       { src: '/images/projects/el-madrasah/01_parent_dashboard.webp', alt: 'Parent dashboard in Arabic showing a child’s attendance, homework and average, plus a bus-tracking card.', caption: 'Parent dashboard: a child’s day at a glance, plus live bus tracking.' },
@@ -166,6 +167,7 @@ export const projects: Project[] = [
         'Activities, trips and achievements',
         'AI tutoring with ElevenLabs',
         'Arabic and English support',
+        'Released on both the App Store and Google Play',
       ],
       result: 'Shipped live to the App Store and Google Play, with the current version (1.6.0) released in March 2026.',
     },

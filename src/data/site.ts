@@ -133,7 +133,7 @@ export const experience = [
     place: 'Cairo, Egypt',
     period: 'Nov 2025 – Present',
     points: [
-      'Builds Flutter apps for education, HR and AI products, shipped through the App Store and TestFlight.',
+      'Builds Flutter apps for education, HR and AI products, shipped through the App Store, Google Play and TestFlight.',
       'Owns iOS provisioning, signing and distribution workflows for the team’s releases.',
       'Works with Clean Architecture and Bloc on large, multi-role applications with REST API integration and offline-first caching.',
       'Builds reusable widgets and a shared theming system to keep screens consistent across features.',
