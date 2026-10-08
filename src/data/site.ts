@@ -68,7 +68,7 @@ export const copy = {
     eyebrow: 'Selected work',
     titleBefore: 'Real apps,',
     titleSerif: 'shipped and maintained.',
-    body: 'Each case study covers the product, what I was responsible for, the hard parts, and the decisions behind them. All screenshots are taken from the actual apps.',
+    body: 'Each case study covers the product, what I was responsible for, the hard parts, and the decisions behind them. All screenshots come from the apps’ public store listings.',
     moreTitle: 'More work',
     roleLabel: 'My role:',
     caseStudyCta: 'Read the case study',
