@@ -163,6 +163,6 @@ export const skills = [
   },
   {
     group: 'Shipping & quality',
-    items: ['App Store, Google Play & TestFlight', 'iOS signing & provisioning', 'bloc_test · Mockito', 'Git & GitHub'],
+    items: ['App Store, Google Play & TestFlight', 'iOS signing & provisioning', 'bloc_test · Mockito', 'Git & GitHub', 'AI-assisted development (Claude Code · Codex)'],
   },
 ];
