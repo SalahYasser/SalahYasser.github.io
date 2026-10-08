@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import { caseStudies, isPreview, type Project } from '../../data/projects';
 import { copy } from '../../data/site';
+import { responsive, shotSizes } from '../../lib/images';
 
 export function getStaticPaths() {
   return caseStudies.map((p, i) => ({
@@ -47,7 +48,7 @@ const sec = t.sections;
         </div>
         <div class="hero-shots" aria-hidden="true">
           {p.screenshots.slice(0, 2).map((sh, i) => (
-            <div class={`shot hs${i}`}><img src={sh.src} alt="" width="590" height="1280" fetchpriority={i === 0 ? 'high' : 'auto'} /></div>
+            <div class={`shot hs${i}`}><img src={sh.src} srcset={responsive(sh.src).srcset} sizes={shotSizes.caseHero} alt="" width="590" height="1280" fetchpriority={i === 0 ? 'high' : 'auto'} /></div>
           ))}
         </div>
       </div>
@@ -90,8 +91,8 @@ const sec = t.sections;
           {p.screenshots.map((sh, i) => (
             <li>
               <figure>
-                <a class="shot zoom" href={sh.src} data-index={i} aria-label={`${t.enlargePrefix} ${sh.caption}`}>
-                  <img src={sh.src} alt={sh.alt} width="590" height="1280" loading="lazy" decoding="async" />
+                <a class="shot zoom" href={responsive(sh.src).largest} data-index={i} aria-label={`${t.enlargePrefix} ${sh.caption}`}>
+                  <img src={sh.src} srcset={responsive(sh.src).srcset} sizes={shotSizes.gallery} alt={sh.alt} width="590" height="1280" loading="lazy" decoding="async" />
                   <span class="zoom-ico" aria-hidden="true"><Icon name="expand" /></span>
                 </a>
                 <figcaption>{sh.caption}</figcaption>

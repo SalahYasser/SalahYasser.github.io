@@ -3,6 +3,7 @@ import type { Project } from '../data/projects';
 import Icon from './Icon.astro';
 import { isPreview } from '../data/projects';
 import { copy } from '../data/site';
+import { responsive, shotSizes } from '../lib/images';
 interface Props { project: Project; index: number }
 const { project: p, index } = Astro.props;
 const shots = p.screenshots.slice(0, 3);
@@ -25,7 +26,7 @@ const shots = p.screenshots.slice(0, 3);
   </div>
   <div class="stage" aria-hidden="true">
     {shots.map((s, i) => (
-      <div class={`shot s${i}`}><img src={s.src} alt="" width="590" height="1280" loading="lazy" decoding="async" /></div>
+      <div class={`shot s${i}`}><img src={s.src} srcset={responsive(s.src).srcset} sizes={shotSizes.card} alt="" width="590" height="1280" loading="lazy" decoding="async" /></div>
     ))}
   </div>
 </article>

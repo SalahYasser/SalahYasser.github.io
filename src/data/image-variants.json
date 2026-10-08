@@ -1,0 +1,344 @@
+{
+  "/images/projects/al-burda/01_onboarding.webp": {
+    "width": 590,
+    "height": 1282,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/al-burda/01_onboarding-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/al-burda/01_onboarding-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/al-burda/01_onboarding.webp"
+      }
+    ]
+  },
+  "/images/projects/al-burda/02_home.webp": {
+    "width": 590,
+    "height": 1282,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/al-burda/02_home-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/al-burda/02_home-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/al-burda/02_home.webp"
+      }
+    ]
+  },
+  "/images/projects/al-burda/03_reader.webp": {
+    "width": 590,
+    "height": 1282,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/al-burda/03_reader-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/al-burda/03_reader-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/al-burda/03_reader.webp"
+      }
+    ]
+  },
+  "/images/projects/al-burda/04_stats.webp": {
+    "width": 590,
+    "height": 1282,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/al-burda/04_stats-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/al-burda/04_stats-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/al-burda/04_stats.webp"
+      }
+    ]
+  },
+  "/images/projects/al-burda/05_library.webp": {
+    "width": 590,
+    "height": 1282,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/al-burda/05_library-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/al-burda/05_library-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/al-burda/05_library.webp"
+      }
+    ]
+  },
+  "/images/projects/el-madrasah/01_parent_dashboard.webp": {
+    "width": 590,
+    "height": 1276,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/el-madrasah/01_parent_dashboard-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/el-madrasah/01_parent_dashboard-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/el-madrasah/01_parent_dashboard.webp"
+      }
+    ]
+  },
+  "/images/projects/el-madrasah/02_children_assignments.webp": {
+    "width": 590,
+    "height": 1276,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/el-madrasah/02_children_assignments-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/el-madrasah/02_children_assignments-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/el-madrasah/02_children_assignments.webp"
+      }
+    ]
+  },
+  "/images/projects/el-madrasah/03_student_grades.webp": {
+    "width": 590,
+    "height": 1276,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/el-madrasah/03_student_grades-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/el-madrasah/03_student_grades-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/el-madrasah/03_student_grades.webp"
+      }
+    ]
+  },
+  "/images/projects/el-madrasah/04_student_dashboard.webp": {
+    "width": 590,
+    "height": 1276,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/el-madrasah/04_student_dashboard-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/el-madrasah/04_student_dashboard-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/el-madrasah/04_student_dashboard.webp"
+      }
+    ]
+  },
+  "/images/projects/el-madrasah/05_subjects_list.webp": {
+    "width": 590,
+    "height": 1276,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/el-madrasah/05_subjects_list-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/el-madrasah/05_subjects_list-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/el-madrasah/05_subjects_list.webp"
+      }
+    ]
+  },
+  "/images/projects/el-madrasah/06_activities_trips.webp": {
+    "width": 590,
+    "height": 1276,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/el-madrasah/06_activities_trips-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/el-madrasah/06_activities_trips-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/el-madrasah/06_activities_trips.webp"
+      }
+    ]
+  },
+  "/images/projects/el-madrasah/07_achievements.webp": {
+    "width": 590,
+    "height": 1276,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/el-madrasah/07_achievements-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/el-madrasah/07_achievements-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/el-madrasah/07_achievements.webp"
+      }
+    ]
+  },
+  "/images/projects/el-madrasah/08_support_tickets.webp": {
+    "width": 590,
+    "height": 1276,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/el-madrasah/08_support_tickets-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/el-madrasah/08_support_tickets-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/el-madrasah/08_support_tickets.webp"
+      }
+    ]
+  },
+  "/images/projects/el-madrasah/09_schedule.webp": {
+    "width": 590,
+    "height": 1276,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/el-madrasah/09_schedule-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/el-madrasah/09_schedule-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/el-madrasah/09_schedule.webp"
+      }
+    ]
+  },
+  "/images/projects/el-madrasah/10_student_profile.webp": {
+    "width": 590,
+    "height": 1276,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/el-madrasah/10_student_profile-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/el-madrasah/10_student_profile-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/el-madrasah/10_student_profile.webp"
+      }
+    ]
+  },
+  "/images/projects/flexi/01-dashboard.webp": {
+    "width": 590,
+    "height": 1282,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/flexi/01-dashboard-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/flexi/01-dashboard-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/flexi/01-dashboard.webp"
+      }
+    ]
+  },
+  "/images/projects/flexi/02-attendance.webp": {
+    "width": 590,
+    "height": 1282,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/flexi/02-attendance-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/flexi/02-attendance-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/flexi/02-attendance.webp"
+      }
+    ]
+  },
+  "/images/projects/flexi/04-leave-request.webp": {
+    "width": 590,
+    "height": 1282,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/flexi/04-leave-request-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/flexi/04-leave-request-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/flexi/04-leave-request.webp"
+      }
+    ]
+  },
+  "/images/projects/flexi/05-advances.webp": {
+    "width": 590,
+    "height": 1282,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/flexi/05-advances-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/flexi/05-advances-440w.webp"
+      },
+      {
+        "w": 590,
+        "src": "/images/projects/flexi/05-advances.webp"
+      }
+    ]
+  }
+}

@@ -5,6 +5,7 @@ import CompactCard from '../components/CompactCard.astro';
 import Icon from '../components/Icon.astro';
 import { site, copy, experience, education, skills } from '../data/site';
 import { caseStudies, compactProjects } from '../data/projects';
+import { responsive, shotSizes } from '../lib/images';
 
 const firstPerProject = caseStudies
   .map((p) => p.screenshots[p.heroShot ?? 0])
@@ -41,7 +42,7 @@ const c = copy.contact;
       </div>
       <div class="hero-stage" aria-hidden="true">
         {hero.map((s, i) => (
-          <figure class={`shot h${i}`}><img src={s.src} alt="" width="590" height="1280" fetchpriority={i === 0 ? 'high' : 'auto'} /></figure>
+          <figure class={`shot h${i}`}><img src={s.src} srcset={responsive(s.src).srcset} sizes={shotSizes.homeHero} alt="" width="590" height="1280" fetchpriority={i === 0 ? 'high' : 'auto'} /></figure>
         ))}
         <div class="halo"></div>
       </div>
