@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://salahyasser.github.io/sitemap-index.xml

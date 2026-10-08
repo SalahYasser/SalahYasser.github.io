@@ -1,0 +1,71 @@
+---
+import type { Project } from '../data/projects';
+import Icon from './Icon.astro';
+import { isPreview } from '../data/projects';
+interface Props { project: Project; index: number }
+const { project: p, index } = Astro.props;
+const shots = p.screenshots.slice(0, 3);
+---
+<article class="feature reveal" style={`--pa:${p.accent.base};--pink:${p.accent.ink};--pglow:${p.accent.glow}`}>
+  <div class="copy">
+    <p class="meta"><span class="num">{String(index + 1).padStart(2, '0')}</span><span>{p.kind}</span><span aria-hidden="true">·</span><span>{p.platform}</span></p>
+    <h3>
+      <a href={`/projects/${p.slug}/`} class="stretched">
+        {p.title}
+        {p.nativeTitle && <span class="native" lang="ar" dir="rtl">{p.nativeTitle}</span>}
+      </a>
+    </h3>
+    <p class="tagline">{p.tagline}</p>
+    <p class="role"><strong>My role:</strong> {p.role}</p>
+    <ul class="chips">{p.technologies.slice(0, 5).map((t) => <li class="chip">{t}</li>)}</ul>
+    <p class="status"><span class="dot" aria-hidden="true"></span>{p.status}</p>
+    {isPreview && p.approval === 'pending' && <p class="pending-note">Pending: {p.approvalNote}</p>}
+    <span class="cta" aria-hidden="true">Read the case study <Icon name="arrow" /></span>
+  </div>
+  <div class="stage" aria-hidden="true">
+    {shots.map((s, i) => (
+      <div class={`shot s${i}`}><img src={s.src} alt="" width="590" height="1280" loading="lazy" decoding="async" /></div>
+    ))}
+  </div>
+</article>
+<style>
+  .feature {
+    position: relative; display: grid; gap: 2rem; align-items: center; overflow: hidden;
+    padding: clamp(1.5rem, 4vw, 3rem); border-radius: calc(var(--radius) + 6px);
+    background:
+      radial-gradient(40rem 26rem at 100% 100%, var(--pglow), transparent 65%),
+      linear-gradient(180deg, var(--surface), var(--bg-2));
+    border: 1px solid var(--line);
+    transition: border-color .35s var(--ease), transform .35s var(--ease);
+  }
+  .feature:hover { border-color: color-mix(in srgb, var(--pa) 45%, transparent); }
+  @media (min-width: 900px) { .feature { grid-template-columns: 1fr 1.05fr; min-height: 34rem; } }
+  .copy { display: grid; gap: 1.1rem; align-content: start; position: relative; z-index: 1; }
+  .meta { display: flex; gap: 0.6rem; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); }
+  .num { color: var(--pa); }
+  h3 { font-size: clamp(2.1rem, 5vw, 3.6rem); }
+  h3 a { text-decoration: none; display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 0.2em 0.6em; }
+  .native { font-size: 0.5em; font-weight: 600; color: var(--pa); }
+  .stretched::after { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: inherit; }
+  .stretched:focus-visible { outline: none; }
+  .feature:has(.stretched:focus-visible) { outline: 2px solid var(--accent-2); outline-offset: 4px; }
+  .tagline { font-size: 1.2rem; color: var(--text); max-width: 32rem; }
+  .role { color: var(--muted); font-size: 0.98rem; max-width: 34rem; }
+  .role strong { color: var(--text); font-weight: 600; }
+  .status { display: inline-flex; align-items: center; gap: 0.55rem; font-size: 0.9rem; color: var(--muted); }
+  .dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--pa); box-shadow: 0 0 0 4px color-mix(in srgb, var(--pa) 20%, transparent); }
+  .cta { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--pa); margin-top: 0.4rem; }
+  .cta :global(svg) { width: 1.1em; height: 1.1em; transition: transform .3s var(--ease); }
+  .feature:hover .cta :global(svg) { transform: translateX(4px); }
+
+  .stage { position: relative; height: clamp(22rem, 52vw, 30rem); }
+  .stage .shot { position: absolute; width: clamp(9rem, 22vw, 13.5rem); top: 50%; left: 50%; transition: transform .6s var(--ease); }
+  .s0 { transform: translate(-50%, -50%) ; z-index: 3; }
+  .s1 { transform: translate(-118%, -44%) rotate(-7deg) scale(.9); z-index: 2; opacity: .9; }
+  .s2 { transform: translate(18%, -44%) rotate(7deg) scale(.9); z-index: 1; opacity: .9; }
+  @media (prefers-reduced-motion: no-preference) {
+    .feature:hover .s1 { transform: translate(-128%, -46%) rotate(-9deg) scale(.9); }
+    .feature:hover .s2 { transform: translate(28%, -46%) rotate(9deg) scale(.9); }
+    .feature:hover .s0 { transform: translate(-50%, -53%); }
+  }
+</style>

@@ -1,0 +1,28 @@
+---
+import type { Project } from '../data/projects';
+import { isPreview } from '../data/projects';
+interface Props { project: Project }
+const { project: p } = Astro.props;
+---
+<article class="compact reveal" style={`--pa:${p.accent.base}`}>
+  <p class="meta"><span>{p.kind}</span><span aria-hidden="true">·</span><span>{p.platform}</span></p>
+  <h3>{p.title}</h3>
+  <p class="tag">{p.tagline}</p>
+  <p class="sum">{p.summary}</p>
+  <ul class="chips">{p.technologies.map((t) => <li class="chip">{t}</li>)}</ul>
+  <p class="status">{p.status}</p>
+  {isPreview && p.approval === 'pending' && <p class="pending-note">Pending: {p.approvalNote}</p>}
+</article>
+<style>
+  .compact {
+    display: grid; gap: 0.8rem; align-content: start; padding: 1.6rem; border-radius: var(--radius);
+    background: linear-gradient(180deg, var(--surface), var(--bg-2)); border: 1px solid var(--line);
+    position: relative; overflow: hidden;
+  }
+  .compact::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--pa); opacity: .8; }
+  .meta { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); display: flex; gap: .5rem; flex-wrap: wrap; }
+  h3 { font-size: 1.6rem; }
+  .tag { color: var(--pa); font-weight: 560; }
+  .sum { color: var(--muted); font-size: 0.97rem; }
+  .status { font-size: 0.85rem; color: var(--faint); font-family: var(--font-mono); }
+</style>
