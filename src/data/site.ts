@@ -1,6 +1,6 @@
 // Personal details and all user-facing site copy.
 // Pages and components render from this file and from projects.ts — do not hardcode English copy elsewhere.
-// Phone number is intentionally omitted (brief §10).
+// Phone number is intentionally kept off the HTML pages; it appears only inside the downloadable CV PDF (approved by Salah).
 
 export const site = {
   name: 'Salah Yasser',
@@ -11,9 +11,8 @@ export const site = {
     github: 'https://github.com/SalahYasser',
     linkedin: 'https://www.linkedin.com/in/SalahYasserAllaithy',
   },
-  // Set to a path under /public (e.g. '/cv/Salah-Yasser-CV.pdf') once a public CV
-  // without private details is approved. Left null so no broken link ships.
-  cvPath: null as string | null,
+  // Path under /public to the downloadable CV. Set to null to hide every CV button.
+  cvPath: '/cv/Salah-Yasser-Flutter-Developer-CV.pdf' as string | null,
   /** Homepage meta description (<= 155 characters). */
   description:
     'Salah Yasser is a Flutter developer in Cairo building iOS & Android apps from requirements to release, with apps live on the App Store & Google Play.',
@@ -54,6 +53,7 @@ export const copy = {
     primaryCta: 'View selected work',
     secondaryCta: 'Get in touch',
     cvCta: 'Download CV',
+    cvAria: 'Download CV (PDF)',
     proofAria: 'At a glance',
     proof: {
       appsLive: {
@@ -93,6 +93,8 @@ export const copy = {
     body: 'I’m open to Flutter roles and freelance projects. Email is the quickest way to reach me.',
     linkedin: 'LinkedIn',
     github: 'GitHub',
+    cv: 'Download CV',
+    cvAria: 'Download CV (PDF)',
     newTab: ' (opens in a new tab)',
   },
   caseStudy: {
