@@ -1,3 +1,26 @@
+/* Metric-matched stand-ins for Inter Tight while the web font loads, so text doesn't reflow
+   (and shift the layout) when it swaps in. size-adjust was measured on the site's own copy
+   against Arial / Liberation Sans for each weight band used here; Inter Tight's ascent is
+   0.969em and descent 0.241em, divided by size-adjust. */
+@font-face {
+  font-family: 'Inter Tight Fallback';
+  src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('Helvetica');
+  font-weight: 100 449;
+  size-adjust: 96%; ascent-override: 101%; descent-override: 25%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Tight Fallback';
+  src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('Helvetica');
+  font-weight: 450 599;
+  size-adjust: 98.5%; ascent-override: 98.4%; descent-override: 24.5%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Tight Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'), local('LiberationSans-Bold'), local('Helvetica Bold');
+  font-weight: 600 900;
+  size-adjust: 94%; ascent-override: 103.1%; descent-override: 25.6%; line-gap-override: 0%;
+}
+
 :root {
   --bg: #0a0f1c;
   --bg-2: #0e1526;
@@ -14,7 +37,7 @@
   --radius: 22px;
   --radius-sm: 14px;
   --max: 1180px;
-  --font-sans: 'Inter Tight Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-sans: 'Inter Tight Variable', 'Inter Tight Fallback', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
   --font-ar: 'IBM Plex Sans Arabic', 'Geeza Pro', 'Noto Sans Arabic', sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
