@@ -30,6 +30,8 @@ export type Project = {
   status: string;
   links: Link[];
   screenshots: Screenshot[];
+  /** Index of the screenshot used on the homepage hero (defaults to 0). */
+  heroShot?: number;
   sections?: {
     product: string;
     roleDetail: string;
@@ -57,6 +59,7 @@ export const projects: Project[] = [
     caseStudy: true,
     accent: { base: '#D9B76A', ink: '#0E1A14', glow: 'rgba(217,183,106,0.28)' },
     icon: '/images/projects/al-burda/icon.webp',
+    heroShot: 2,
     status: 'Live on the App Store',
     links: [
       { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/id6784274940' },
@@ -72,7 +75,7 @@ export const projects: Project[] = [
       product:
         'Al-Burda is a quiet companion for people who read or listen to the Burda of Imam al-Busiri. Readers open a gilded, verse-by-verse page, play a recitation, get a gentle verse reminder through the day, and see the verse of the day on their lock screen without opening the app.',
       roleDetail:
-        'Built for a client from their requirements, and published under my own developer account. I built it from scratch on my own and took it all the way to the App Store: the Flutter architecture, the Arabic right-to-left interface, the native iOS widget, audio, notifications and every release since launch.',
+        'Built from scratch as a solo project for a client, from their requirements. I owned it end to end: the Flutter app and its architecture, the Arabic right-to-left UI, the native iOS lock-screen widget, audio and notifications, through to the App Store release under my own developer account and every update since.',
       problem:
         'A devotional app has to feel calm and trustworthy. That meant three hard constraints: it had to work with no internet connection, collect no data at all, and still feel alive through reminders, a lock-screen widget and audio that behaves properly around calls and Bluetooth devices.',
       decisions: [
@@ -193,7 +196,7 @@ export const projects: Project[] = [
       product:
         'FLEXI brings a company’s day-to-day HR services into one app for Fit4Less staff. Employees check in and out, scan a QR code for attendance, follow their schedules and shifts, request leave, permissions and salary advances, and view payroll documents. Managers get the employee data and approval actions their role allows.',
       roleDetail:
-        'Built for a client from their requirements, from scratch and on my own, then published under my own Apple developer account: the Flutter app, its architecture, the API integration and the App Store release.',
+        'Built from scratch as a solo project for a client, from their requirements. I owned it end to end: the Flutter app and its architecture, the API integration and the role-based flows, through to the App Store release under my own developer account.',
       problem:
         'Attendance has to be trustworthy, so a check-in should only count when the employee is really at work. And the same app serves employees and managers, so every screen and action has to respect the permissions of the signed-in account.',
       decisions: [

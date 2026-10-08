@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import { caseStudies, isPreview, type Project } from '../../data/projects';
+import { copy } from '../../data/site';
 
 export function getStaticPaths() {
   return caseStudies.map((p, i) => ({
@@ -13,13 +14,15 @@ interface Props { project: Project; next: Project }
 const { project: p, next } = Astro.props;
 const s = p.sections!;
 const hasNext = next.slug !== p.slug;
+const t = copy.caseStudy;
+const sec = t.sections;
 ---
-<BaseLayout title={`${p.title} case study`} description={p.summary} image={p.screenshots[0]?.src}>
+<BaseLayout title={`${p.title} ${t.pageTitleSuffix}`} description={p.summary} image={p.screenshots[0]?.src}>
   <article class="cs" style={`--pa:${p.accent.base};--pink:${p.accent.ink};--pglow:${p.accent.glow}`}>
     <header class="cs-hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <a class="back" href="/#work"><span aria-hidden="true">←</span> All work</a>
+          <a class="back" href="/#work"><span aria-hidden="true">←</span> {t.back}</a>
           <div class="title-row">
             {p.icon && <img class="app-icon" src={p.icon} alt={`${p.title} app icon`} width="256" height="256" />}
             <div>
@@ -28,16 +31,16 @@ const hasNext = next.slug !== p.slug;
             </div>
           </div>
           <p class="lede">{p.tagline}</p>
-          {isPreview && p.approval === 'pending' && <p class="pending-note">Pending: {p.approvalNote}</p>}
+          {isPreview && p.approval === 'pending' && <p class="pending-note">{t.pendingPrefix} {p.approvalNote}</p>}
           <dl class="facts">
-            <div><dt>Role</dt><dd>{p.role}</dd></div>
-            <div><dt>Status</dt><dd>{p.status}</dd></div>
-            <div class="wide"><dt>Stack</dt><dd><ul class="chips">{p.technologies.map((t) => <li class="chip">{t}</li>)}</ul></dd></div>
+            <div><dt>{t.roleLabel}</dt><dd>{p.role}</dd></div>
+            <div><dt>{t.statusLabel}</dt><dd>{p.status}</dd></div>
+            <div class="wide"><dt>{t.stackLabel}</dt><dd><ul class="chips">{p.technologies.map((t) => <li class="chip">{t}</li>)}</ul></dd></div>
           </dl>
           {p.links.length > 0 && (
             <div class="links">
               {p.links.map((l) => (
-                <a class="btn btn-store" href={l.href} target="_blank" rel="noopener"><Icon name="apple" /> {l.label}<span class="visually-hidden"> (opens in a new tab)</span></a>
+                <a class="btn btn-store" href={l.href} target="_blank" rel="noopener"><Icon name="apple" /> {l.label}<span class="visually-hidden">{t.newTab}</span></a>
               ))}
             </div>
           )}
@@ -52,21 +55,21 @@ const hasNext = next.slug !== p.slug;
 
     <div class="container body">
       <section class="block reveal" aria-labelledby="q1">
-        <p class="q-num">01</p>
-        <div><h2 id="q1">The product</h2><p>{s.product}</p></div>
+        <p class="q-num">{sec.product.num}</p>
+        <div><h2 id="q1">{sec.product.title}</h2><p>{s.product}</p></div>
       </section>
       <section class="block reveal" aria-labelledby="q2">
-        <p class="q-num">02</p>
-        <div><h2 id="q2">My role</h2><p>{s.roleDetail}</p></div>
+        <p class="q-num">{sec.role.num}</p>
+        <div><h2 id="q2">{sec.role.title}</h2><p>{s.roleDetail}</p></div>
       </section>
       <section class="block reveal" aria-labelledby="q3">
-        <p class="q-num">03</p>
-        <div><h2 id="q3">The hard part</h2><p class="pull">{s.problem}</p></div>
+        <p class="q-num">{sec.problem.num}</p>
+        <div><h2 id="q3">{sec.problem.title}</h2><p class="pull">{s.problem}</p></div>
       </section>
       <section class="block reveal" aria-labelledby="q4">
-        <p class="q-num">04</p>
+        <p class="q-num">{sec.decisions.num}</p>
         <div>
-          <h2 id="q4">Decisions and why</h2>
+          <h2 id="q4">{sec.decisions.title}</h2>
           <ol class="decisions">
             {s.decisions.map((d) => (<li><h3>{d.title}</h3><p>{d.body}</p></li>))}
           </ol>
@@ -76,18 +79,18 @@ const hasNext = next.slug !== p.slug;
 
     <section class="gallery-wrap reveal" aria-labelledby="q5">
       <div class="container gallery-head">
-        <p class="q-num">05</p>
+        <p class="q-num">{sec.built.num}</p>
         <div>
-          <h2 id="q5">What I built</h2>
+          <h2 id="q5">{sec.built.title}</h2>
           <ul class="implemented">{s.implemented.map((x) => <li>{x}</li>)}</ul>
         </div>
       </div>
-      <div class="gallery" role="region" aria-label={`${p.title} screenshots, scroll horizontally`} tabindex="0">
+      <div class="gallery" role="region" aria-label={`${p.title} ${t.galleryAriaSuffix}`} tabindex="0">
         <ul>
           {p.screenshots.map((sh, i) => (
             <li>
               <figure>
-                <a class="shot zoom" href={sh.src} data-index={i} aria-label={`Enlarge: ${sh.caption}`}>
+                <a class="shot zoom" href={sh.src} data-index={i} aria-label={`${t.enlargePrefix} ${sh.caption}`}>
                   <img src={sh.src} alt={sh.alt} width="590" height="1280" loading="lazy" decoding="async" />
                   <span class="zoom-ico" aria-hidden="true"><Icon name="expand" /></span>
                 </a>
@@ -97,40 +100,40 @@ const hasNext = next.slug !== p.slug;
           ))}
         </ul>
       </div>
-      <p class="container src-note">Screenshots from the app’s public App Store listing.</p>
+      <p class="container src-note">{t.screenshotsNote}</p>
     </section>
 
     <div class="container body">
       <section class="block reveal" aria-labelledby="q6">
-        <p class="q-num">06</p>
-        <div><h2 id="q6">Result</h2><p class="pull">{s.result}</p></div>
+        <p class="q-num">{sec.result.num}</p>
+        <div><h2 id="q6">{sec.result.title}</h2><p class="pull">{s.result}</p></div>
       </section>
       <section class="block reveal" aria-labelledby="q7">
-        <p class="q-num">07</p>
+        <p class="q-num">{sec.seeIt.num}</p>
         <div>
-          <h2 id="q7">See it</h2>
+          <h2 id="q7">{sec.seeIt.title}</h2>
           <div class="links">
-            {p.links.map((l) => (<a class="btn btn-store" href={l.href} target="_blank" rel="noopener"><Icon name="apple" /> {l.label}<span class="visually-hidden"> (opens in a new tab)</span></a>))}
-            <a class="btn btn-ghost" href="/#contact">Ask me about it</a>
+            {p.links.map((l) => (<a class="btn btn-store" href={l.href} target="_blank" rel="noopener"><Icon name="apple" /> {l.label}<span class="visually-hidden">{t.newTab}</span></a>))}
+            <a class="btn btn-ghost" href="/#contact">{t.askAboutIt}</a>
           </div>
         </div>
       </section>
     </div>
 
     {hasNext && (
-      <nav class="container next reveal" aria-label="Next case study">
+      <nav class="container next reveal" aria-label={t.nextLabel}>
         <a href={`/projects/${next.slug}/`} style={`--na:${next.accent.base}`}>
-          <span class="nl">Next case study</span>
+          <span class="nl">{t.nextLabel}</span>
           <span class="nt">{next.title} <Icon name="arrow" /></span>
         </a>
       </nav>
     )}
 
-    <dialog class="lightbox" aria-label="Screenshot viewer">
-      <form method="dialog"><button class="close" aria-label="Close viewer">✕</button></form>
-      <button class="nav prev" type="button" aria-label="Previous screenshot">‹</button>
+    <dialog class="lightbox" aria-label={t.viewerLabel}>
+      <form method="dialog"><button class="close" aria-label={t.closeViewer}>✕</button></form>
+      <button class="nav prev" type="button" aria-label={t.prevShot}>‹</button>
       <figure><figcaption></figcaption></figure>
-      <button class="nav nextb" type="button" aria-label="Next screenshot">›</button>
+      <button class="nav nextb" type="button" aria-label={t.nextShot}>›</button>
     </dialog>
   </article>
 </BaseLayout>

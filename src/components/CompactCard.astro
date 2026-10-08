@@ -1,6 +1,7 @@
 ---
 import type { Project } from '../data/projects';
 import { isPreview } from '../data/projects';
+import { copy } from '../data/site';
 interface Props { project: Project }
 const { project: p } = Astro.props;
 ---
@@ -11,7 +12,7 @@ const { project: p } = Astro.props;
   <p class="sum">{p.summary}</p>
   <ul class="chips">{p.technologies.map((t) => <li class="chip">{t}</li>)}</ul>
   <p class="status">{p.status}</p>
-  {isPreview && p.approval === 'pending' && <p class="pending-note">Pending: {p.approvalNote}</p>}
+  {isPreview && p.approval === 'pending' && <p class="pending-note">{copy.work.pendingPrefix} {p.approvalNote}</p>}
 </article>
 <style>
   .compact {

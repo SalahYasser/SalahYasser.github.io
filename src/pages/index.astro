@@ -3,37 +3,40 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import CompactCard from '../components/CompactCard.astro';
 import Icon from '../components/Icon.astro';
-import { site, experience, education, skills } from '../data/site';
+import { site, copy, experience, education, skills } from '../data/site';
 import { caseStudies, compactProjects } from '../data/projects';
 
-// Hero uses real screenshots from published case studies only.
-// One strong screen per project first, then fill from the lead project, max two.
-const firstPerProject = caseStudies.map((p) => p.screenshots[p.slug === 'al-burda' ? 2 : 0]).filter(Boolean);
+const firstPerProject = caseStudies
+  .map((p) => p.screenshots[p.heroShot ?? 0])
+  .filter(Boolean);
 const fill = caseStudies[0]?.screenshots.slice(1, 2) ?? [];
 const hero = [...firstPerProject, ...fill].slice(0, 2);
 const shipped = caseStudies.filter((p) => p.status.toLowerCase().includes('app store')).length;
+const h = copy.hero;
+const w = copy.work;
+const sk = copy.skills;
+const ex = copy.experience;
+const c = copy.contact;
 ---
 <BaseLayout>
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow reveal">Flutter Developer · Cairo, Egypt</p>
+        <p class="eyebrow reveal">{h.eyebrow}</p>
         <h1 class="reveal">
           {site.name}<span class="sr-break">, </span>
-          <span class="line2">I build mobile apps <span class="serif">from requirements</span> <span class="serif accent">to release.</span></span>
+          <span class="line2">{h.lineBeforeSerif} <span class="serif">{h.serif}</span> <span class="serif accent">{h.serifAccent}</span></span>
         </h1>
-        <p class="lede reveal">
-          Production Flutter apps with clean architecture, offline-first behaviour and polished iOS delivery. Some of them are shipped on the App Store and in real people’s hands today.
-        </p>
+        <p class="lede reveal">{h.lede}</p>
         <div class="actions reveal">
-          <a class="btn btn-primary" href="#work">View selected work <Icon name="arrow" /></a>
-          <a class="btn btn-ghost" href="#contact">Get in touch</a>
-          {site.cvPath && <a class="btn btn-ghost" href={site.cvPath} download>Download CV <Icon name="download" /></a>}
+          <a class="btn btn-primary" href="#work">{h.primaryCta} <Icon name="arrow" /></a>
+          <a class="btn btn-ghost" href="#contact">{h.secondaryCta}</a>
+          {site.cvPath && <a class="btn btn-ghost" href={site.cvPath} download>{h.cvCta} <Icon name="download" /></a>}
         </div>
-        <ul class="proof reveal" aria-label="At a glance">
-          <li><span class="k">{shipped}</span><span class="v">{shipped === 1 ? 'app' : 'apps'} featured here, live on the App Store</span></li>
-          <li><span class="k">iOS</span><span class="v">provisioning, signing and release, end to end</span></li>
-          <li><span class="k" lang="ar">ع</span><span class="v">Arabic RTL and bilingual interfaces</span></li>
+        <ul class="proof reveal" aria-label={h.proofAria}>
+          <li><span class="k">{shipped}</span><span class="v">{shipped === 1 ? h.proof.appsLive.singular : h.proof.appsLive.plural}</span></li>
+          <li><span class="k">{h.proof.ios.k}</span><span class="v">{h.proof.ios.v}</span></li>
+          <li><span class="k" lang="ar">{h.proof.arabic.k}</span><span class="v">{h.proof.arabic.v}</span></li>
         </ul>
       </div>
       <div class="hero-stage" aria-hidden="true">
@@ -48,16 +51,16 @@ const shipped = caseStudies.filter((p) => p.status.toLowerCase().includes('app s
   <section id="work" class="section work" aria-labelledby="work-title">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">Selected work</p>
-        <h2 id="work-title">Real apps, <span class="serif">shipped and maintained.</span></h2>
-        <p>Each case study covers the product, what I was responsible for, the hard parts, and the decisions behind them. All screenshots are taken from the actual apps.</p>
+        <p class="eyebrow">{w.eyebrow}</p>
+        <h2 id="work-title">{w.titleBefore} <span class="serif">{w.titleSerif}</span></h2>
+        <p>{w.body}</p>
       </div>
       <div class="features">
         {caseStudies.map((p, i) => <FeatureCard project={p} index={i} />)}
       </div>
       {compactProjects.length > 0 && (
         <div class="more">
-          <h3 class="more-title reveal">More work</h3>
+          <h3 class="more-title reveal">{w.moreTitle}</h3>
           <div class="compact-grid">
             {compactProjects.map((p) => <CompactCard project={p} />)}
           </div>
@@ -69,9 +72,9 @@ const shipped = caseStudies.filter((p) => p.status.toLowerCase().includes('app s
   <section id="skills" class="section skills" aria-labelledby="skills-title">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">What I work with</p>
-        <h2 id="skills-title">The tools behind <span class="serif">the work above.</span></h2>
-        <p>Grouped by how I actually use them in shipped projects.</p>
+        <p class="eyebrow">{sk.eyebrow}</p>
+        <h2 id="skills-title">{sk.titleBefore} <span class="serif">{sk.titleSerif}</span></h2>
+        <p>{sk.body}</p>
       </div>
       <div class="skill-grid">
         {skills.map((g, i) => (
@@ -88,8 +91,8 @@ const shipped = caseStudies.filter((p) => p.status.toLowerCase().includes('app s
   <section id="experience" class="section experience" aria-labelledby="exp-title">
     <div class="container exp-grid">
       <div class="section-head reveal">
-        <p class="eyebrow">Experience</p>
-        <h2 id="exp-title">Where I’ve <span class="serif">been building.</span></h2>
+        <p class="eyebrow">{ex.eyebrow}</p>
+        <h2 id="exp-title">{ex.titleBefore} <span class="serif">{ex.titleSerif}</span></h2>
       </div>
       <div class="timeline">
         {experience.map((e) => (
@@ -105,7 +108,7 @@ const shipped = caseStudies.filter((p) => p.status.toLowerCase().includes('app s
           </article>
         ))}
         <div class="edu reveal">
-          <h3>Education &amp; training</h3>
+          <h3>{ex.educationHeading}</h3>
           <ul>
             {education.map((ed) => (
               <li><span class="t">{ed.title}</span><span class="o">{ed.org}</span><span class="p">{ed.period}</span></li>
@@ -119,13 +122,13 @@ const shipped = caseStudies.filter((p) => p.status.toLowerCase().includes('app s
   <section id="contact" class="section contact" aria-labelledby="contact-title">
     <div class="container">
       <div class="contact-card reveal">
-        <p class="eyebrow">Contact</p>
-        <h2 id="contact-title">Building a mobile product? <span class="serif">Let’s talk.</span></h2>
-        <p>I’m open to Flutter roles and freelance projects. Email is the quickest way to reach me.</p>
+        <p class="eyebrow">{c.eyebrow}</p>
+        <h2 id="contact-title">{c.titleBefore} <span class="serif">{c.titleSerif}</span></h2>
+        <p>{c.body}</p>
         <div class="actions">
           <a class="btn btn-primary" href={`mailto:${site.email}`}><Icon name="mail" /> {site.email}</a>
-          <a class="btn btn-ghost" href={site.links.linkedin} target="_blank" rel="me noopener"><Icon name="linkedin" /> LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a>
-          <a class="btn btn-ghost" href={site.links.github} target="_blank" rel="me noopener"><Icon name="github" /> GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>
+          <a class="btn btn-ghost" href={site.links.linkedin} target="_blank" rel="me noopener"><Icon name="linkedin" /> {c.linkedin}<span class="visually-hidden">{c.newTab}</span></a>
+          <a class="btn btn-ghost" href={site.links.github} target="_blank" rel="me noopener"><Icon name="github" /> {c.github}<span class="visually-hidden">{c.newTab}</span></a>
         </div>
       </div>
     </div>

@@ -1,21 +1,16 @@
 ---
-import { site } from '../data/site';
+import { site, copy } from '../data/site';
 const path = Astro.url.pathname;
 const onHome = path === '/';
-const nav = [
-  { label: 'Work', href: '/#work' },
-  { label: 'Skills', href: '/#skills' },
-  { label: 'Experience', href: '/#experience' },
-  { label: 'Contact', href: '/#contact' },
-];
+const nav = copy.nav;
 ---
 <header class="site-header">
   <div class="container bar">
-    <a href="/" class="brand" aria-label={`${site.name}, home`} aria-current={onHome ? 'page' : undefined}>
-      <span class="mark" aria-hidden="true">SY</span>
+    <a href="/" class="brand" aria-label={`${site.name}${copy.homeLabelSuffix}`} aria-current={onHome ? 'page' : undefined}>
+      <span class="mark" aria-hidden="true">{site.brandMark}</span>
       <span class="brand-text">{site.name}</span>
     </a>
-    <nav aria-label="Primary">
+    <nav aria-label={copy.primaryNavLabel}>
       <ul>
         {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
       </ul>

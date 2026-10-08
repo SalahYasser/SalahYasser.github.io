@@ -11,10 +11,15 @@ npm run build                            # outputs ./dist
 ```
 
 ## Update content
-- **Profile, experience, skills:** `src/data/site.ts`
+All user-facing text lives in `src/data/` — pages and components only render it. Edit the data, never the `.astro` files, for copy changes.
+
+- **Profile, experience, skills:** `src/data/site.ts` (`site`, `experience`, `education`, `skills`)
+- **Every UI string** (hero, section titles, CTAs, nav, footer, case-study labels, 404): `copy` in `src/data/site.ts`
 - **Projects:** `src/data/projects.ts`. Each project has:
   - `approval`: `'approved'` ships to production; `'pending'` only appears in preview builds.
   - `caseStudy: true` + `sections` → gets its own page at `/projects/<slug>/`. Otherwise it shows as a compact card.
+  - `role` is the short line on the homepage card and the case-study **Role** box; `sections.roleDetail` is the longer **My role** paragraph — keep them telling the same story.
+  - `heroShot`: which screenshot appears in the homepage hero (default 0).
   - `screenshots`: put images in `public/images/projects/<slug>/` and add `src`, `alt`, `caption`.
 - **CV download:** add the PDF to `public/cv/` and set `cvPath` in `site.ts` (keep it `null` until a public CV without the phone number is ready).
 

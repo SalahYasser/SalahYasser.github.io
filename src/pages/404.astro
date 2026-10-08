@@ -1,12 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { copy } from '../data/site';
+const n = copy.notFound;
 ---
-<BaseLayout title="Page not found">
+<BaseLayout title={n.pageTitle}>
   <section class="container nf">
-    <p class="eyebrow">404</p>
-    <h1>This page <span class="serif">isn’t here.</span></h1>
-    <p>The link may be out of date.</p>
-    <a class="btn btn-primary" href="/">Back to the homepage</a>
+    <p class="eyebrow">{n.eyebrow}</p>
+    <h1>{n.titleBefore} <span class="serif">{n.titleSerif}</span></h1>
+    <p>{n.body}</p>
+    <a class="btn btn-primary" href="/">{n.cta}</a>
   </section>
 </BaseLayout>
 <style>

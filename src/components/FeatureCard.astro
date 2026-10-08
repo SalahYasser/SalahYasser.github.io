@@ -2,6 +2,7 @@
 import type { Project } from '../data/projects';
 import Icon from './Icon.astro';
 import { isPreview } from '../data/projects';
+import { copy } from '../data/site';
 interface Props { project: Project; index: number }
 const { project: p, index } = Astro.props;
 const shots = p.screenshots.slice(0, 3);
@@ -16,11 +17,11 @@ const shots = p.screenshots.slice(0, 3);
       </a>
     </h3>
     <p class="tagline">{p.tagline}</p>
-    <p class="role"><strong>My role:</strong> {p.role}</p>
+    <p class="role"><strong>{copy.work.roleLabel}</strong> {p.role}</p>
     <ul class="chips">{p.technologies.slice(0, 5).map((t) => <li class="chip">{t}</li>)}</ul>
     <p class="status"><span class="dot" aria-hidden="true"></span>{p.status}</p>
-    {isPreview && p.approval === 'pending' && <p class="pending-note">Pending: {p.approvalNote}</p>}
-    <span class="cta" aria-hidden="true">Read the case study <Icon name="arrow" /></span>
+    {isPreview && p.approval === 'pending' && <p class="pending-note">{copy.work.pendingPrefix} {p.approvalNote}</p>}
+    <span class="cta" aria-hidden="true">{copy.work.caseStudyCta} <Icon name="arrow" /></span>
   </div>
   <div class="stage" aria-hidden="true">
     {shots.map((s, i) => (
