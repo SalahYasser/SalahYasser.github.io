@@ -131,7 +131,7 @@ export const projects: Project[] = [
     tagline: 'A multi-role school platform connecting parents, students and teachers, with offline-first sync — shipped to the App Store and Google Play.',
     summary:
       'A school management app that brings parents, students and teachers into one place: live school-bus tracking, grades, assignments, attendance, schedules, achievements and an AI tutor, in Arabic and English, and usable offline. Live on the App Store and Google Play.',
-    role: 'BDC mobile team member. Built various features across the app and handled iOS signing and shipping to both Play Store & App Store.',
+    role: 'BDC mobile team member. Built various features across the app and handled iOS signing and shipping to both the App Store & Google Play.',
     technologies: ['Flutter', 'Bloc', 'PowerSync', 'Offline-first sync', 'ElevenLabs AI', 'REST APIs', 'Real-time tracking'],
     approval: 'approved',
     caseStudy: true,
@@ -159,7 +159,7 @@ export const projects: Project[] = [
       product:
         'El Madrasah is a school platform with three audiences in one app. Parents follow their children’s day, track the school bus on a map, see grades and pay fees; students get interactive task lists, schedules and progress; teachers take attendance, manage assignments and enter grades.',
       roleDetail:
-        'BDC mobile team member. Built various features across the app with Flutter and Bloc, and handled iOS signing and shipping to both the Play Store and the App Store.',
+        'BDC mobile team member. Built various features across the app with Flutter and Bloc, and handled iOS signing and shipping to both the App Store and Google Play.',
       problem:
         'Schools and families don’t always have a reliable connection, but attendance, grades and assignments still need to be correct when the network comes back. On top of that, three roles need very different views of the same data.',
       decisions: [
