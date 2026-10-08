@@ -19,4 +19,8 @@ const year = new Date().getFullYear();
   ul { display: flex; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
   a { color: var(--accent); text-decoration: none; transition: color .2s; }
   a:hover { color: var(--accent-2); text-decoration: underline; }
+  /* Touch: 44px+ tall hit area with no layout change (padding cancelled by an equal negative margin). */
+  @media (max-width: 640px), (pointer: coarse) {
+    a { display: inline-block; padding-block: .75rem; margin-block: -.75rem; }
+  }
 </style>

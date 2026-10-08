@@ -34,7 +34,8 @@ const c = copy.contact;
           <a class="btn btn-ghost" href="#contact">{h.secondaryCta}</a>
           {site.cvPath && <a class="btn btn-ghost" href={site.cvPath} download>{h.cvCta} <Icon name="download" /></a>}
         </div>
-        <ul class="proof reveal" aria-label={h.proofAria}>
+        <p id="proof-label" class="visually-hidden">{h.proofAria}</p>
+        <ul class="proof reveal" aria-labelledby="proof-label">
           <li><span class="k">{shipped}</span><span class="v">{shipped === 1 ? h.proof.appsLive.singular : h.proof.appsLive.plural}</span></li>
           <li><span class="k">{h.proof.ios.k}</span><span class="v">{h.proof.ios.v}</span></li>
           <li><span class="k" lang="ar">{h.proof.arabic.k}</span><span class="v">{h.proof.arabic.v}</span></li>
