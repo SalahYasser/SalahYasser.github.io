@@ -87,6 +87,9 @@ const graph = {
     {!noindex && <script type="application/ld+json" set:html={JSON.stringify(graph)} />}
     <slot name="head" />
     <script is:inline>document.documentElement.classList.add('js');</script>
+    {import.meta.env.PROD && site.analytics.goatcounter && (
+      <script is:inline async data-goatcounter={site.analytics.goatcounter} src={site.analytics.script}></script>
+    )}
   </head>
   <body>
     <a class="skip-link" href="#main">{copy.skipToContent}</a>

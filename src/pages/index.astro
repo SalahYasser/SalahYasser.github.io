@@ -19,6 +19,7 @@ const sk = copy.skills;
 const hw = copy.howIWork;
 const ex = copy.experience;
 const c = copy.contact;
+const ev = site.analytics.clicks;
 ---
 <BaseLayout>
   <section class="hero">
@@ -33,7 +34,7 @@ const c = copy.contact;
         <div class="actions reveal">
           <a class="btn btn-primary" href="#work">{h.primaryCta} <Icon name="arrow" /></a>
           <a class="btn btn-ghost" href="#contact">{h.secondaryCta}</a>
-          {site.cvPath && <a class="btn btn-ghost" href={site.cvPath} download aria-label={h.cvAria}>{h.cvCta} <Icon name="download" /></a>}
+          {site.cvPath && <a class="btn btn-ghost" href={site.cvPath} download aria-label={h.cvAria} data-goatcounter-click={ev.cvDownload} data-goatcounter-title={h.cvCta}>{h.cvCta} <Icon name="download" /></a>}
         </div>
         <p id="proof-label" class="visually-hidden">{h.proofAria}</p>
         <ul class="proof reveal" aria-labelledby="proof-label">
@@ -147,10 +148,10 @@ const c = copy.contact;
         <h2 id="contact-title">{c.titleBefore} <span class="serif">{c.titleSerif}</span></h2>
         <p>{c.body}</p>
         <div class="actions">
-          <a class="btn btn-primary" href={`mailto:${site.email}`}><Icon name="mail" /> {site.email}</a>
-          <a class="btn btn-ghost" href={site.links.linkedin} target="_blank" rel="me noopener"><Icon name="linkedin" /> {c.linkedin}<span class="visually-hidden">{c.newTab}</span></a>
-          <a class="btn btn-ghost" href={site.links.github} target="_blank" rel="me noopener"><Icon name="github" /> {c.github}<span class="visually-hidden">{c.newTab}</span></a>
-          {site.cvPath && <a class="btn btn-ghost" href={site.cvPath} download aria-label={c.cvAria}><Icon name="download" /> {c.cv}</a>}
+          <a class="btn btn-primary" href={`mailto:${site.email}`} data-goatcounter-click={ev.contactEmail}><Icon name="mail" /> {site.email}</a>
+          <a class="btn btn-ghost" href={site.links.linkedin} target="_blank" rel="me noopener" data-goatcounter-click={ev.contactLinkedin}><Icon name="linkedin" /> {c.linkedin}<span class="visually-hidden">{c.newTab}</span></a>
+          <a class="btn btn-ghost" href={site.links.github} target="_blank" rel="me noopener" data-goatcounter-click={ev.contactGithub}><Icon name="github" /> {c.github}<span class="visually-hidden">{c.newTab}</span></a>
+          {site.cvPath && <a class="btn btn-ghost" href={site.cvPath} download aria-label={c.cvAria} data-goatcounter-click={ev.cvDownload} data-goatcounter-title={c.cv}><Icon name="download" /> {c.cv}</a>}
         </div>
       </div>
     </div>

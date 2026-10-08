@@ -18,6 +18,12 @@ const hasNext = next.slug !== p.slug;
 const t = copy.caseStudy;
 const sec = t.sections;
 const home = new URL('/', Astro.site).href;
+// GoatCounter click-event name for a store button, e.g. `store-al-burda-app-store`.
+const storeEvent = (href: string) => {
+  const host = new URL(href).hostname;
+  const store = host.endsWith('apple.com') ? 'app-store' : host === 'play.google.com' ? 'google-play' : host.replace(/\W+/g, '-');
+  return `${site.analytics.clicks.storePrefix}-${p.slug}-${store}`;
+};
 const pageUrl = new URL(`/projects/${p.slug}/`, Astro.site).href;
 const abs = (path: string) => new URL(path, Astro.site).href;
 // schema.org MobileApplication for this case study; store listings go in sameAs.
@@ -61,7 +67,7 @@ const appLd = {
           {p.links.length > 0 && (
             <div class="links">
               {p.links.map((l) => (
-                <a class="btn btn-primary btn-store" href={l.href} target="_blank" rel="noopener"><Icon name={l.icon ?? 'apple'} /> {l.label}<span class="visually-hidden">{t.newTab}</span></a>
+                <a class="btn btn-primary btn-store" href={l.href} target="_blank" rel="noopener" data-goatcounter-click={storeEvent(l.href)} data-goatcounter-title={`${p.title} · ${l.label}`}><Icon name={l.icon ?? 'apple'} /> {l.label}<span class="visually-hidden">{t.newTab}</span></a>
               ))}
             </div>
           )}
@@ -134,7 +140,7 @@ const appLd = {
         <div>
           <h2 id="q7">{sec.seeIt.title}</h2>
           <div class="links">
-            {p.links.map((l) => (<a class="btn btn-primary btn-store" href={l.href} target="_blank" rel="noopener"><Icon name={l.icon ?? 'apple'} /> {l.label}<span class="visually-hidden">{t.newTab}</span></a>))}
+            {p.links.map((l) => (<a class="btn btn-primary btn-store" href={l.href} target="_blank" rel="noopener" data-goatcounter-click={storeEvent(l.href)} data-goatcounter-title={`${p.title} · ${l.label}`}><Icon name={l.icon ?? 'apple'} /> {l.label}<span class="visually-hidden">{t.newTab}</span></a>))}
             <a class="btn btn-ghost" href="/#contact">{t.askAboutIt}</a>
           </div>
         </div>

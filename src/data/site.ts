@@ -20,6 +20,26 @@ export const site = {
   locality: 'Cairo',
   countryCode: 'EG',
   brandMark: 'SY',
+  /**
+   * GoatCounter (cookie-free, privacy-friendly analytics). The script is added only in production builds.
+   * Set `goatcounter` to null to remove analytics everywhere.
+   * `clicks` are the GoatCounter event names sent by `data-goatcounter-click` on tracked links
+   * (store buttons are generated per project as `store-<slug>-<app-store|google-play>`).
+   */
+  analytics: {
+    goatcounter: 'https://salahyasser.goatcounter.com/count' as string | null,
+    script: 'https://gc.zgo.at/count.js',
+    clicks: {
+      cvDownload: 'cv-download',
+      contactEmail: 'contact-email',
+      contactLinkedin: 'contact-linkedin',
+      contactGithub: 'contact-github',
+      footerEmail: 'footer-email',
+      footerLinkedin: 'footer-linkedin',
+      footerGithub: 'footer-github',
+      storePrefix: 'store',
+    },
+  },
 };
 
 /** Navigation, section chrome, CTAs and other UI strings shared across pages. */

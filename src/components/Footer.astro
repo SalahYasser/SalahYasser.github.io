@@ -1,15 +1,16 @@
 ---
 import { site, copy } from '../data/site';
 const f = copy.footer;
+const ev = site.analytics.clicks;
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
   <div class="container row">
     <p>© {year} {site.name} · {site.location}</p>
     <ul>
-      <li><a href={site.links.github} rel="me noopener" target="_blank">{f.github}<span class="visually-hidden">{f.newTab}</span></a></li>
-      <li><a href={site.links.linkedin} rel="me noopener" target="_blank">{f.linkedin}<span class="visually-hidden">{f.newTab}</span></a></li>
-      <li><a href={`mailto:${site.email}`}>{f.email}</a></li>
+      <li><a href={site.links.github} rel="me noopener" target="_blank" data-goatcounter-click={ev.footerGithub}>{f.github}<span class="visually-hidden">{f.newTab}</span></a></li>
+      <li><a href={site.links.linkedin} rel="me noopener" target="_blank" data-goatcounter-click={ev.footerLinkedin}>{f.linkedin}<span class="visually-hidden">{f.newTab}</span></a></li>
+      <li><a href={`mailto:${site.email}`} data-goatcounter-click={ev.footerEmail}>{f.email}</a></li>
     </ul>
   </div>
 </footer>
