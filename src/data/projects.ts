@@ -115,17 +115,17 @@ export const projects: Project[] = [
     title: 'El Madrasah',
     nativeTitle: 'المدرسة',
     kind: 'Built at BDC',
-    platform: 'iOS · Flutter',
+    platform: 'iOS · Android · Flutter',
     tagline: 'A multi-role school platform connecting parents, students and teachers, with offline-first sync.',
     summary:
       'A school management app that brings parents, students and teachers into one place: live school-bus tracking, grades, assignments, attendance, schedules, achievements and an AI tutor, in Arabic and English, and usable offline.',
-    role: 'Flutter developer on the BDC team. Built features across the app and handled iOS signing and App Store distribution.',
+    role: 'BDC mobile team member. Built various features across the app and handled iOS signing and shipping to both Play Store & App Store.',
     technologies: ['Flutter', 'Bloc', 'PowerSync', 'Offline-first sync', 'ElevenLabs AI', 'REST APIs', 'Real-time tracking'],
     approval: 'approved',
     caseStudy: true,
     accent: { base: '#F4F4F2', ink: '#0B0B0C', glow: 'rgba(244,244,242,0.18)' },
     icon: '/images/projects/el-madrasah/icon.webp',
-    status: 'Live on the App Store · published by BDC for Business Services',
+    status: 'Live on the App Store & Google Play · published by BDC for Business Services',
     links: [
       { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/id6755660500' },
     ],
@@ -141,7 +141,7 @@ export const projects: Project[] = [
       product:
         'El Madrasah is a school platform with three audiences in one app. Parents follow their children’s day, track the school bus on a map, see grades and pay fees; students get interactive task lists, schedules and progress; teachers take attendance, manage assignments and enter grades.',
       roleDetail:
-        'Built as part of the BDC mobile team. My work covered Flutter feature development with Bloc and the iOS side of delivery: provisioning, signing and App Store distribution.',
+        'BDC mobile team member. Built various features across the app with Flutter and Bloc, and handled iOS signing and shipping to both the Play Store and the App Store.',
       problem:
         'Schools and families don’t always have a reliable connection, but attendance, grades and assignments still need to be correct when the network comes back. On top of that, three roles need very different views of the same data.',
       decisions: [
@@ -167,7 +167,7 @@ export const projects: Project[] = [
         'AI tutoring with ElevenLabs',
         'Arabic and English support',
       ],
-      result: 'Shipped live to the App Store, with the current version (1.6.0) released in March 2026.',
+      result: 'Shipped live to the App Store and Google Play, with the current version (1.6.0) released in March 2026.',
     },
   },
   {
