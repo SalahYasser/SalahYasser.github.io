@@ -163,8 +163,27 @@ const c = copy.contact;
     @keyframes float { 50% { transform: translate(-80%, -57%) rotate(-6deg); } }
     @keyframes float2 { 50% { transform: translate(-12%, -41%) rotate(5deg); } }
   }
-  @media (max-width: 959px) { .hero-stage { order: -1; height: 22rem; } .hero-stage .shot { width: 9.5rem; } }
-  @media (max-width: 480px) { .hero-stage { height: 18rem; } .hero-stage .shot { width: 8rem; } }
+  /* Mobile & tablet: copy first (DOM order), phones below and smaller, tighter rhythm so both CTAs sit above the fold. */
+  @media (max-width: 959px) {
+    .hero { padding-block: 2rem clamp(2rem, 6vw, 4rem); }
+    .hero-grid { gap: 1.5rem; }
+    .hero-copy { gap: 1.25rem; }
+    h1 { gap: 0.75rem; }
+    .line2 { text-wrap: balance; }
+    .proof { margin-top: 0.25rem; }
+    .hero-stage { height: 17rem; }
+    .hero-stage .shot { width: 7.5rem; }
+  }
+  @media (max-width: 600px) {
+    .proof { padding-top: 1.1rem; gap: 0.85rem; grid-template-columns: 1fr; }
+    .proof li { grid-template-columns: 2.75rem 1fr; align-items: center; gap: 0.9rem; }
+    .proof .k { font-size: 1.4rem; line-height: 1.1; }
+  }
+  @media (max-width: 480px) {
+    .hero .actions .btn { flex: 1 1 auto; justify-content: center; }
+    .hero-stage { height: 14rem; }
+    .hero-stage .shot { width: 6.25rem; }
+  }
 
   .features { display: grid; gap: clamp(1.25rem, 3vw, 2rem); }
   .more { margin-top: clamp(3rem, 7vw, 5rem); }
