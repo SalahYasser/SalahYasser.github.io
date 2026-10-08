@@ -39,7 +39,7 @@ const shots = p.screenshots.slice(0, 3);
     border: 1px solid var(--line);
     transition: border-color .35s var(--ease), transform .35s var(--ease);
   }
-  .feature:hover { border-color: color-mix(in srgb, var(--pa) 45%, transparent); }
+  .feature:hover { border-color: rgba(92, 200, 255, 0.45); }
   @media (min-width: 900px) { .feature { grid-template-columns: 1fr 1.05fr; min-height: 34rem; } }
   .copy { display: grid; gap: 1.1rem; align-content: start; position: relative; z-index: 1; }
   .meta { display: flex; gap: 0.6rem; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); }
@@ -55,9 +55,11 @@ const shots = p.screenshots.slice(0, 3);
   .role strong { color: var(--text); font-weight: 600; }
   .status { display: inline-flex; align-items: center; gap: 0.55rem; font-size: 0.9rem; color: var(--muted); }
   .dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--pa); box-shadow: 0 0 0 4px color-mix(in srgb, var(--pa) 20%, transparent); }
-  .cta { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--accent); margin-top: 0.4rem; }
+  .cta { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--accent); margin-top: 0.4rem; transition: color .2s; }
   .cta :global(svg) { width: 1.1em; height: 1.1em; transition: transform .3s var(--ease); }
+  .feature:hover .cta { color: var(--accent-2); }
   .feature:hover .cta :global(svg) { transform: translateX(4px); }
+  @media (prefers-reduced-motion: reduce) { .feature:hover .cta :global(svg) { transform: none; } }
 
   .stage { position: relative; height: clamp(22rem, 52vw, 30rem); }
   .stage .shot { position: absolute; width: clamp(9rem, 22vw, 13.5rem); top: 50%; left: 50%; transition: transform .6s var(--ease); }

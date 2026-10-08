@@ -31,7 +31,10 @@ const nav = copy.nav;
   }
   ul { display: flex; gap: 0.25rem; list-style: none; margin: 0; padding: 0; }
   nav a { display: block; padding: 0.45rem 0.7rem; border-radius: 999px; text-decoration: none; color: var(--muted); font-size: 0.95rem; transition: color .2s, background .2s; }
-  nav a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+  nav a:hover { color: var(--accent-2); background: rgba(92, 200, 255, 0.08); }
+  nav a[aria-current='page'] { color: var(--accent); }
+  .brand { transition: color .2s; }
+  .brand:hover .brand-text { color: var(--accent-2); }
   @media (max-width: 640px) {
     .brand-text { display: none; }
     nav a { padding: 0.45rem 0.55rem; font-size: 0.9rem; }
