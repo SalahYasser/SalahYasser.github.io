@@ -24,6 +24,8 @@ export const copy = {
   skipToContent: 'Skip to content',
   primaryNavLabel: 'Primary',
   homeLabelSuffix: ', home',
+  /** Alt text for the default share image (public/og.png). */
+  ogImageAlt: 'Salah Yasser, Flutter developer: I build mobile apps from requirements to release.',
   previewBanner:
     'Preview build · includes projects still awaiting Salah’s confirmation or employer approval',
   nav: [
