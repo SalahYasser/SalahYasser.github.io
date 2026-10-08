@@ -188,7 +188,7 @@ export const projects: Project[] = [
     technologies: ['Flutter', 'Clean Architecture', 'Bloc', 'REST APIs', 'Location verification', 'QR check-in', 'Role-based access'],
     approval: 'approved',
     caseStudy: true,
-    accent: { base: '#7FD1FF', ink: '#06121C', glow: 'rgba(127,209,255,0.22)' },
+    accent: { base: '#EB9C00', ink: '#1A1100', glow: 'rgba(235,156,0,0.2)' },
     icon: '/images/projects/flexi/icon.webp',
     ogImage: '/og/flexi.png',
     status: 'Live on the App Store',
