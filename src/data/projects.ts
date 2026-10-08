@@ -16,7 +16,7 @@ export type Project = {
   slug: string;
   title: string;
   nativeTitle?: string;
-  kind: 'Personal' | 'Built at BDC';
+  kind: 'Client project' | 'Built at BDC';
   platform: string;
   tagline: string;
   summary: string;
@@ -46,12 +46,12 @@ export const projects: Project[] = [
     slug: 'al-burda',
     title: 'Al-Burda',
     nativeTitle: 'البُردة الشريفة',
-    kind: 'Personal',
+    kind: 'Client project',
     platform: 'iOS · Flutter',
     tagline: 'A calm, fully offline Arabic reading and listening companion, shipped to the App Store.',
     summary:
       'An Arabic (RTL) app for reading and listening to Imam al-Busiri’s Burda and other poems, with gentle daily reminders, a lock-screen widget and reading stats. It runs entirely on the device, with no account and no tracking.',
-    role: 'Solo developer and publisher: product, design implementation, engineering and App Store release.',
+    role: 'Built from scratch as a solo project: Flutter app, Arabic RTL UI, iOS widget, audio and App Store release under my own account.',
     technologies: ['Flutter', 'Dart', 'Clean Architecture', 'Bloc', 'WidgetKit', 'Local notifications', 'Background audio'],
     approval: 'approved',
     caseStudy: true,
@@ -72,7 +72,7 @@ export const projects: Project[] = [
       product:
         'Al-Burda is a quiet companion for people who read or listen to the Burda of Imam al-Busiri. Readers open a gilded, verse-by-verse page, play a recitation, get a gentle verse reminder through the day, and see the verse of the day on their lock screen without opening the app.',
       roleDetail:
-        'A personal project, published under my own developer account. I took it from idea to App Store: the Flutter architecture, the Arabic right-to-left interface, the native iOS widget, audio, notifications and every release since launch.',
+        'Built for a client from their requirements, and published under my own developer account. I built it from scratch on my own and took it all the way to the App Store: the Flutter architecture, the Arabic right-to-left interface, the native iOS widget, audio, notifications and every release since launch.',
       problem:
         'A devotional app has to feel calm and trustworthy. That meant three hard constraints: it had to work with no internet connection, collect no data at all, and still feel alive through reminders, a lock-screen widget and audio that behaves properly around calls and Bluetooth devices.',
       decisions: [
@@ -168,12 +168,12 @@ export const projects: Project[] = [
   {
     slug: 'flexi',
     title: 'FLEXI',
-    kind: 'Personal',
+    kind: 'Client project',
     platform: 'iOS · Flutter',
     tagline: 'An HR app for Fit4Less staff: attendance, shifts, leave and payroll in one place.',
     summary:
       'A role-based HR app for Fit4Less employees and managers, with location-verified attendance, QR check-in, shifts, leave, permissions and salary-advance requests, payroll documents and approval notifications.',
-    role: 'Solo developer and publisher: Flutter app, architecture and App Store release under my own developer account.',
+    role: 'Built from scratch as a solo project: Flutter app, architecture, APIs and App Store release under my own account.',
     technologies: ['Flutter', 'Clean Architecture', 'Bloc', 'REST APIs', 'Location verification', 'QR check-in', 'Role-based access'],
     approval: 'approved',
     caseStudy: true,
@@ -193,7 +193,7 @@ export const projects: Project[] = [
       product:
         'FLEXI brings a company’s day-to-day HR services into one app for Fit4Less staff. Employees check in and out, scan a QR code for attendance, follow their schedules and shifts, request leave, permissions and salary advances, and view payroll documents. Managers get the employee data and approval actions their role allows.',
       roleDetail:
-        'A personal project that I built and published under my own Apple developer account: the Flutter app, its architecture, the API integration and the App Store release.',
+        'Built for a client from their requirements, from scratch and on my own, then published under my own Apple developer account: the Flutter app, its architecture, the API integration and the App Store release.',
       problem:
         'Attendance has to be trustworthy, so a check-in should only count when the employee is really at work. And the same app serves employees and managers, so every screen and action has to respect the permissions of the signed-in account.',
       decisions: [
