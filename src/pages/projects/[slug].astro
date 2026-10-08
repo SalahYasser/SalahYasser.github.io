@@ -207,7 +207,7 @@ const sec = t.sections;
   .body { display: grid; gap: 0; max-width: 62rem; }
   .block { display: grid; gap: .5rem 2rem; padding-block: clamp(2.25rem, 5vw, 3.5rem); border-bottom: 1px solid var(--line); }
   @media (min-width: 760px) { .block { grid-template-columns: 5rem 1fr; } }
-  .q-num { font-family: var(--font-mono); color: var(--pa); font-size: .9rem; padding-top: .35rem; }
+  .q-num, .block .q-num { font-family: var(--font-mono); color: var(--pa); font-size: .9rem; padding-top: .35rem; }
   .block h2, .gallery-head h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); margin-bottom: 1rem; }
   .block p { color: var(--muted); font-size: 1.1rem; max-width: 46rem; }
   .block .pull { color: var(--text); font-size: clamp(1.2rem, 2.2vw, 1.45rem); line-height: 1.5; letter-spacing: -0.01em; }
