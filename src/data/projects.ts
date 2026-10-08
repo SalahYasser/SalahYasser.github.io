@@ -272,7 +272,7 @@ export const projects: Project[] = [
     platform: 'iOS · React Native',
     tagline: 'Higher-education platform for students and staff.',
     summary:
-      'University platform with role-based features, academic services and real-time communication. Built with React Native and TypeScript, not Flutter.',
+      'University platform with role-based features, academic services and real-time communication. Built with React Native and TypeScript.',
     role: 'Developer on the BDC team.',
     technologies: ['React Native', 'TypeScript', 'REST APIs'],
     approval: 'approved',
