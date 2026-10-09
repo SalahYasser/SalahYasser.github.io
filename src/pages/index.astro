@@ -4,7 +4,7 @@ import FeatureCard from '../components/FeatureCard.astro';
 import CompactCard from '../components/CompactCard.astro';
 import Icon from '../components/Icon.astro';
 import { responsive, shotSizes } from '../lib/images';
-import { content, langFromPath, localePath } from '../lib/i18n';
+import { content, langFromPath, localePath, mailto, fill as fillTemplate } from '../lib/i18n';
 
 // Also rendered at /ar/ (src/pages/ar/index.astro); the locale comes from the URL.
 const lang = langFromPath(Astro.url.pathname);
@@ -25,6 +25,7 @@ const ex = copy.experience;
 const fq = copy.faq;
 const c = copy.contact;
 const ev = site.analytics.clicks;
+const mail = mailto(site.email, copy.emailSubject.default);
 const home = new URL(localePath(lang, '/'), Astro.site).href;
 const faqLd = {
   '@type': 'FAQPage',
@@ -184,7 +185,7 @@ const faqLd = {
             <summary><span class="q">{it.q}</span><span class="qa-icon" aria-hidden="true"></span></summary>
             <p class="a">
               {it.emailLead && it.a.startsWith(it.emailLead)
-                ? <><a href={`mailto:${site.email}`} data-goatcounter-click={ev.faqEmail}>{it.emailLead}</a>{it.a.slice(it.emailLead.length)}</>
+                ? <><a href={mail} data-goatcounter-click={ev.faqEmail}>{it.emailLead}</a>{it.a.slice(it.emailLead.length)}</>
                 : it.a}
             </p>
           </details>
@@ -200,13 +201,45 @@ const faqLd = {
         <h2 id="contact-title">{c.titleBefore} <span class="serif">{c.titleSerif}</span></h2>
         <p>{c.body}</p>
         <div class="actions">
-          <a class="btn btn-primary" href={`mailto:${site.email}`} data-goatcounter-click={ev.contactEmail}><Icon name="mail" /> {site.email}</a>
+          <a class="btn btn-primary" href={mail} data-goatcounter-click={ev.contactEmail}><Icon name="mail" /> {site.email}</a>
+          <button type="button" class="btn btn-ghost copy-email" hidden data-email={site.email} data-copied={c.copied} data-announce={c.copiedAnnounce} data-failed={fillTemplate(c.copyFailed, { email: site.email })} data-goatcounter-click={ev.contactCopyEmail}><span class="ico-copy"><Icon name="copy" /></span><span class="ico-done"><Icon name="check" /></span> <span class="copy-label">{c.copyEmail}</span></button>
           <a class="btn btn-ghost" href={site.links.linkedin} target="_blank" rel="me noopener" data-goatcounter-click={ev.contactLinkedin}><Icon name="linkedin" /> {c.linkedin}<span class="visually-hidden">{c.newTab}</span></a>
           <a class="btn btn-ghost" href={site.links.github} target="_blank" rel="me noopener" data-goatcounter-click={ev.contactGithub}><Icon name="github" /> {c.github}<span class="visually-hidden">{c.newTab}</span></a>
           {site.cvPath && <a class="btn btn-ghost" href={site.cvPath} download aria-label={c.cvAria} data-goatcounter-click={ev.cvDownload} data-goatcounter-title={c.cv}><Icon name="download" /> {c.cv}</a>}
         </div>
+        <p class="visually-hidden copy-status" role="status" aria-live="polite"></p>
       </div>
     </div>
+  <script>
+    // "Copy email": shown only where the browser can copy; the label switches to "Copied ✓" for a moment and a polite live region announces it.
+    const btn = document.querySelector<HTMLButtonElement>('.copy-email');
+    const status = document.querySelector<HTMLElement>('.copy-status');
+    const canExec = typeof document.queryCommandSupported === 'function' && document.queryCommandSupported('copy');
+    if (btn && status && (navigator.clipboard || canExec)) {
+      const label = btn.querySelector<HTMLElement>('.copy-label')!;
+      const idle = label.textContent ?? '';
+      const { email = '', copied = '', announce = '', failed = '' } = btn.dataset;
+      const legacyCopy = () => {
+        const ta = document.createElement('textarea');
+        ta.value = email; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+        document.body.append(ta); ta.select();
+        const ok = document.execCommand('copy'); ta.remove();
+        if (!ok) throw new Error('copy failed');
+      };
+      let timer = 0;
+      btn.hidden = false;
+      btn.addEventListener('click', async () => {
+        let ok = true;
+        try { if (navigator.clipboard) await navigator.clipboard.writeText(email); else legacyCopy(); }
+        catch { try { legacyCopy(); } catch { ok = false; } }
+        clearTimeout(timer);
+        btn.classList.toggle('is-copied', ok);
+        label.textContent = ok ? copied : idle;
+        status.textContent = ok ? announce : failed;
+        timer = window.setTimeout(() => { btn.classList.remove('is-copied'); label.textContent = idle; status.textContent = ''; }, 2500);
+      });
+    }
+  </script>
   </section>
 </BaseLayout>
 
@@ -340,4 +373,9 @@ const faqLd = {
   .contact-card p { color: var(--muted); max-width: 34rem; }
   .contact-card .actions { justify-content: center; }
   .contact-card .btn-primary { word-break: break-all; }
+  .copy-email[hidden] { display: none; }
+  .copy-email { cursor: pointer; font: inherit; font-weight: 600; }
+  .copy-email > span { display: inline-flex; }
+  .copy-email .ico-done, .copy-email.is-copied .ico-copy { display: none; }
+  .copy-email.is-copied .ico-done { display: inline-flex; }
 </style>

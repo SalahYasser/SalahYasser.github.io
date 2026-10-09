@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import { caseStudies, isPreview, type Project } from '../../data/projects';
 import { responsive, shotSizes } from '../../lib/images';
-import { content, fill, langFromPath, localePath } from '../../lib/i18n';
+import { content, fill, langFromPath, localePath, mailto } from '../../lib/i18n';
 
 export function getStaticPaths() {
   return caseStudies.map((p, i) => ({
@@ -145,7 +145,7 @@ const appLd = {
           <h2 id="q7">{sec.seeIt.title}</h2>
           <div class="links">
             {p.links.map((l) => (<a class="btn btn-primary btn-store" href={l.href} target="_blank" rel="noopener" data-goatcounter-click={storeEvent(l.href)} data-goatcounter-title={`${p.title} · ${l.label}`}><Icon name={l.icon ?? 'apple'} /> {l.label}<span class="visually-hidden">{t.newTab}</span></a>))}
-            <a class="btn btn-ghost" href={localePath(lang, '/#contact')}>{t.askAboutIt}</a>
+            <a class="btn btn-ghost" href={mailto(site.email, fill(copy.emailSubject.project, { project: p.title }))} data-goatcounter-click={`${site.analytics.clicks.askPrefix}-${p.slug}`}>{t.askAboutIt}</a>
           </div>
         </div>
       </section>

@@ -37,6 +37,9 @@ export const content = (lang: Lang) => {
   };
 };
 
+/** A mailto: link with a pre-filled subject line (percent-encoded, so Arabic subjects work too). */
+export const mailto = (email: string, subject: string) => `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+
 /** Fills {name} placeholders in a copy template. */
 export const fill = (template: string, values: Record<string, string>) =>
   template.replace(/\{(\w+)\}/g, (m, k: string) => values[k] ?? m);

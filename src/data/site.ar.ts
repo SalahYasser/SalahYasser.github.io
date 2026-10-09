@@ -35,6 +35,10 @@ export const copy: typeof copyEn = {
     en: { short: 'EN', full: 'English' },
     ar: { short: 'عربي', full: 'العربية' },
   },
+  emailSubject: {
+    default: 'استفسار من موقعك',
+    project: 'سؤال عن تطبيق {project}',
+  },
   footer: { github: 'GitHub', linkedin: 'LinkedIn', email: 'البريد الإلكتروني', newTab: ' (يفتح في علامة تبويب جديدة)' },
   hero: {
     eyebrow: 'مطوّر Flutter · القاهرة، مصر',
@@ -130,6 +134,10 @@ export const copy: typeof copyEn = {
     titleBefore: 'تبني منتجًا للموبايل؟',
     titleSerif: 'لنتحدث.',
     body: 'أرحّب بفرص العمل كمطوّر Flutter وبالمشاريع المستقلة. البريد الإلكتروني أسرع طريقة للتواصل معي.',
+    copyEmail: 'نسخ البريد',
+    copied: 'تم النسخ ✓',
+    copiedAnnounce: 'تم نسخ عنوان البريد الإلكتروني.',
+    copyFailed: 'تعذّر النسخ. العنوان هو {email}.',
     linkedin: 'LinkedIn',
     github: 'GitHub',
     cv: 'تحميل السيرة الذاتية',

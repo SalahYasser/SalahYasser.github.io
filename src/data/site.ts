@@ -48,6 +48,10 @@ export const site = {
       footerLinkedin: 'footer-linkedin',
       footerGithub: 'footer-github',
       faqEmail: 'faq-email',
+      /** The "Copy email" button in the Contact section. */
+      contactCopyEmail: 'contact-copy-email',
+      /** "Ask me about it" on a case study, sent as `ask-<slug>`. */
+      askPrefix: 'ask',
       storePrefix: 'store',
     },
   },
@@ -73,6 +77,14 @@ export const copy = {
     groupLabel: 'Language',
     en: { short: 'EN', full: 'English' },
     ar: { short: 'عربي', full: 'العربية' },
+  },
+  /**
+   * Pre-filled subject lines for every mailto link: `default` (Contact, FAQ, footer) and `project`
+   * ("Ask me about it" on a case study; {project} is the project title).
+   */
+  emailSubject: {
+    default: 'Enquiry from your portfolio',
+    project: 'Question about {project}',
   },
   footer: {
     github: 'GitHub',
@@ -196,6 +208,12 @@ export const copy = {
     titleBefore: 'Building a mobile product?',
     titleSerif: 'Let’s talk.',
     body: 'I’m open to Flutter roles and freelance projects. Email is the quickest way to reach me.',
+    /** "Copy email" button next to the email address (shown only when the browser can copy). */
+    copyEmail: 'Copy email',
+    copied: 'Copied ✓',
+    /** Announced to screen readers after copying (or when copying fails). */
+    copiedAnnounce: 'Email address copied.',
+    copyFailed: 'Couldn’t copy. The address is {email}.',
     linkedin: 'LinkedIn',
     github: 'GitHub',
     cv: 'Download CV',

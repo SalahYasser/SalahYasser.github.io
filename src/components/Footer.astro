@@ -1,5 +1,5 @@
 ---
-import { content, langFromPath } from '../lib/i18n';
+import { content, langFromPath, mailto } from '../lib/i18n';
 const { site, copy } = content(langFromPath(Astro.url.pathname));
 const f = copy.footer;
 const ev = site.analytics.clicks;
@@ -11,7 +11,7 @@ const year = new Date().getFullYear();
     <ul>
       <li><a href={site.links.github} rel="me noopener" target="_blank" data-goatcounter-click={ev.footerGithub}>{f.github}<span class="visually-hidden">{f.newTab}</span></a></li>
       <li><a href={site.links.linkedin} rel="me noopener" target="_blank" data-goatcounter-click={ev.footerLinkedin}>{f.linkedin}<span class="visually-hidden">{f.newTab}</span></a></li>
-      <li><a href={`mailto:${site.email}`} data-goatcounter-click={ev.footerEmail}>{f.email}</a></li>
+      <li><a href={mailto(site.email, copy.emailSubject.default)} data-goatcounter-click={ev.footerEmail}>{f.email}</a></li>
     </ul>
   </div>
 </footer>
