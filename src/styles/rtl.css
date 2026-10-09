@@ -1,0 +1,61 @@
+/* Right-to-left (Arabic, /ar/) layer. Loaded only by the pages under src/pages/ar/, so the English pages never see it.
+   The shared components keep their original (LTR) rules; this file mirrors what has a physical direction
+   (side paddings, absolute offsets, gradients, arrows) and adapts the typography for Arabic.
+   Component styles are scoped with [data-astro-cid-*] attributes, so every selector here starts with
+   `:root[dir='rtl'] body` to outrank them without !important (letter-spacing excepted, see below). */
+
+/* ---------- Typography ----------
+   Latin words (Flutter, App Store, …) keep the site's Inter Tight / JetBrains Mono; Arabic letters fall through
+   to IBM Plex Sans Arabic (self-hosted, arabic subset, weights 400/500/600). Inter Tight's files declare a Latin
+   unicode-range, so Arabic text never lands on the Arial-based metric fallback while Plex is available. */
+:root[dir='rtl'] {
+  --font-sans: 'Inter Tight Variable', 'IBM Plex Sans Arabic', 'Geeza Pro', 'Noto Sans Arabic', 'Inter Tight Fallback', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Small labels (eyebrows, kickers, meta lines) mix Arabic words with Latin; in a monospace font the spaces between
+     Arabic words are too wide, so they use the sans stack here. Pure numbers keep the mono face (see below). */
+  --font-mono: var(--font-sans);
+  /* Instrument Serif has no Arabic: the "serif" half of each heading becomes a lighter weight of the same family instead of a (fake) italic. */
+  --font-serif: var(--font-sans);
+}
+:root[dir='rtl'] body { line-height: 1.8; }
+/* Arabic is cursive: tracking breaks the joins, so it is reset everywhere on these pages. */
+:root[dir='rtl'] body, :root[dir='rtl'] body * { letter-spacing: normal !important; }
+:root[dir='rtl'] body :is(h1, h2, h3) { line-height: 1.35; }
+:root[dir='rtl'] body .serif { font-style: normal; font-weight: 400; }
+/* Arabic words run longer than the English headline, so the hero line is a step smaller to stay at about three lines. */
+:root[dir='rtl'] body .line2 { line-height: 1.3; font-size: clamp(2.4rem, 5.6vw, 4.4rem); }
+/* No capitals in Arabic; keep Latin names as written (iOS, not IOS). */
+:root[dir='rtl'] body * { text-transform: none; }
+:root[dir='rtl'] body :is(.idx, .step-num, .q-num, .num, .edu .p) { font-family: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace; }
+:root[dir='rtl'] body .block .pull { line-height: 1.75; }
+:root[dir='rtl'] body .lede, :root[dir='rtl'] body .about-body { line-height: 1.8; }
+
+/* ---------- Global pieces ---------- */
+:root[dir='rtl'] body .skip-link { left: auto; right: 1rem; }
+
+/* ---------- Home ---------- */
+:root[dir='rtl'] body .accent { padding-right: 0; padding-left: 0.08em; background-image: linear-gradient(270deg, var(--accent), #9aa6ff); }
+:root[dir='rtl'] body .skill li { padding-left: 0; padding-right: 1rem; }
+:root[dir='rtl'] body .skill li::before { left: auto; right: 0; }
+:root[dir='rtl'] body .job ul { padding-left: 0; padding-right: 1.1rem; }
+:root[dir='rtl'] body .feature { background: radial-gradient(40rem 26rem at 0% 100%, var(--pglow), transparent 65%), linear-gradient(180deg, var(--surface), var(--bg-2)); }
+
+/* Forward arrows point left in RTL; their hover nudge moves left too. */
+:root[dir='rtl'] body :is(.hero .actions .btn-primary, .cta, .nt) svg { transform: scaleX(-1); }
+@media (prefers-reduced-motion: no-preference) {
+  :root[dir='rtl'] body .feature:hover .cta svg { transform: scaleX(-1) translateX(4px); }
+  :root[dir='rtl'] body .next a:hover .nt svg { transform: scaleX(-1) translateX(6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[dir='rtl'] body .feature:hover .cta svg, :root[dir='rtl'] body .next a:hover .nt svg { transform: scaleX(-1); }
+}
+
+/* ---------- Case study ---------- */
+:root[dir='rtl'] body .cs-hero { background: radial-gradient(50rem 30rem at 15% 30%, var(--pglow), transparent 65%); }
+:root[dir='rtl'] body .back > span[aria-hidden] { display: inline-block; transform: scaleX(-1); }
+:root[dir='rtl'] body .implemented li { padding-left: 0; padding-right: 1.4rem; }
+:root[dir='rtl'] body .implemented li::before { left: auto; right: 0; }
+:root[dir='rtl'] body .zoom-ico { right: auto; left: 0.7rem; }
+
+/* Screenshot viewer: the grid already mirrors (previous on the right, next on the left); the chevrons and close button follow. */
+:root[dir='rtl'] body .lightbox .lb-btn.nav svg { transform: scaleX(-1); }
+:root[dir='rtl'] body .lightbox .close { right: auto; left: var(--lb-pad); }

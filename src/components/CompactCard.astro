@@ -1,12 +1,13 @@
 ---
 import type { Project } from '../data/projects';
 import { isPreview } from '../data/projects';
-import { copy } from '../data/site';
+import { content, langFromPath } from '../lib/i18n';
 interface Props { project: Project }
 const { project: p } = Astro.props;
+const { copy } = content(langFromPath(Astro.url.pathname));
 ---
 <article class="compact reveal" style={`--pa:${p.accent.base}`}>
-  <p class="meta"><span>{p.kind}</span><span aria-hidden="true">·</span><span>{p.platform}</span></p>
+  <p class="meta"><span>{p.kindLabel ?? p.kind}</span><span aria-hidden="true">·</span><span>{p.platform}</span></p>
   <h3>{p.title}</h3>
   <p class="tag">{p.tagline}</p>
   <p class="sum">{p.summary}</p>

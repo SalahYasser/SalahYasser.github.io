@@ -66,6 +66,12 @@ export const copy = {
     { label: 'Experience', href: '/#experience' },
     { label: 'Contact', href: '/#contact' },
   ],
+  /** Header language toggle (EN | عربي). Language names are always shown in their own language. */
+  langSwitch: {
+    groupLabel: 'Language',
+    en: { short: 'EN', full: 'English' },
+    ar: { short: 'عربي', full: 'العربية' },
+  },
   footer: {
     github: 'GitHub',
     linkedin: 'LinkedIn',
@@ -74,6 +80,8 @@ export const copy = {
   },
   hero: {
     eyebrow: 'Flutter Developer · Cairo, Egypt',
+    /** Between the name and the headline in the H1 (visually hidden; read by screen readers and search engines). */
+    nameSeparator: ', ',
     lineBeforeSerif: 'I build mobile apps',
     serif: 'from requirements',
     serifAccent: 'to release.',
@@ -193,7 +201,9 @@ export const copy = {
     newTab: ' (opens in a new tab)',
   },
   caseStudy: {
-    pageTitleSuffix: 'case study',
+    /** Templates: {project} is the project title, {caption} the screenshot caption. */
+    pageTitle: '{project} case study',
+    appIconAlt: '{project} app icon',
     viewerLabel: 'Screenshot viewer',
     back: 'All work',
     roleLabel: 'Role',
@@ -211,11 +221,11 @@ export const copy = {
     screenshotsNote: 'Screenshots from the app’s public store listings.',
     askAboutIt: 'Ask me about it',
     nextLabel: 'Next case study',
-    enlargePrefix: 'Enlarge:',
+    enlarge: 'Enlarge: {caption}',
     closeViewer: 'Close viewer',
     prevShot: 'Previous screenshot',
     nextShot: 'Next screenshot',
-    galleryAriaSuffix: 'screenshots, scroll horizontally',
+    galleryAria: '{project} screenshots, scroll horizontally',
     newTab: ' (opens in a new tab)',
     pendingPrefix: 'Pending:',
   },

@@ -3,9 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import CompactCard from '../components/CompactCard.astro';
 import Icon from '../components/Icon.astro';
-import { site, copy, experience, education, skills } from '../data/site';
-import { caseStudies, compactProjects } from '../data/projects';
 import { responsive, shotSizes } from '../lib/images';
+import { content, langFromPath, localePath } from '../lib/i18n';
+
+// Also rendered at /ar/ (src/pages/ar/index.astro); the locale comes from the URL.
+const lang = langFromPath(Astro.url.pathname);
+const { site, copy, experience, education, skills, caseStudies, compactProjects } = content(lang);
 
 const firstPerProject = caseStudies
   .map((p) => p.screenshots[p.heroShot ?? 0])
@@ -22,7 +25,7 @@ const ex = copy.experience;
 const fq = copy.faq;
 const c = copy.contact;
 const ev = site.analytics.clicks;
-const home = new URL('/', Astro.site).href;
+const home = new URL(localePath(lang, '/'), Astro.site).href;
 const faqLd = {
   '@type': 'FAQPage',
   '@id': `${home}#faq`,
@@ -40,7 +43,7 @@ const faqLd = {
       <div class="hero-copy">
         <p class="eyebrow">{h.eyebrow}</p>
         <h1>
-          {site.name}<span class="sr-break">, </span>
+          {site.name}<span class="sr-break">{h.nameSeparator}</span>
           <span class="line2">{h.lineBeforeSerif} <span class="serif">{h.serif}</span> <span class="serif accent">{h.serifAccent}</span></span>
         </h1>
         <p class="lede">{h.lede}</p>

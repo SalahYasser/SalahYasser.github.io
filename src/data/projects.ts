@@ -16,7 +16,11 @@ export type Project = {
   slug: string;
   title: string;
   nativeTitle?: string;
+  /** Language of `nativeTitle` (defaults to Arabic). */
+  nativeLang?: 'ar' | 'en';
   kind: 'Client project' | 'Built at BDC';
+  /** Displayed instead of `kind` when set (translations); `kind` stays the value code compares against. */
+  kindLabel?: string;
   platform: string;
   tagline: string;
   summary: string;

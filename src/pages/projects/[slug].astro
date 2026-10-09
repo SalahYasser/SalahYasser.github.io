@@ -2,8 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import { caseStudies, isPreview, type Project } from '../../data/projects';
-import { site, copy } from '../../data/site';
 import { responsive, shotSizes } from '../../lib/images';
+import { content, fill, langFromPath, localePath } from '../../lib/i18n';
 
 export function getStaticPaths() {
   return caseStudies.map((p, i) => ({
@@ -13,18 +13,22 @@ export function getStaticPaths() {
 }
 interface Props { project: Project; next: Project }
 const { project: p, next } = Astro.props;
+// Also rendered at /ar/projects/<slug>/ (src/pages/ar/projects/[slug].astro) with Arabic project data; the locale comes from the URL.
+const lang = langFromPath(Astro.url.pathname);
+const { site, copy } = content(lang);
 const s = p.sections!;
 const hasNext = next.slug !== p.slug;
 const t = copy.caseStudy;
 const sec = t.sections;
-const home = new URL('/', Astro.site).href;
+const home = new URL(localePath(lang, '/'), Astro.site).href;
+const personId = `${new URL('/', Astro.site).href}#person`;
 // GoatCounter click-event name for a store button, e.g. `store-al-burda-app-store`.
 const storeEvent = (href: string) => {
   const host = new URL(href).hostname;
   const store = host.endsWith('apple.com') ? 'app-store' : host === 'play.google.com' ? 'google-play' : host.replace(/\W+/g, '-');
   return `${site.analytics.clicks.storePrefix}-${p.slug}-${store}`;
 };
-const pageUrl = new URL(`/projects/${p.slug}/`, Astro.site).href;
+const pageUrl = new URL(localePath(lang, `/projects/${p.slug}/`), Astro.site).href;
 const abs = (path: string) => new URL(path, Astro.site).href;
 // schema.org MobileApplication for this case study; store listings go in sameAs.
 const appLd = {
@@ -40,21 +44,21 @@ const appLd = {
   ...(p.links[0] ? { installUrl: p.links[0].href } : {}),
   ...(p.icon ? { image: abs(p.icon) } : {}),
   screenshot: p.screenshots.map((sh) => abs(sh.src)),
-  [p.kind === 'Built at BDC' ? 'contributor' : 'author']: { '@type': 'Person', '@id': `${home}#person`, name: site.name, url: home },
+  [p.kind === 'Built at BDC' ? 'contributor' : 'author']: { '@type': 'Person', '@id': personId, name: site.name, url: home },
   ...(p.storePublisher ? { publisher: { '@type': 'Organization', name: p.storePublisher } } : {}),
 };
 ---
-<BaseLayout title={`${p.title} ${t.pageTitleSuffix}`} description={p.seoDescription ?? p.summary} jsonLd={[appLd]} share={p.ogImage ? { src: p.ogImage, alt: `${p.title} — ${p.tagline}` } : undefined} ogType="article">
+<BaseLayout title={fill(t.pageTitle, { project: p.title })} description={p.seoDescription ?? p.summary} jsonLd={[appLd]} share={p.ogImage ? { src: p.ogImage, alt: `${p.title} — ${p.tagline}` } : undefined} ogType="article">
   <article class="cs" style={`--pa:${p.accent.base};--pink:${p.accent.ink};--pglow:${p.accent.glow}`}>
     <header class="cs-hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <a class="back" href="/#work"><span aria-hidden="true">←</span> {t.back}</a>
+          <a class="back" href={localePath(lang, '/#work')}><span aria-hidden="true">←</span> {t.back}</a>
           <div class="title-row">
-            {p.icon && <img class="app-icon" src={p.icon} alt={`${p.title} app icon`} width="256" height="256" />}
+            {p.icon && <img class="app-icon" src={p.icon} alt={fill(t.appIconAlt, { project: p.title })} width="256" height="256" />}
             <div>
-              <p class="kicker">{p.kind} · {p.platform}</p>
-              <h1><span style={`view-transition-name: cs-title-${p.slug}`}>{p.title}</span> {p.nativeTitle && <span class="native" lang="ar" dir="rtl">{p.nativeTitle}</span>}</h1>
+              <p class="kicker">{p.kindLabel ?? p.kind} · {p.platform}</p>
+              <h1><span style={`view-transition-name: cs-title-${p.slug}`}>{p.title}</span> {p.nativeTitle && <span class="native" lang={p.nativeLang ?? 'ar'} dir={p.nativeLang === 'en' ? 'ltr' : 'rtl'}>{p.nativeTitle}</span>}</h1>
             </div>
           </div>
           <p class="lede">{p.tagline}</p>
@@ -112,12 +116,12 @@ const appLd = {
           <ul class="implemented">{s.implemented.map((x) => <li>{x}</li>)}</ul>
         </div>
       </div>
-      <section class="gallery" aria-label={`${p.title} ${t.galleryAriaSuffix}`} tabindex="0">
+      <section class="gallery" aria-label={fill(t.galleryAria, { project: p.title })} tabindex="0">
         <ul>
           {p.screenshots.map((sh, i) => (
             <li>
               <figure>
-                <a class="shot zoom" href={responsive(sh.src).largest} data-index={i} aria-label={`${t.enlargePrefix} ${sh.caption}`}>
+                <a class="shot zoom" href={responsive(sh.src).largest} data-index={i} aria-label={fill(t.enlarge, { caption: sh.caption })}>
                   <img src={sh.src} srcset={responsive(sh.src).srcset} sizes={shotSizes.gallery} alt={sh.alt} width="590" height="1280" loading="lazy" decoding="async" />
                   <span class="zoom-ico" aria-hidden="true"><Icon name="expand" /></span>
                 </a>
@@ -141,7 +145,7 @@ const appLd = {
           <h2 id="q7">{sec.seeIt.title}</h2>
           <div class="links">
             {p.links.map((l) => (<a class="btn btn-primary btn-store" href={l.href} target="_blank" rel="noopener" data-goatcounter-click={storeEvent(l.href)} data-goatcounter-title={`${p.title} · ${l.label}`}><Icon name={l.icon ?? 'apple'} /> {l.label}<span class="visually-hidden">{t.newTab}</span></a>))}
-            <a class="btn btn-ghost" href="/#contact">{t.askAboutIt}</a>
+            <a class="btn btn-ghost" href={localePath(lang, '/#contact')}>{t.askAboutIt}</a>
           </div>
         </div>
       </section>
@@ -149,7 +153,7 @@ const appLd = {
 
     {hasNext && (
       <nav class="container next reveal" aria-label={t.nextLabel}>
-        <a href={`/projects/${next.slug}/`}>
+        <a href={localePath(lang, `/projects/${next.slug}/`)}>
           <span class="nl">{t.nextLabel}</span>
           <span class="nt">{next.title} <Icon name="arrow" /></span>
         </a>
@@ -186,9 +190,11 @@ const appLd = {
     links.forEach((a, i) => a.addEventListener('click', (e) => { e.preventDefault(); show(i); dlg.showModal(); if (e.detail > 0) dlg.focus(); }));
     dlg.querySelector('.prev')!.addEventListener('click', () => show(idx - 1));
     dlg.querySelector('.nextb')!.addEventListener('click', () => show(idx + 1));
+    // Right-to-left pages (/ar/) mirror the viewer: "next" sits on the left, so ArrowLeft and a left-to-right swipe go forward.
+    const fwd = document.documentElement.dir === 'rtl' ? -1 : 1;
     dlg.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') { e.preventDefault(); show(idx - 1); }
-      if (e.key === 'ArrowRight') { e.preventDefault(); show(idx + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(idx - fwd); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(idx + fwd); }
     });
     // Clicking the dimmed area (the dialog itself, not the image, caption or buttons) closes the viewer.
     dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
@@ -197,7 +203,7 @@ const appLd = {
     dlg.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
     dlg.addEventListener('touchend', (e) => {
       const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
-      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(dx < 0 ? idx + 1 : idx - 1);
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(dx * fwd < 0 ? idx + 1 : idx - 1);
     }, { passive: true });
     dlg.addEventListener('close', () => links[idx]?.focus());
   }

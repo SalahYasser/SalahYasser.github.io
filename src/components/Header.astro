@@ -1,12 +1,21 @@
 ---
-import { site, copy } from '../data/site';
+import { content, langFromPath, localePath, localeMeta, langs } from '../lib/i18n';
+interface Props {
+  /** The same page in the other language (from BaseLayout). */
+  toggleHref: string;
+}
+const { toggleHref } = Astro.props;
 const path = Astro.url.pathname;
-const onHome = path === '/';
+const lang = langFromPath(path);
+const { site, copy } = content(lang);
+const homeHref = localePath(lang, '/');
+const onHome = path === homeHref;
 const nav = copy.nav;
+const ls = copy.langSwitch;
 ---
 <header class="site-header">
   <div class="container bar">
-    <a href="/" class="brand" aria-current={onHome ? 'page' : undefined}>
+    <a href={homeHref} class="brand" aria-current={onHome ? 'page' : undefined}>
       <span class="mark" aria-hidden="true">{site.brandMark}</span>
       <span class="brand-text">{site.name}</span><span class="visually-hidden">{copy.homeLabelSuffix}</span>
     </a>
@@ -15,6 +24,16 @@ const nav = copy.nav;
         {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
       </ul>
     </nav>
+    <div class="lang" role="group" aria-label={ls.groupLabel}>
+      {langs.map((l, i) => (
+        <>
+          {i > 0 && <span class="sep" aria-hidden="true">|</span>}
+          {l === lang
+            ? <span class="cur" lang={localeMeta[l].htmlLang} aria-current="true"><span aria-hidden="true">{ls[l].short}</span><span class="visually-hidden">{ls[l].full}</span></span>
+            : <a href={toggleHref} hreflang={localeMeta[l].htmlLang} lang={localeMeta[l].htmlLang}><span aria-hidden="true">{ls[l].short}</span><span class="visually-hidden">{ls[l].full}</span></a>}
+        </>
+      ))}
+    </div>
   </div>
 </header>
 <style>
@@ -35,10 +54,24 @@ const nav = copy.nav;
   nav a[aria-current='page'] { color: var(--accent); }
   .brand { transition: color .2s; }
   .brand:hover .brand-text { color: var(--accent-2); }
+  /* Language toggle: the current language is plain text, the other one is a link (site accent, like every clickable element). */
+  nav { margin-inline-start: auto; }
+  .lang { margin-inline-start: -0.5rem; display: flex; align-items: center; gap: 0.15rem; padding-inline-start: 0.65rem; border-inline-start: 1px solid var(--line-strong); font-size: 0.9rem; line-height: 1; }
+  .lang a, .lang .cur { display: inline-flex; align-items: center; min-height: 2.25rem; padding: 0.2rem 0.45rem; border-radius: 999px; }
+  .lang a { color: var(--accent); text-decoration: none; font-weight: 600; transition: color .2s, background .2s; }
+  .lang a:hover { color: var(--accent-2); background: rgba(92, 200, 255, 0.08); }
+  .lang .cur { color: var(--faint); }
+  .sep { color: var(--line-strong); }
   @media (max-width: 640px) {
     /* Hidden visually on phones but still read out, so the link keeps its accessible name. */
     .brand-text { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
     nav a { padding: 0.45rem 0.55rem; font-size: 0.9rem; }
+    /* Phones: only the link to the other language, as a compact 44px-tall target. */
+    .lang { margin-inline-start: -0.875rem; padding-inline-start: 0.2rem; }
+    .lang .cur, .sep { display: none; }
+    .lang a { min-height: 2.75rem; padding-inline: 0.3rem; }
   }
+  /* Narrow phones: slightly tighter nav links so the language link fits beside them. */
+  @media (max-width: 400px) { nav a { padding-inline: 0.45rem; } }
   @media (max-width: 360px) { nav li:nth-child(2) { display: none; } }
 </style>

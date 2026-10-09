@@ -1,0 +1,17 @@
+---
+// Arabic case studies (/ar/projects/<slug>/): the English case-study page component with the Arabic project data.
+import '@fontsource/ibm-plex-sans-arabic/arabic-400.css';
+import '../../../styles/rtl.css';
+import CaseStudy from '../../projects/[slug].astro';
+import { caseStudies, type Project } from '../../../data/projects.ar';
+
+export function getStaticPaths() {
+  return caseStudies.map((p, i) => ({
+    params: { slug: p.slug },
+    props: { project: p, next: caseStudies[(i + 1) % caseStudies.length] },
+  }));
+}
+interface Props { project: Project; next: Project }
+const { project, next } = Astro.props;
+---
+<CaseStudy project={project} next={next} />

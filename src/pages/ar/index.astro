@@ -1,0 +1,8 @@
+---
+// Arabic home page (/ar/). It renders the same page component as /, which reads the locale from the URL,
+// so both languages always share one layout. Arabic-only assets: the RTL layer and the 400 weight of IBM Plex Sans Arabic.
+import '@fontsource/ibm-plex-sans-arabic/arabic-400.css';
+import '../../styles/rtl.css';
+import Home from '../index.astro';
+---
+<Home />

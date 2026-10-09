@@ -1,5 +1,6 @@
 ---
-import { site, copy } from '../data/site';
+import { content, langFromPath } from '../lib/i18n';
+const { site, copy } = content(langFromPath(Astro.url.pathname));
 const f = copy.footer;
 const ev = site.analytics.clicks;
 const year = new Date().getFullYear();

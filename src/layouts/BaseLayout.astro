@@ -6,10 +6,12 @@ import '@fontsource/ibm-plex-sans-arabic/arabic-600.css';
 import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
 import interTightLatin from '@fontsource-variable/inter-tight/files/inter-tight-latin-wght-normal.woff2?url';
+import plexArabic400 from '@fontsource/ibm-plex-sans-arabic/files/ibm-plex-sans-arabic-arabic-400-normal.woff2?url';
+import plexArabic600 from '@fontsource/ibm-plex-sans-arabic/files/ibm-plex-sans-arabic-arabic-600-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site, copy, experience, education, skills } from '../data/site';
 import { isPreview } from '../data/projects';
+import { content, langFromPath, localeMeta, localePath, alternatePaths, defaultLang, langs, type Lang } from '../lib/i18n';
 
 // `share` is a purpose-made 1200×630 share image with its alt text; pages without one use the default.
 // `noindex` pages (404, redirects) get a robots noindex, no canonical/og:url and no JSON-LD.
@@ -22,12 +24,22 @@ interface Props {
   noindex?: boolean;
   jsonLd?: Record<string, unknown>[];
 }
+// The locale comes from the URL: pages under /ar/ are Arabic (RTL), everything else English.
+const lang = langFromPath(Astro.url.pathname);
+const meta = localeMeta[lang];
+const { site, copy, experience, education, skills } = content(lang);
 const { title, description = site.description, share = { src: '/og.png', alt: copy.ogImageAlt }, ogType = 'website', noindex = false, jsonLd = [] } = Astro.props;
 const fullTitle = title ? `${title} · ${site.name}` : `${site.name} · ${site.role}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(share.src, Astro.site);
-const home = new URL('/', Astro.site).href;
-const personId = `${home}#person`;
+// Indexable pages exist in both languages: hreflang alternates, and the header toggle links to the same page in the other language.
+// noindex pages (404, redirects) have no counterpart, so the toggle goes to the other language's home page.
+const alternates = alternatePaths(Astro.url.pathname);
+const otherLang: Lang = lang === 'ar' ? 'en' : 'ar';
+const toggleHref = noindex ? localePath(otherLang, '/') : alternates[otherLang];
+const home = new URL(localePath(lang, '/'), Astro.site).href;
+// One Person entity for both languages (same @id), described in the page's language.
+const personId = `${new URL('/', Astro.site).href}#person`;
 const graph = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -35,6 +47,7 @@ const graph = {
       '@type': 'Person',
       '@id': personId,
       name: site.name,
+      ...(lang !== defaultLang ? { alternateName: content(defaultLang).site.name } : {}),
       url: home,
       image: new URL(site.photo.src, Astro.site).href,
       jobTitle: site.role,
@@ -51,7 +64,7 @@ const graph = {
       url: home,
       name: site.name,
       description: site.description,
-      inLanguage: 'en',
+      inLanguage: meta.htmlLang,
       author: { '@id': personId },
     },
     ...jsonLd,
@@ -59,14 +72,22 @@ const graph = {
 };
 ---
 <!doctype html>
-<html lang="en">
+<html lang={meta.htmlLang} dir={lang === 'ar' ? meta.dir : undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <link rel="preload" href={interTightLatin} as="font" type="font/woff2" crossorigin />
+    {lang === 'ar' && (
+      <>
+        <link rel="preload" href={plexArabic400} as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href={plexArabic600} as="font" type="font/woff2" crossorigin />
+      </>
+    )}
     <meta name="description" content={description} />
     {!noindex && <link rel="canonical" href={canonical} />}
+    {!noindex && langs.map((l) => <link rel="alternate" hreflang={localeMeta[l].htmlLang} href={new URL(alternates[l], Astro.site)} />)}
+    {!noindex && <link rel="alternate" hreflang="x-default" href={new URL(alternates[defaultLang], Astro.site)} />}
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -74,6 +95,8 @@ const graph = {
     <meta name="theme-color" content="#0a0f1c" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:type" content={ogType} />
+    {lang === 'ar' && <meta property="og:locale" content={meta.ogLocale} />}
+    {lang === 'ar' && <meta property="og:locale:alternate" content={localeMeta.en.ogLocale} />}
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     {!noindex && <meta property="og:url" content={canonical} />}
@@ -109,7 +132,7 @@ const graph = {
     {isPreview && (
       <div class="preview-banner" role="note">{copy.previewBanner}</div>
     )}
-    <Header />
+    <Header toggleHref={toggleHref} />
     <main id="main" tabindex="-1">
       <slot />
     </main>
