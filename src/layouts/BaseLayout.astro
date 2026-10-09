@@ -95,8 +95,8 @@ const graph = {
     <meta name="theme-color" content="#0a0f1c" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:type" content={ogType} />
-    {lang === 'ar' && <meta property="og:locale" content={meta.ogLocale} />}
-    {lang === 'ar' && <meta property="og:locale:alternate" content={localeMeta.en.ogLocale} />}
+    <meta property="og:locale" content={meta.ogLocale} />
+    <meta property="og:locale:alternate" content={localeMeta[otherLang].ogLocale} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     {!noindex && <meta property="og:url" content={canonical} />}

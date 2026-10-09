@@ -47,8 +47,17 @@ const appLd = {
   [p.kind === 'Built at BDC' ? 'contributor' : 'author']: { '@type': 'Person', '@id': personId, name: site.name, url: home },
   ...(p.storePublisher ? { publisher: { '@type': 'Organization', name: p.storePublisher } } : {}),
 };
+// Breadcrumb trail for search results: home page › this case study (same language).
+const breadcrumbLd = {
+  '@type': 'BreadcrumbList',
+  '@id': `${pageUrl}#breadcrumb`,
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: site.name, item: home },
+    { '@type': 'ListItem', position: 2, name: fill(t.pageTitle, { project: p.title }), item: pageUrl },
+  ],
+};
 ---
-<BaseLayout title={fill(t.pageTitle, { project: p.title })} description={p.seoDescription ?? p.summary} jsonLd={[appLd]} share={p.ogImage ? { src: p.ogImage, alt: `${p.title} — ${p.tagline}` } : undefined} ogType="article">
+<BaseLayout title={fill(t.pageTitle, { project: p.title })} description={p.seoDescription ?? p.summary} jsonLd={[appLd, breadcrumbLd]} share={p.ogImage ? { src: p.ogImage, alt: `${p.title} — ${p.tagline}` } : undefined} ogType="article">
   <article class="cs" style={`--pa:${p.accent.base};--pink:${p.accent.ink};--pglow:${p.accent.glow}`}>
     <header class="cs-hero">
       <div class="container hero-grid">

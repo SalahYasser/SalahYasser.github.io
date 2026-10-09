@@ -27,6 +27,16 @@ const c = copy.contact;
 const ev = site.analytics.clicks;
 const mail = mailto(site.email, copy.emailSubject.default);
 const home = new URL(localePath(lang, '/'), Astro.site).href;
+// schema.org ProfilePage (Google's type for an "about me" / portfolio page): this page is about the site-wide Person.
+const profileLd = {
+  '@type': 'ProfilePage',
+  '@id': `${home}#profile`,
+  url: home,
+  name: `${site.name} · ${site.role}`,
+  inLanguage: lang,
+  isPartOf: { '@id': `${home}#website` },
+  mainEntity: { '@id': `${new URL('/', Astro.site).href}#person` },
+};
 const faqLd = {
   '@type': 'FAQPage',
   '@id': `${home}#faq`,
@@ -38,7 +48,7 @@ const faqLd = {
   })),
 };
 ---
-<BaseLayout jsonLd={[faqLd]}>
+<BaseLayout jsonLd={[profileLd, faqLd]}>
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
