@@ -5,7 +5,7 @@
 
 import { projects as projectsEn, type Project } from './projects';
 
-type Text = Partial<Pick<Project, 'title' | 'nativeTitle' | 'nativeLang' | 'kindLabel' | 'platform' | 'tagline' | 'summary' | 'role' | 'technologies' | 'status' | 'seoDescription' | 'ogImage'>> & {
+type Text = Partial<Pick<Project, 'title' | 'nativeTitle' | 'nativeLang' | 'kindLabel' | 'platform' | 'tagline' | 'summary' | 'role' | 'technologies' | 'status' | 'seoDescription' | 'ogImage' | 'diagram'>> & {
   links?: { label: string }[];
   screenshots?: { alt: string; caption: string }[];
   sections?: Omit<NonNullable<Project['sections']>, 'decisions'> & { decisions: { title: string; body: string }[] };
@@ -83,6 +83,17 @@ const ar: Record<string, Text> = {
       ],
       result: 'نُشر على App Store وGoogle Play، ويُحدَّث بانتظام. مجاني، ويعمل دون إنترنت، وخالٍ من الإعلانات والتتبّع.',
     },
+    diagram: {
+      title: 'كيف يحصل ودجت شاشة القفل على الأبيات',
+      nodes: [
+        { label: 'تطبيق Flutter', sub: 'يكتب الأبيات' },
+        { label: 'App Group', sub: 'UserDefaults مشتركة' },
+        { label: 'ودجت iOS', sub: 'WidgetKit، شاشة القفل' },
+      ],
+      edges: [{ label: 'home_widget' }, { label: 'يقرأ' }],
+      caption:
+        'يكتب تطبيق Flutter الأبيات عبر حزمة home_widget في App Group (‏UserDefaults مشتركة)، ثم يقرؤها ودجت WidgetKit من هناك، فتعرض شاشة القفل بيتًا حتى عندما يكون التطبيق مغلقًا.',
+    },
   },
   'el-madrasah': {
     title: 'المدرسة',
@@ -146,6 +157,17 @@ const ar: Record<string, Text> = {
         'دعم العربية والإنجليزية',
       ],
       result: 'نُشر على App Store وGoogle Play، وصدرت له عدة تحديثات منذ إطلاقه.',
+    },
+    diagram: {
+      title: 'المزامنة مع العمل دون إنترنت أولًا',
+      nodes: [
+        { label: 'التطبيق', sub: 'يعمل دون إنترنت' },
+        { label: 'قاعدة بيانات محلية', sub: 'على الجهاز' },
+        { label: 'الخادم' },
+      ],
+      edges: [{ label: 'يحفظ أولًا' }, { label: 'مزامنة عند الاتصال', both: true }],
+      caption:
+        'تُحفظ التغييرات أولًا في قاعدة بيانات محلية على الجهاز، فيبقى التطبيق قابلًا للاستخدام دون إنترنت. وعند توفّر الاتصال، تتزامن قاعدة البيانات المحلية مع الخادم.',
     },
   },
   flexi: {
@@ -213,6 +235,18 @@ const ar: Record<string, Text> = {
         'أدوات للمديرين لتنفيذ الإجراءات المصرّح بها على الموظفين',
       ],
       result: 'نُشر على App Store، ومتاح لموظفي Fit4Less المصرّح لهم.',
+    },
+    diagram: {
+      title: 'التوجيه حسب الدور',
+      nodes: [
+        { label: 'تسجيل الدخول' },
+        { label: 'الخادم', sub: 'يُرجع الدور' },
+        { label: 'التوجيه حسب الدور' },
+        { label: 'الشاشات', stack: ['شاشات الموظف', 'شاشات المدير'] },
+      ],
+      edges: [{}, { label: 'الدور' }, {}],
+      caption:
+        'بعد تسجيل الدخول، يُرجع الخادم دور الحساب. يوجّه التطبيق المستخدم حسب هذا الدور، ويفتح كل دور شاشاته الخاصة، فيستخدم الموظفون والمديرون تطبيقًا واحدًا بصلاحيات مختلفة.',
     },
   },
   personarise: {

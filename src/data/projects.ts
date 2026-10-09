@@ -12,6 +12,21 @@
 export type Screenshot = { src: string; alt: string; caption: string };
 export type Link = { label: string; href: string; icon?: 'apple' | 'play' };
 
+/**
+ * A simple flow diagram for a case study (rendered by FlowDiagram.astro). Nodes run left to right
+ * (right to left on Arabic pages). Keep labels short and limited to what Salah confirmed or the repo shows.
+ */
+export type Diagram = {
+  /** Accessible name and the bold first line of the caption. */
+  title: string;
+  /** `stack` renders several boxes in that column instead of one (e.g. one per role). */
+  nodes: { label: string; sub?: string; stack?: string[] }[];
+  /** Arrows between consecutive nodes (nodes.length - 1 of them); `both` draws a two-way arrow. */
+  edges: { label?: string; both?: boolean }[];
+  /** Plain-language description shown under the diagram (and read as the image description). */
+  caption: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -53,6 +68,8 @@ export type Project = {
   appCategory?: string;
   /** Store publisher, when it isn't Salah's own developer account. */
   storePublisher?: string;
+  /** Flow diagram shown in the case study's "Decisions and why" section. */
+  diagram?: Diagram;
 };
 
 export const projects: Project[] = [
@@ -124,6 +141,18 @@ export const projects: Project[] = [
       result:
         'Shipped to the App Store and Google Play, and maintained through regular updates. Free, offline, and free of ads and tracking.',
     },
+    // Verified in the app's repo: home_widget package, an App Group, UserDefaults(suiteName:), WidgetKit.
+    diagram: {
+      title: 'How the lock-screen widget gets its verses',
+      nodes: [
+        { label: 'Flutter app', sub: 'writes the verses' },
+        { label: 'App Group', sub: 'shared UserDefaults' },
+        { label: 'iOS widget', sub: 'WidgetKit, lock screen' },
+      ],
+      edges: [{ label: 'home_widget' }, { label: 'reads' }],
+      caption:
+        'The Flutter app writes the verses through the home_widget package into an App Group (shared UserDefaults). The WidgetKit widget reads them from there, so the lock screen shows a verse even when the app is closed.',
+    },
   },
   {
     slug: 'el-madrasah',
@@ -190,6 +219,18 @@ export const projects: Project[] = [
       ],
       result: 'Shipped live to the App Store and Google Play, and updated through several releases since launch.',
     },
+    // Generic offline-first flow only (no BDC internals, endpoints or proprietary details).
+    diagram: {
+      title: 'Offline-first sync',
+      nodes: [
+        { label: 'App', sub: 'keeps working offline' },
+        { label: 'Local database', sub: 'on the device' },
+        { label: 'Server' },
+      ],
+      edges: [{ label: 'saves first' }, { label: 'syncs when online', both: true }],
+      caption:
+        'Changes are saved to a local database on the device first, so the app keeps working without internet. When a connection is available, the local database syncs with the server.',
+    },
   },
   {
     slug: 'flexi',
@@ -250,6 +291,18 @@ export const projects: Project[] = [
         'Manager tools for authorised employee actions',
       ],
       result: 'Shipped to the App Store, available to authorised Fit4Less staff.',
+    },
+    diagram: {
+      title: 'Role-based routing',
+      nodes: [
+        { label: 'Sign in' },
+        { label: 'Server', sub: 'returns the role' },
+        { label: 'Role-based routing' },
+        { label: 'Screens', stack: ['Employee screens', 'Manager screens'] },
+      ],
+      edges: [{}, { label: 'role' }, {}],
+      caption:
+        'After sign-in, the server returns the account’s role. The app routes by that role, and each role unlocks its own screens, so employees and managers use one app with different access.',
     },
   },
   {

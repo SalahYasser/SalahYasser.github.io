@@ -1,0 +1,128 @@
+---
+// Simple flow diagram for a case study (data: Project['diagram']). Two inline SVG layouts are rendered:
+// a horizontal one for wide containers and a vertical one for narrow ones (CSS container query picks one).
+// On RTL pages the horizontal flow runs right to left. The diagram is not interactive.
+import type { Diagram } from '../data/projects';
+interface Props { diagram: Diagram; id: string; rtl?: boolean }
+const { diagram: d, id, rtl = false } = Astro.props;
+
+type Box = { x: number; y: number; w: number; h: number; label: string; sub?: string; small?: boolean };
+type Arrow = { x1: number; y1: number; x2: number; y2: number; both?: boolean; half?: 'start' | 'end' };
+type Label = { x: number; y: number; text: string };
+
+const BH = 76; // node height
+const SH = 52; // stacked-item height
+const SG = 12; // gap between stacked items
+
+// ---- Horizontal layout (left to right; mirrored for RTL) ----
+function horizontal() {
+  const W = 880, n = d.nodes.length, G = n > 3 ? 72 : 150;
+  const bw = (W - (n - 1) * G) / n;
+  const colH = d.nodes.map((nd) => (nd.stack ? nd.stack.length * SH + (nd.stack.length - 1) * SG : BH));
+  const H = Math.max(...colH) + 8;
+  const X = (i: number) => { const x = i * (bw + G); return rtl ? W - x - bw : x; };
+  const boxes: Box[] = [], arrows: Arrow[] = [], labels: Label[] = [];
+  const cy = H / 2;
+  d.nodes.forEach((nd, i) => {
+    if (nd.stack) {
+      const top = cy - colH[i] / 2;
+      nd.stack.forEach((s, k) => boxes.push({ x: X(i), y: top + k * (SH + SG), w: bw, h: SH, label: s }));
+    } else boxes.push({ x: X(i), y: cy - BH / 2, w: bw, h: BH, label: nd.label, sub: nd.sub });
+  });
+  d.edges.forEach((e, i) => {
+    const from = rtl ? X(i) : X(i) + bw, to = rtl ? X(i + 1) + bw : X(i + 1);
+    const pad = rtl ? -8 : 8;
+    const next = d.nodes[i + 1];
+    if (next.stack) {
+      const top = cy - colH[i + 1] / 2;
+      next.stack.forEach((_, k) => arrows.push({ x1: from + pad, y1: cy, x2: to - pad, y2: top + k * (SH + SG) + SH / 2 }));
+    } else arrows.push({ x1: from + pad, y1: cy, x2: to - pad, y2: cy, both: e.both });
+    if (e.label) labels.push({ x: (from + to) / 2, y: cy - 14, text: e.label });
+  });
+  return { W, H, boxes, arrows, labels };
+}
+
+// ---- Vertical layout (top to bottom; stacked items sit side by side, first item on the reading-start side) ----
+function vertical() {
+  const W = 320, bw = 280, x0 = (W - bw) / 2, GAP = 64;
+  const boxes: Box[] = [], arrows: Arrow[] = [], labels: Label[] = [];
+  let y = 2;
+  d.nodes.forEach((nd, i) => {
+    if (i > 0) {
+      const e = d.edges[i - 1];
+      const prevBottom = y;
+      if (nd.stack) {
+        const k = nd.stack.length, sw = (bw - (k - 1) * SG) / k;
+        const top = prevBottom + GAP;
+        nd.stack.forEach((s, j) => {
+          const jj = rtl ? k - 1 - j : j;
+          const bx = x0 + jj * (sw + SG);
+          boxes.push({ x: bx, y: top, w: sw, h: SH + 8, label: s, small: true });
+          arrows.push({ x1: W / 2, y1: prevBottom + 8, x2: bx + sw / 2, y2: top - 8 });
+        });
+        if (e.label) labels.push({ x: W / 2, y: prevBottom + GAP / 2 - 6, text: e.label });
+        y = top + SH + 8;
+        return;
+      }
+      if (e.label) {
+        labels.push({ x: W / 2, y: prevBottom + GAP / 2 + 1, text: e.label });
+        arrows.push({ x1: W / 2, y1: prevBottom + 6, x2: W / 2, y2: prevBottom + GAP / 2 - 12, both: e.both, half: 'start' });
+        arrows.push({ x1: W / 2, y1: prevBottom + GAP / 2 + 14, x2: W / 2, y2: prevBottom + GAP - 6, half: 'end' });
+      } else arrows.push({ x1: W / 2, y1: prevBottom + 6, x2: W / 2, y2: prevBottom + GAP - 6, both: e.both });
+      y = prevBottom + GAP;
+    }
+    boxes.push({ x: x0, y, w: bw, h: BH - 8, label: nd.label, sub: nd.sub });
+    y += BH - 8;
+  });
+  return { W, H: y + 2, boxes, arrows, labels };
+}
+
+const layouts = [{ cls: 'h', ...horizontal() }, { cls: 'v', ...vertical() }];
+const capId = `${id}-cap`;
+---
+<figure class="flow">
+  <div class="flow-art" role="img" aria-label={d.title} aria-describedby={capId}>
+    {layouts.map((L) => (
+      <svg class={`flow-svg flow-${L.cls}`} viewBox={`0 0 ${L.W} ${L.H}`} width={L.W} height={L.H} aria-hidden="true" focusable="false">
+        <defs>
+          <marker id={`${id}-${L.cls}-head`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M1 1 9 5 1 9" class="flow-head" />
+          </marker>
+        </defs>
+        {L.boxes.map((b) => (
+          <g>
+            <rect x={b.x} y={b.y} width={b.w} height={b.h} rx="12" class="flow-box" />
+            {b.sub
+              ? <><text x={b.x + b.w / 2} y={b.y + b.h / 2 - 9} class="flow-label">{b.label}</text><text x={b.x + b.w / 2} y={b.y + b.h / 2 + 14} class="flow-sub">{b.sub}</text></>
+              : <text x={b.x + b.w / 2} y={b.y + b.h / 2 + 1} class={b.small ? 'flow-label flow-label-sm' : 'flow-label'}>{b.label}</text>}
+          </g>
+        ))}
+        {L.arrows.map((a: Arrow) => (
+          <line x1={a.x1} y1={a.y1} x2={a.x2} y2={a.y2} class="flow-arrow"
+            marker-end={a.half === 'start' ? undefined : `url(#${id}-${L.cls}-head)`}
+            marker-start={a.both ? `url(#${id}-${L.cls}-head)` : undefined} />
+        ))}
+        {L.labels.map((l) => <text x={l.x} y={l.y} class="flow-edge">{l.text}</text>)}
+      </svg>
+    ))}
+  </div>
+  <figcaption id={capId}><strong>{d.title}</strong> {d.caption}</figcaption>
+</figure>
+<style>
+  .flow { margin: 2.25rem 0 0; padding: clamp(1.1rem, 3vw, 1.75rem); border: 1px solid var(--line); border-radius: var(--radius-sm); background: linear-gradient(180deg, var(--surface), var(--bg-2)); container-type: inline-size; }
+  .flow-art { display: block; }
+  .flow-svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .flow-h { display: none; }
+  @container (min-width: 700px) { .flow-h { display: block; } .flow-v { display: none; } }
+  .flow-box { fill: var(--bg); stroke: var(--line-strong); stroke-width: 1; }
+  .flow-label { fill: var(--text); font-size: 16px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
+  .flow-sub { fill: var(--muted); font-size: 13px; text-anchor: middle; dominant-baseline: middle; }
+  .flow-edge { fill: var(--muted); font-size: 13px; text-anchor: middle; dominant-baseline: middle; }
+  .flow-h .flow-label { font-size: 17px; }
+  .flow-h :is(.flow-sub, .flow-edge) { font-size: 14px; }
+  .flow-v .flow-label-sm { font-size: 14px; }
+  .flow-arrow { stroke: var(--accent); stroke-width: 1.6; fill: none; }
+  .flow-head { stroke: var(--accent); stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .flow figcaption { margin-top: 1.25rem; color: var(--muted); font-size: .98rem; line-height: 1.6; max-width: 46rem; }
+  .flow figcaption strong { display: block; color: var(--text); font-weight: 600; margin-bottom: .25rem; }
+</style>

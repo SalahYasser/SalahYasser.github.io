@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
+import FlowDiagram from '../../components/FlowDiagram.astro';
 import { caseStudies, isPreview, type Project } from '../../data/projects';
 import { responsive, shotSizes } from '../../lib/images';
 import { content, fill, langFromPath, localePath, mailto } from '../../lib/i18n';
@@ -113,6 +114,7 @@ const breadcrumbLd = {
           <ol class="decisions">
             {s.decisions.map((d) => (<li><h3>{d.title}</h3><p>{d.body}</p></li>))}
           </ol>
+          {p.diagram && <FlowDiagram diagram={p.diagram} id={`flow-${p.slug}`} rtl={lang === 'ar'} />}
         </div>
       </section>
     </div>
