@@ -215,7 +215,7 @@ export const projects: Project[] = [
         },
       ],
       implemented: [
-        'Parent, student and teacher experiences in one app',
+        'Parent and driver roles, end to end',
         'Offline-first data sync',
         'Real-time school-bus tracking',
         'Grades, attendance, assignments and schedules',

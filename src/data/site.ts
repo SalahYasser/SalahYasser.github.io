@@ -106,7 +106,7 @@ export const copy = {
     serif: 'from requirements',
     serifAccent: 'to release.',
     lede:
-      'Production Flutter apps with clean architecture, offline-first behaviour and polished iOS and Android delivery. Some of them are shipped on the App Store and Google Play, and in real people’s hands today.',
+      'Production Flutter apps with clean architecture, offline-first behaviour and polished iOS and Android delivery. Three of them are live on the App Store and Google Play, and in real people’s hands today.',
     primaryCta: 'View selected work',
     secondaryCta: 'Get in touch',
     cvCta: 'Download CV',
