@@ -1,14 +1,38 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { copy } from '../data/site';
-const n = copy.notFound;
+import { content, langFromPath, localePath } from '../lib/i18n';
+// Also rendered at /ar/404/ (src/pages/ar/404.astro); the locale comes from the URL.
+// GitHub Pages serves only this root 404.html, for every missing URL. On a missing /ar/… URL the small script below
+// swaps in the Arabic 404 (fetched from /ar/404/) while the address bar keeps the requested URL; without JS the English page stays.
+const lang = langFromPath(Astro.url.pathname);
+const n = content(lang).copy.notFound;
+const arNotFound = '/ar/404/';
 ---
 <BaseLayout title={n.pageTitle} noindex>
+  {lang === 'en' && (
+    <script slot="head" is:inline define:vars={{ arNotFound }}>
+      if (/^\/ar(\/|$)/.test(location.pathname)) {
+        const root = document.documentElement;
+        root.style.visibility = 'hidden';
+        const ready = new Promise((r) => (document.readyState === 'loading' ? addEventListener('DOMContentLoaded', r) : r()));
+        Promise.all([fetch(arNotFound).then((r) => (r.ok ? r.text() : Promise.reject())), ready])
+          .then(([html]) => {
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+            root.lang = doc.documentElement.lang;
+            root.dir = doc.documentElement.dir;
+            document.head.innerHTML = doc.head.innerHTML;
+            document.body.innerHTML = doc.body.innerHTML;
+          })
+          .catch(() => {})
+          .finally(() => root.style.removeProperty('visibility'));
+      }
+    </script>
+  )}
   <section class="container nf">
     <p class="eyebrow">{n.eyebrow}</p>
     <h1>{n.titleBefore} <span class="serif">{n.titleSerif}</span></h1>
     <p>{n.body}</p>
-    <a class="btn btn-primary" href="/">{n.cta}</a>
+    <a class="btn btn-primary" href={localePath(lang, '/')}>{n.cta}</a>
   </section>
 </BaseLayout>
 <style>
