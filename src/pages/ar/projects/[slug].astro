@@ -3,7 +3,8 @@
 import '@fontsource/ibm-plex-sans-arabic/arabic-400.css';
 import '../../../styles/rtl.css';
 import CaseStudy from '../../projects/[slug].astro';
-import { caseStudies, type Project } from '../../../data/projects.ar';
+import { caseStudies } from '../../../data/projects.ar';
+import type { Project } from '../../../data/projects';
 
 export function getStaticPaths() {
   return caseStudies.map((p, i) => ({
