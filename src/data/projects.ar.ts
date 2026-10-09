@@ -5,7 +5,7 @@
 
 import { projects as projectsEn, type Project } from './projects';
 
-type Text = Partial<Pick<Project, 'title' | 'nativeTitle' | 'nativeLang' | 'kindLabel' | 'platform' | 'tagline' | 'summary' | 'role' | 'technologies' | 'status' | 'seoDescription'>> & {
+type Text = Partial<Pick<Project, 'title' | 'nativeTitle' | 'nativeLang' | 'kindLabel' | 'platform' | 'tagline' | 'summary' | 'role' | 'technologies' | 'status' | 'seoDescription' | 'ogImage'>> & {
   links?: { label: string }[];
   screenshots?: { alt: string; caption: string }[];
   sections?: Omit<NonNullable<Project['sections']>, 'decisions'> & { decisions: { title: string; body: string }[] };
@@ -23,6 +23,7 @@ const ar: Record<string, Text> = {
     role: 'بنيته من الصفر بمفردي لصالح عميل: تطبيق Flutter، والواجهة العربية من اليمين إلى اليسار، وودجت iOS، والصوت، والنشر على App Store وGoogle Play من حسابي.',
     technologies: ['Flutter', 'Dart', 'Clean Architecture', 'Bloc', 'WidgetKit', 'إشعارات محلية', 'تشغيل الصوت في الخلفية'],
     seoDescription: 'البُردة: تطبيق Flutter عربي هادئ يعمل دون إنترنت لقراءة البُردة والاستماع إليها، مع ودجت لشاشة القفل على iOS. متاح على App Store وGoogle Play.',
+    ogImage: '/og/ar/al-burda.png',
     status: 'متاح على App Store وGoogle Play',
     links: [
       { label: 'عرض على App Store' },
@@ -94,6 +95,7 @@ const ar: Record<string, Text> = {
     role: 'عضو في فريق تطبيقات الموبايل في BDC. بنيت دورَي ولي الأمر والسائق بالكامل، والمزامنة دون إنترنت، وحسّنت الأداء العام للتطبيق، وتوليت توقيع iOS والنشر على App Store وGoogle Play.',
     technologies: ['Flutter', 'Bloc', 'PowerSync', 'مزامنة تعمل دون إنترنت', 'ElevenLabs AI', 'REST APIs', 'تتبّع لحظي'],
     seoDescription: 'المدرسة: تطبيق Flutter مدرسي لأولياء الأمور والطلاب والمعلمين، مع مزامنة تعمل دون إنترنت وتتبّع مباشر للحافلة. متاح على App Store وGoogle Play.',
+    ogImage: '/og/ar/el-madrasah.png',
     status: 'متاح على App Store وGoogle Play · الناشر: BDC for Business Services',
     links: [
       { label: 'عرض على App Store' },
@@ -163,6 +165,7 @@ const ar: Record<string, Text> = {
       'صلاحيات حسب الدور',
     ],
     seoDescription: 'FLEXI: تطبيق Flutter للموارد البشرية لموظفي Fit4Less، بصلاحيات حسب الدور، وحضور يتحقق من الموقع، وتسجيل برمز QR، وطلبات إجازة ورواتب. على App Store.',
+    ogImage: '/og/ar/flexi.png',
     status: 'متاح على App Store',
     links: [
       { label: 'عرض على App Store' },

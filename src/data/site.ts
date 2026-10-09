@@ -21,6 +21,8 @@ export const site = {
     srcset: '/images/about/salah-yasser-240w.webp 240w, /images/about/salah-yasser-360w.webp 360w, /images/about/salah-yasser.webp 460w',
     alt: 'Salah Yasser',
   },
+  /** Default 1200×630 share image (og:image) for pages without their own. */
+  shareImage: '/og.png',
   /** Homepage meta description (<= 155 characters). */
   description:
     'Salah Yasser is a Flutter developer in Cairo building iOS & Android apps from requirements to release, with apps live on the App Store & Google Play.',

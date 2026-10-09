@@ -28,7 +28,7 @@ interface Props {
 const lang = langFromPath(Astro.url.pathname);
 const meta = localeMeta[lang];
 const { site, copy, experience, education, skills } = content(lang);
-const { title, description = site.description, share = { src: '/og.png', alt: copy.ogImageAlt }, ogType = 'website', noindex = false, jsonLd = [] } = Astro.props;
+const { title, description = site.description, share = { src: site.shareImage, alt: copy.ogImageAlt }, ogType = 'website', noindex = false, jsonLd = [] } = Astro.props;
 const fullTitle = title ? `${title} · ${site.name}` : `${site.name} · ${site.role}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(share.src, Astro.site);

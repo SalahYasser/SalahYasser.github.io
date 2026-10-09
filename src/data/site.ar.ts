@@ -11,6 +11,8 @@ export const site: typeof siteEn = {
   role: 'مطوّر Flutter',
   location: 'القاهرة، مصر',
   photo: { ...siteEn.photo, alt: 'صلاح ياسر' },
+  /** Arabic share image (rendered from the Arabic copy by shooter/og-ar.mjs). */
+  shareImage: '/og/ar/home.png',
   /** Homepage meta description. */
   description: 'صلاح ياسر، مطوّر Flutter في القاهرة، يبني تطبيقات iOS وAndroid من المتطلبات حتى الإطلاق، وله تطبيقات منشورة على App Store وGoogle Play.',
   locality: 'القاهرة',
