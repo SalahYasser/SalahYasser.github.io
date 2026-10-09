@@ -3,7 +3,7 @@
 // Non-text values (email, links, CV path, photo files, analytics) come from ./site.ts so there is one source of truth.
 // Phone number is intentionally kept off the HTML pages, as on the English site.
 
-import { site as siteEn, copy as copyEn, experience as experienceEn, education as educationEn, skills as skillsEn } from './site';
+import { site as siteEn, copy as copyEn, experience as experienceEn, education as educationEn, courses as coursesEn, skills as skillsEn } from './site';
 
 export const site: typeof siteEn = {
   ...siteEn,
@@ -105,7 +105,17 @@ export const copy: typeof copyEn = {
     titleSerif: 'عليّ.',
     body: 'أنا صلاح، مطوّر Flutter مقيم في القاهرة، وحاصل على بكالوريوس علوم الحاسب. في BDC Business Services أبني تطبيقات منشورة مثل «المدرسة»، وبصفتي مطوّرًا مستقلًا أتولى تطبيقات العملاء من وثيقة المتطلبات حتى نشرها على المتاجر. أهتم بالبنية النظيفة، وبتطبيقات تواصل العمل دون إنترنت، وبإطلاق سلس على iOS وAndroid.',
   },
-  experience: { eyebrow: 'الخبرة', titleBefore: 'أين', titleSerif: 'عملتُ وبنيت.', educationHeading: 'التعليم والتدريب' },
+  experience: {
+    eyebrow: 'الخبرة',
+    titleBefore: 'أين',
+    titleSerif: 'عملتُ وبنيت.',
+    educationHeading: 'التعليم والتدريب',
+    coursesHeading: 'الدورات والشهادات',
+    coursesNote: 'دورات قصيرة أكملتها للتعمق في موضوعات محددة، ولكل دورة رابط لشهادتها.',
+    viewCertificate: 'عرض الشهادة',
+    certificateFor: ' الخاصة بدورة {name}',
+    newTab: ' (يفتح في علامة تبويب جديدة)',
+  },
   faq: {
     eyebrow: 'الأسئلة الشائعة',
     titleBefore: 'أسئلة',
@@ -216,6 +226,16 @@ export const education: typeof educationEn = [
   { title: 'دبلوم تطوير الواجهات الأمامية (Front-end)', org: 'Senior Steps Academy', period: '2022' },
   { title: 'دبلوم Flutter لتطوير تطبيقات الموبايل متعددة المنصات', org: 'Senior Steps Academy', period: '2021' },
 ];
+
+// Course names stay in English (as on the certificates); only the issue month is in Arabic.
+const arMonths: Record<string, string> = {
+  Jan: 'يناير', Feb: 'فبراير', Mar: 'مارس', Apr: 'أبريل', May: 'مايو', Jun: 'يونيو',
+  Jul: 'يوليو', Aug: 'أغسطس', Sep: 'سبتمبر', Oct: 'أكتوبر', Nov: 'نوفمبر', Dec: 'ديسمبر',
+};
+export const courses: typeof coursesEn = coursesEn.map((c) => ({
+  ...c,
+  period: c.period.replace(/^([A-Z][a-z]{2}) (\d{4})$/, (m, mon: string, y: string) => (arMonths[mon] ? `${arMonths[mon]} ${y}` : m)),
+}));
 
 export const skills: typeof skillsEn = [
   {

@@ -46,7 +46,7 @@
 /* Forward arrows point left in RTL; their hover nudge moves left too. */
 :root[dir='rtl'] body :is(.hero .actions .btn-primary, .cta, .nt) svg { transform: scaleX(-1); }
 /* External-link arrows (App Store developer link, code-sample link) point up-left in RTL. */
-:root[dir='rtl'] body :is(.store-proof, .sample-link) svg:last-of-type { transform: scaleX(-1); }
+:root[dir='rtl'] body :is(.store-proof, .sample-link, .courses .cert) svg:last-of-type { transform: scaleX(-1); }
 @media (prefers-reduced-motion: no-preference) {
   :root[dir='rtl'] body .feature:hover .cta svg { transform: scaleX(-1) translateX(4px); }
   :root[dir='rtl'] body .next a:hover .nt svg { transform: scaleX(-1) translateX(6px); }

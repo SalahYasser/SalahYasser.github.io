@@ -8,7 +8,7 @@ import { content, langFromPath, localePath, mailto, fill as fillTemplate } from 
 
 // Also rendered at /ar/ (src/pages/ar/index.astro); the locale comes from the URL.
 const lang = langFromPath(Astro.url.pathname);
-const { site, copy, experience, education, skills, caseStudies, compactProjects } = content(lang);
+const { site, copy, experience, education, courses, skills, caseStudies, compactProjects } = content(lang);
 
 const firstPerProject = caseStudies
   .map((p) => p.screenshots[p.heroShot ?? 0])
@@ -182,6 +182,21 @@ const faqLd = {
             ))}
           </ul>
         </div>
+        {courses.length > 0 && (
+          <div id="courses" class="courses reveal">
+            <h3 id="courses-title">{ex.coursesHeading}</h3>
+            <p class="courses-note">{ex.coursesNote}</p>
+            <ul>
+              {courses.map((co) => (
+                <li>
+                  <span class="t" lang="en">{co.name}</span>
+                  <span class="o"><span lang="en">{co.issuer}</span> · {co.period}</span>
+                  <a class="cert" href={co.url} target="_blank" rel="noopener" data-goatcounter-click={ev.courseCertificate} data-goatcounter-title={co.name}>{ex.viewCertificate} <Icon name="arrow-up-right" /><span class="visually-hidden">{fillTemplate(ex.certificateFor, { name: co.name })}{ex.newTab}</span></a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   </section>
@@ -380,6 +395,24 @@ const faqLd = {
   .edu .t { font-weight: 560; }
   .edu .o { grid-column: 1; color: var(--faint); font-size: .92rem; }
   .edu .p { grid-row: 1; grid-column: 2; font-family: var(--font-mono); font-size: .82rem; color: var(--faint); }
+  /* Courses: same card as Education, one quiet row per course; the only colour is the shared link accent. */
+  .courses { padding: 1.75rem; border-radius: var(--radius); background: linear-gradient(180deg, var(--surface), var(--bg-2)); border: 1px solid var(--line); scroll-margin-top: 6rem; }
+  .courses h3 { font-size: 1.35rem; }
+  .courses-note { color: var(--muted); margin-top: .45rem; font-size: .95rem; }
+  .courses ul { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; }
+  .courses li { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .15rem 1rem; padding: .8rem 0; border-top: 1px solid var(--line); }
+  .courses .t { font-weight: 560; }
+  .courses .o { grid-column: 1; color: var(--faint); font-size: .92rem; }
+  .courses .cert { grid-row: 1 / span 2; grid-column: 2; display: inline-flex; align-items: center; gap: .35rem; min-height: 2.75rem; color: var(--accent); font-weight: 600; font-size: .92rem; text-decoration: underline; text-underline-offset: .2em; white-space: nowrap; transition: color .2s; }
+  .courses .cert:hover { color: var(--accent-2); }
+  .courses .cert:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; border-radius: 4px; }
+  .courses .cert :global(svg) { width: 1em; height: 1em; flex: none; }
+  /* Phones: the name takes the full width; date and link share the line below it. */
+  @media (max-width: 520px) {
+    .courses li { gap: .1rem .75rem; }
+    .courses .t { grid-column: 1 / -1; }
+    .courses .cert { grid-row: 2; grid-column: 2; min-height: 2.5rem; }
+  }
 
   .contact-card {
     text-align: center; display: grid; justify-items: center; gap: 1.25rem; padding: clamp(2.5rem, 7vw, 5rem) clamp(1.25rem, 4vw, 3rem);

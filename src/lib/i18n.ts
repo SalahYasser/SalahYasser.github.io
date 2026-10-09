@@ -32,7 +32,7 @@ export const content = (lang: Lang) => {
   const s = lang === 'ar' ? ar : en;
   const p = lang === 'ar' ? projectsAr : projectsEn;
   return {
-    site: s.site, copy: s.copy, experience: s.experience, education: s.education, skills: s.skills,
+    site: s.site, copy: s.copy, experience: s.experience, education: s.education, courses: s.courses, skills: s.skills,
     projects: p.projects, visibleProjects: p.visibleProjects, caseStudies: p.caseStudies, compactProjects: p.compactProjects,
   };
 };

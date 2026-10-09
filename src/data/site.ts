@@ -59,6 +59,8 @@ export const site = {
       storePrefix: 'store',
       /** Public code-sample link under a case-study diagram, sent as `<slug>-sample-repo`. */
       sampleRepoSuffix: 'sample-repo',
+      /** "View certificate" on a course in the Experience section (the course name is sent as the title). */
+      courseCertificate: 'course-certificate',
     },
   },
 };
@@ -175,6 +177,13 @@ export const copy = {
     titleBefore: 'Where I’ve',
     titleSerif: 'been building.',
     educationHeading: 'Education & training',
+    /** Courses card (after Education & training): secondary, one line per course. */
+    coursesHeading: 'Courses & certificates',
+    coursesNote: 'Short courses I completed to go deeper on specific topics. Each one links to its certificate.',
+    viewCertificate: 'View certificate',
+    /** Screen-reader context for each "View certificate" link; {name} is the course name. */
+    certificateFor: ' for {name}',
+    newTab: ' (opens in a new tab)',
   },
   /**
    * FAQ section (right before Contact) and the home page FAQPage JSON-LD.
@@ -303,6 +312,18 @@ export const education = [
   { title: 'Flutter Advanced Mobile Development', org: 'Senior Steps Academy', period: '2023' },
   { title: 'Front-end Development Diploma', org: 'Senior Steps Academy', period: '2022' },
   { title: 'Flutter Cross Mobile Diploma', org: 'Senior Steps Academy', period: '2021' },
+];
+
+/** Udemy certificates (same as LinkedIn), newest first. `period` is the issue month shown on the site. */
+export const courses = [
+  { name: 'Flutter & Firebase: Build E-Commerce App', issuer: 'Udemy', period: 'Mar 2025', url: 'https://www.udemy.com/certificate/UC-54351570-ad19-48d3-bc4f-6d2e46fb0ff3/' },
+  { name: 'Master Git & GitHub: Essential Skills for Developers', issuer: 'Udemy', period: 'Jan 2025', url: 'https://www.udemy.com/certificate/UC-9c3a1f9f-5cb5-41e2-8036-5de28f35b4d3/' },
+  { name: 'Payment Integration: Stripe, PayPal with Flutter', issuer: 'Udemy', period: 'Nov 2024', url: 'https://www.udemy.com/certificate/UC-e5219c7e-5198-4c6a-bbbb-8280b11f1d0a/' },
+  { name: 'Flutter: Google Maps Integration Guide', issuer: 'Udemy', period: 'Nov 2024', url: 'https://www.udemy.com/certificate/UC-67f8a333-5b14-4b6f-9687-0e476c6b0032/' },
+  { name: 'Mastering Flutter: Responsive & Adaptive UI Design', issuer: 'Udemy', period: 'Nov 2024', url: 'https://www.udemy.com/certificate/UC-3f4ac6e6-bf1a-4051-af06-37dcc855aef5/' },
+  { name: 'Deep Dive into Clean Architecture in Flutter', issuer: 'Udemy', period: 'Oct 2024', url: 'https://www.udemy.com/certificate/UC-a5f2b145-78d0-4808-8f5b-48a77c033af8/' },
+  { name: 'Flutter Advanced: Bloc and MVVM Pattern', issuer: 'Udemy', period: 'Oct 2024', url: 'https://www.udemy.com/certificate/UC-f1ab54b9-1b9a-4817-a9bf-df8a9b2e3911/' },
+  { name: 'Complete Flutter & Dart Development Course', issuer: 'Udemy', period: 'Oct 2024', url: 'https://www.udemy.com/certificate/UC-095d195d-d4fb-4360-9f18-893844bf9296/' },
 ];
 
 export const skills = [
