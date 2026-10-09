@@ -36,6 +36,7 @@ const graph = {
       '@id': personId,
       name: site.name,
       url: home,
+      image: new URL(site.photo.src, Astro.site).href,
       jobTitle: site.role,
       email: `mailto:${site.email}`,
       address: { '@type': 'PostalAddress', addressLocality: site.locality, addressCountry: site.countryCode },

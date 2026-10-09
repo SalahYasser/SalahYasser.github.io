@@ -13,6 +13,14 @@ export const site = {
   },
   // Path under /public to the downloadable CV. Set to null to hide every CV button.
   cvPath: '/cv/Salah-Yasser-Flutter-Developer-CV.pdf' as string | null,
+  /** Profile photo (About section + Person JSON-LD `image`). Pre-sized WebP files in /public/images/about. */
+  photo: {
+    src: '/images/about/salah-yasser.webp',
+    width: 460,
+    height: 460,
+    srcset: '/images/about/salah-yasser-240w.webp 240w, /images/about/salah-yasser-360w.webp 360w, /images/about/salah-yasser.webp 460w',
+    alt: 'Salah Yasser',
+  },
   /** Homepage meta description (<= 155 characters). */
   description:
     'Salah Yasser is a Flutter developer in Cairo building iOS & Android apps from requirements to release, with apps live on the App Store & Google Play.',
@@ -37,6 +45,7 @@ export const site = {
       footerEmail: 'footer-email',
       footerLinkedin: 'footer-linkedin',
       footerGithub: 'footer-github',
+      faqEmail: 'faq-email',
       storePrefix: 'store',
     },
   },
@@ -123,11 +132,54 @@ export const copy = {
       },
     ],
   },
+  about: {
+    eyebrow: 'About',
+    titleBefore: 'A bit',
+    titleSerif: 'about me.',
+    body:
+      'I’m Salah, a Flutter developer based in Cairo with a B.Sc. in Computer Science. At BDC Business Services I build production apps like El Madrasah, and as a freelancer I take client apps from the requirements doc to a live store listing. I care about clean architecture, apps that keep working offline, and smooth releases on iOS and Android.',
+  },
   experience: {
     eyebrow: 'Experience',
     titleBefore: 'Where I’ve',
     titleSerif: 'been building.',
     educationHeading: 'Education & training',
+  },
+  /**
+   * FAQ section (right before Contact) and the home page FAQPage JSON-LD.
+   * `emailLead`, when set, must be the start of `a`; that part is rendered as a mailto link.
+   */
+  faq: {
+    eyebrow: 'FAQ',
+    titleBefore: 'Questions',
+    titleSerif: 'clients ask.',
+    items: [
+      {
+        q: 'Can you build my app from scratch?',
+        a: 'Yes. I’ve built client apps solo, from the client’s requirements to release, including Al-Burda and FLEXI.',
+      },
+      {
+        q: 'Do you handle publishing to the App Store and Google Play?',
+        a: 'Yes, including iOS signing, TestFlight builds, and store submission.',
+      },
+      {
+        q: 'Can the app be published under my own developer account?',
+        a: 'Yes, I can publish under your account or mine.',
+      },
+      {
+        q: 'What do you build with?',
+        a: 'Flutter and Dart, with Clean Architecture and Bloc, on Firebase or your REST API.',
+      },
+      {
+        q: 'Can you take over an existing Flutter app?',
+        a: 'Yes. I can pick up an existing Flutter codebase, get it running, and keep building and shipping it.',
+      },
+      {
+        q: 'How do we start?',
+        a: 'Email me your idea or requirements and I’ll reply with the next steps.',
+        emailLead: 'Email me',
+      },
+    ] as { q: string; a: string; emailLead?: string }[],
   },
   contact: {
     eyebrow: 'Contact',
