@@ -212,7 +212,7 @@ const faqLd = {
         <p>{c.body}</p>
         <div class="actions">
           <a class="btn btn-primary" href={mail} data-goatcounter-click={ev.contactEmail}><Icon name="mail" /> {site.email}</a>
-          <button type="button" class="btn btn-ghost copy-email" hidden data-email={site.email} data-copied={c.copied} data-announce={c.copiedAnnounce} data-failed={fillTemplate(c.copyFailed, { email: site.email })} data-goatcounter-click={ev.contactCopyEmail}><span class="ico-copy"><Icon name="copy" /></span><span class="ico-done"><Icon name="check" /></span> <span class="copy-label">{c.copyEmail}</span></button>
+          <button type="button" class="btn btn-ghost copy-email" hidden data-email={site.email} data-copied={c.copied} data-announce={c.copiedAnnounce} data-failed={fillTemplate(c.copyFailed, { email: site.email })} data-goatcounter-click={ev.contactCopyEmail}><span class="ico-copy"><Icon name="copy" /></span> <span class="copy-label">{c.copyEmail}</span></button>
           <a class="btn btn-ghost" href={site.links.linkedin} target="_blank" rel="me noopener" data-goatcounter-click={ev.contactLinkedin}><Icon name="linkedin" /> {c.linkedin}<span class="visually-hidden">{c.newTab}</span></a>
           <a class="btn btn-ghost" href={site.links.github} target="_blank" rel="me noopener" data-goatcounter-click={ev.contactGithub}><Icon name="github" /> {c.github}<span class="visually-hidden">{c.newTab}</span></a>
           {site.cvPath && <a class="btn btn-ghost" href={site.cvPath} download aria-label={c.cvAria} data-goatcounter-click={ev.cvDownload} data-goatcounter-title={c.cv}><Icon name="download" /> {c.cv}</a>}
@@ -386,6 +386,6 @@ const faqLd = {
   .copy-email[hidden] { display: none; }
   .copy-email { cursor: pointer; font: inherit; font-weight: 600; }
   .copy-email > span { display: inline-flex; }
-  .copy-email .ico-done, .copy-email.is-copied .ico-copy { display: none; }
-  .copy-email.is-copied .ico-done { display: inline-flex; }
+  /* "Copied ✓" carries its own check mark, so the copy icon steps aside while it shows. */
+  .copy-email.is-copied .ico-copy { display: none; }
 </style>

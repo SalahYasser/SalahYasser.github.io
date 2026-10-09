@@ -1,5 +1,5 @@
 ---
-interface Props { name: 'arrow' | 'arrow-up-right' | 'github' | 'linkedin' | 'mail' | 'apple' | 'play' | 'download' | 'expand' | 'copy' | 'check'; label?: string }
+interface Props { name: 'arrow' | 'arrow-up-right' | 'github' | 'linkedin' | 'mail' | 'apple' | 'play' | 'download' | 'expand' | 'copy'; label?: string }
 const { name, label } = Astro.props;
 const paths: Record<string, string> = {
   arrow: '<path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
@@ -12,7 +12,6 @@ const paths: Record<string, string> = {
   download: '<path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
   expand: '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
   copy: '<path d="M9 9h10v11H9z M5 15V4h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>',
-  check: '<path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>',
 };
 ---
 <svg viewBox="0 0 24 24" aria-hidden={label ? undefined : 'true'} role={label ? 'img' : undefined} aria-label={label} set:html={paths[name]} />
