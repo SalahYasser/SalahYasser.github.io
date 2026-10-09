@@ -85,6 +85,9 @@ const faqLd = {
         <p class="eyebrow">{w.eyebrow}</p>
         <h2 id="work-title">{w.titleBefore} <span class="serif">{w.titleSerif}</span></h2>
         <p>{w.body}</p>
+        {site.links.appStoreDeveloper && (
+          <p class="store-proof"><a href={site.links.appStoreDeveloper} target="_blank" rel="noopener" data-goatcounter-click={ev.workAppStoreDeveloper}><Icon name="apple" /> {w.storeProof} <Icon name="arrow-up-right" /><span class="visually-hidden">{w.newTab}</span></a></p>
+        )}
       </div>
       <div class="features">
         {caseStudies.map((p, i) => <FeatureCard project={p} index={i} />)}
@@ -304,6 +307,10 @@ const faqLd = {
   }
 
   .features { display: grid; gap: clamp(1.25rem, 3vw, 2rem); }
+  .section-head p.store-proof { font-size: 1rem; }
+  .store-proof a { display: inline-flex; align-items: center; gap: .45rem; color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: .2em; transition: color .2s; }
+  .store-proof a:hover { color: var(--accent-2); }
+  .store-proof :global(svg) { width: 1.05em; height: 1.05em; flex: none; }
   .more { margin-top: clamp(3rem, 7vw, 5rem); }
   .more-title { font-size: 1.1rem; font-family: var(--font-mono); font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); margin-bottom: 1.25rem; }
   .compact-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }

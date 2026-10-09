@@ -10,6 +10,8 @@ export const site = {
   links: {
     github: 'https://github.com/SalahYasser',
     linkedin: 'https://www.linkedin.com/in/SalahYasserAllaithy',
+    /** Public App Store developer (seller) page "Salah Yasser" (artistViewUrl from the iTunes lookup API). */
+    appStoreDeveloper: 'https://apps.apple.com/eg/developer/salah-yasser/id6784274942',
   },
   // Path under /public to the downloadable CV. Set to null to hide every CV button.
   cvPath: '/cv/Salah-Yasser-Flutter-Developer-CV.pdf' as string | null,
@@ -48,6 +50,8 @@ export const site = {
       footerLinkedin: 'footer-linkedin',
       footerGithub: 'footer-github',
       faqEmail: 'faq-email',
+      /** The App Store developer page link under the Work heading. */
+      workAppStoreDeveloper: 'work-app-store-developer',
       /** The "Copy email" button in the Contact section. */
       contactCopyEmail: 'contact-copy-email',
       /** "Ask me about it" on a case study, sent as `ask-<slug>`. */
@@ -120,6 +124,9 @@ export const copy = {
     titleBefore: 'Real apps,',
     titleSerif: 'shipped and maintained.',
     body: 'Each case study covers the product, what I was responsible for, the hard parts, and the decisions behind them. All screenshots come from the apps’ public store listings.',
+    /** Link under the Work heading to the public App Store developer page (site.links.appStoreDeveloper). */
+    storeProof: 'My developer page on the App Store',
+    newTab: ' (opens in a new tab)',
     moreTitle: 'More work',
     roleLabel: 'My role:',
     caseStudyCta: 'Read the case study',

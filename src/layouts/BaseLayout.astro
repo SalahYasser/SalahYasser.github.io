@@ -53,7 +53,7 @@ const graph = {
       jobTitle: site.role,
       email: `mailto:${site.email}`,
       address: { '@type': 'PostalAddress', addressLocality: site.locality, addressCountry: site.countryCode },
-      sameAs: [site.links.github, site.links.linkedin],
+      sameAs: [site.links.github, site.links.linkedin, site.links.appStoreDeveloper],
       knowsAbout: skills.flatMap((g) => g.items),
       worksFor: experience.filter((e) => e.current).map((e) => ({ '@type': 'Organization', name: e.org })),
       alumniOf: education.filter((e) => e.degree).map((e) => ({ '@type': 'CollegeOrUniversity', name: e.org })),
