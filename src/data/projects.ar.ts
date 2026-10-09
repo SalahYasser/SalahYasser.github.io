@@ -145,7 +145,7 @@ const ar: Record<string, Text> = {
         'معلّم افتراضي بالذكاء الاصطناعي باستخدام ElevenLabs',
         'دعم العربية والإنجليزية',
       ],
-      result: 'نُشر على App Store وGoogle Play، وصدر الإصدار الحالي (1.6.0) في مارس 2026.',
+      result: 'نُشر على App Store وGoogle Play، وصدرت له عدة تحديثات منذ إطلاقه.',
     },
   },
   flexi: {

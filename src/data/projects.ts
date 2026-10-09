@@ -188,7 +188,7 @@ export const projects: Project[] = [
         'AI tutoring with ElevenLabs',
         'Arabic and English support',
       ],
-      result: 'Shipped live to the App Store and Google Play, with the current version (1.6.0) released in March 2026.',
+      result: 'Shipped live to the App Store and Google Play, and updated through several releases since launch.',
     },
   },
   {
