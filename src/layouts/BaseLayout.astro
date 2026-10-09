@@ -86,7 +86,13 @@ const graph = {
     {(isPreview || noindex) && <meta name="robots" content="noindex" />}
     {!noindex && <script type="application/ld+json" set:html={JSON.stringify(graph)} />}
     <slot name="head" />
-    <script is:inline>document.documentElement.classList.add('js');</script>
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      // On a view-transition arrival, show morph targets (project cards) at once so they aren't captured mid-fade.
+      addEventListener('pagereveal', (e) => {
+        if (e.viewTransition) document.querySelectorAll('.reveal:has([style*="view-transition-name"])').forEach((el) => el.classList.add('is-in', 'vt-shown'));
+      });
+    </script>
     {import.meta.env.PROD && site.analytics.goatcounter && (
       <>
         <link rel="preconnect" href={new URL(site.analytics.goatcounter).origin} />

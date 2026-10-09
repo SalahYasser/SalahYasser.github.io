@@ -131,6 +131,17 @@ p { margin: 0; }
 @media (prefers-reduced-motion: no-preference) {
   .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
   .js .reveal.is-in { opacity: 1; transform: none; }
+  .js .reveal.vt-shown { transition: none; }
+}
+
+/* Page transitions: native cross-document view transitions (Chrome/Edge 126+, Safari 18.2+).
+   Every navigation is still a normal full page load; browsers without support just navigate.
+   A project card's title and lead screenshot share a view-transition-name with the case-study header,
+   so they morph into place. Reduced motion opts out entirely. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-group(*) { animation-duration: 0.5s; animation-timing-function: var(--ease); }
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.3s; }
 }
 
 .visually-hidden {

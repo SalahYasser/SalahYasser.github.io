@@ -54,7 +54,7 @@ const appLd = {
             {p.icon && <img class="app-icon" src={p.icon} alt={`${p.title} app icon`} width="256" height="256" />}
             <div>
               <p class="kicker">{p.kind} · {p.platform}</p>
-              <h1>{p.title} {p.nativeTitle && <span class="native" lang="ar" dir="rtl">{p.nativeTitle}</span>}</h1>
+              <h1><span style={`view-transition-name: cs-title-${p.slug}`}>{p.title}</span> {p.nativeTitle && <span class="native" lang="ar" dir="rtl">{p.nativeTitle}</span>}</h1>
             </div>
           </div>
           <p class="lede">{p.tagline}</p>
@@ -74,7 +74,7 @@ const appLd = {
         </div>
         <div class="hero-shots" aria-hidden="true">
           {p.screenshots.slice(0, 2).map((sh, i) => (
-            <div class={`shot hs${i}`}><img src={sh.src} srcset={responsive(sh.src).srcset} sizes={shotSizes.caseHero} alt="" width="590" height="1280" fetchpriority={i === 0 ? 'high' : 'auto'} /></div>
+            <div class={`shot hs${i}`} style={i === 0 ? `view-transition-name: cs-shot-${p.slug}` : undefined}><img src={sh.src} srcset={responsive(sh.src).srcset} sizes={shotSizes.caseHero} alt="" width="590" height="1280" fetchpriority={i === 0 ? 'high' : 'auto'} /></div>
           ))}
         </div>
       </div>
