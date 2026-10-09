@@ -115,6 +115,9 @@ const breadcrumbLd = {
             {s.decisions.map((d) => (<li><h3>{d.title}</h3><p>{d.body}</p></li>))}
           </ol>
           {p.diagram && <FlowDiagram diagram={p.diagram} id={`flow-${p.slug}`} rtl={lang === 'ar'} />}
+          {p.codeSample && (
+            <p class="sample-link"><a href={p.codeSample.href} target="_blank" rel="noopener" data-goatcounter-click={`${p.slug}-${site.analytics.clicks.sampleRepoSuffix}`}><Icon name="github" /> {p.codeSample.label.slice(0, p.codeSample.label.lastIndexOf(' ') + 1)}<span class="nowrap">{p.codeSample.label.slice(p.codeSample.label.lastIndexOf(' ') + 1)} <Icon name="arrow-up-right" /></span><span class="visually-hidden">{t.newTab}</span></a></p>
+          )}
         </div>
       </section>
     </div>
@@ -263,6 +266,11 @@ const breadcrumbLd = {
   .decisions h3 { font-size: 1.12rem; margin-bottom: .6rem; display: flex; gap: .6rem; align-items: baseline; }
   .decisions h3::before { content: counter(d, decimal-leading-zero); font-family: var(--font-mono); font-size: .75rem; color: var(--pa); font-weight: 500; }
   .decisions p { font-size: .98rem; }
+  .block p.sample-link { margin-top: 1rem; font-size: 1rem; }
+  .sample-link a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: .2em; transition: color .2s; }
+  .sample-link a:hover { color: var(--accent-2); }
+  .sample-link .nowrap { white-space: nowrap; }
+  .sample-link :global(svg) { display: inline-block; width: 1.05em; height: 1.05em; vertical-align: -0.17em; }
 
   .gallery-wrap { padding-block: clamp(2.25rem, 5vw, 3.5rem); border-bottom: 1px solid var(--line); }
   .gallery-head { display: grid; gap: .5rem 2rem; max-width: 62rem; }

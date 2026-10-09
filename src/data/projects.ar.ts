@@ -9,6 +9,8 @@ type Text = Partial<Pick<Project, 'title' | 'nativeTitle' | 'nativeLang' | 'kind
   links?: { label: string }[];
   screenshots?: { alt: string; caption: string }[];
   sections?: Omit<NonNullable<Project['sections']>, 'decisions'> & { decisions: { title: string; body: string }[] };
+  /** Label only; the URL comes from projects.ts. */
+  codeSample?: { label: string };
 };
 
 const ar: Record<string, Text> = {
@@ -94,6 +96,7 @@ const ar: Record<string, Text> = {
       caption:
         'يكتب تطبيق Flutter الأبيات عبر حزمة home_widget في App Group (‏UserDefaults مشتركة)، ثم يقرؤها ودجت WidgetKit من هناك، فتعرض شاشة القفل بيتًا حتى عندما يكون التطبيق مغلقًا.',
     },
+    codeSample: { label: 'شاهد نموذجًا عامًا لهذا الأسلوب على GitHub' },
   },
   'el-madrasah': {
     title: 'المدرسة',
@@ -274,13 +277,14 @@ const ar: Record<string, Text> = {
 function localize(p: Project): Project {
   const t = ar[p.slug];
   if (!t) throw new Error(`Missing Arabic text for project "${p.slug}"`);
-  const { links, screenshots, sections, ...rest } = t;
+  const { links, screenshots, sections, codeSample, ...rest } = t;
   return {
     ...p,
     ...rest,
     links: p.links.map((l, i) => ({ ...l, ...links?.[i] })),
     screenshots: p.screenshots.map((s, i) => ({ ...s, ...screenshots?.[i] })),
     sections: p.sections && sections ? sections : p.sections,
+    codeSample: p.codeSample && { ...p.codeSample, ...codeSample },
   };
 }
 

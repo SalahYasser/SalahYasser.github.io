@@ -70,6 +70,8 @@ export type Project = {
   storePublisher?: string;
   /** Flow diagram shown in the case study's "Decisions and why" section. */
   diagram?: Diagram;
+  /** Public code sample linked under the diagram (GoatCounter event `<slug>-sample-repo`). */
+  codeSample?: { label: string; href: string };
 };
 
 export const projects: Project[] = [
@@ -152,6 +154,10 @@ export const projects: Project[] = [
       edges: [{ label: 'home_widget' }, { label: 'reads' }],
       caption:
         'The Flutter app writes the verses through the home_widget package into an App Group (shared UserDefaults). The WidgetKit widget reads them from there, so the lock screen shows a verse even when the app is closed.',
+    },
+    codeSample: {
+      label: 'See a public sample of this pattern on GitHub',
+      href: 'https://github.com/SalahYasser/flutter_lock_screen_widget',
     },
   },
   {

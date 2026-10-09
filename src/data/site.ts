@@ -57,6 +57,8 @@ export const site = {
       /** "Ask me about it" on a case study, sent as `ask-<slug>`. */
       askPrefix: 'ask',
       storePrefix: 'store',
+      /** Public code-sample link under a case-study diagram, sent as `<slug>-sample-repo`. */
+      sampleRepoSuffix: 'sample-repo',
     },
   },
 };
