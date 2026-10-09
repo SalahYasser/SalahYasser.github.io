@@ -115,6 +115,10 @@ export const copy: typeof copyEn = {
     viewCertificate: 'عرض الشهادة',
     certificateFor: ' الخاصة بدورة {name}',
     newTab: ' (يفتح في علامة تبويب جديدة)',
+    workHeading: 'العمل',
+    showAllCourses: 'عرض كل الدورات ({n})',
+    showFewerCourses: 'عرض أقل',
+    indexLabel: 'في هذا القسم',
   },
   faq: {
     eyebrow: 'الأسئلة الشائعة',

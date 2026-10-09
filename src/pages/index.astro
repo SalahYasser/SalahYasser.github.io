@@ -24,6 +24,10 @@ const ab = copy.about;
 const ex = copy.experience;
 const fq = copy.faq;
 const c = copy.contact;
+/** Courses listed before "Show all": the rest sit in a native <details> (no JS). */
+const coursesShown = 4;
+const coursesTop = courses.slice(0, coursesShown);
+const coursesRest = courses.slice(coursesShown);
 const ev = site.analytics.clicks;
 const mail = mailto(site.email, copy.emailSubject.default);
 const home = new URL(localePath(lang, '/'), Astro.site).href;
@@ -157,25 +161,39 @@ const faqLd = {
 
   <section id="experience" class="section experience" aria-labelledby="exp-title">
     <div class="container exp-grid">
-      <div class="section-head reveal">
-        <p class="eyebrow">{ex.eyebrow}</p>
-        <h2 id="exp-title">{ex.titleBefore} <span class="serif">{ex.titleSerif}</span></h2>
+      <div class="exp-side">
+        <div class="section-head reveal">
+          <p class="eyebrow">{ex.eyebrow}</p>
+          <h2 id="exp-title">{ex.titleBefore} <span class="serif">{ex.titleSerif}</span></h2>
+        </div>
+        <nav class="exp-index reveal" aria-label={ex.indexLabel}>
+          <ol>
+            <li><a href="#exp-work"><span>{ex.workHeading}</span><span class="n" aria-hidden="true">{String(experience.length).padStart(2, '0')}</span></a></li>
+            <li><a href="#education"><span>{ex.educationHeading}</span><span class="n" aria-hidden="true">{String(education.length).padStart(2, '0')}</span></a></li>
+            {courses.length > 0 && <li><a href="#courses"><span>{ex.coursesHeading}</span><span class="n" aria-hidden="true">{String(courses.length).padStart(2, '0')}</span></a></li>}
+          </ol>
+        </nav>
       </div>
-      <div class="timeline">
-        {experience.map((e) => (
-          <article class="job reveal">
-            <div class="job-head">
-              <div>
-                <h3>{e.role}</h3>
-                <p class="org">{e.org}{e.place && ` · ${e.place}`}</p>
-              </div>
-              {e.period && <p class="period">{e.period}</p>}
-            </div>
-            <ul>{e.points.map((pt) => <li>{pt}</li>)}</ul>
-          </article>
-        ))}
-        <div class="edu reveal">
-          <h3>{ex.educationHeading}</h3>
+      <div class="exp-main">
+        <div id="exp-work" class="group">
+          <h3 class="group-title reveal">{ex.workHeading}</h3>
+          <ol class="tl">
+            {experience.map((e) => (
+              <li class:list={['job', 'reveal', { current: e.current }]}>
+                <div class="job-head">
+                  <div>
+                    <h4>{e.role}</h4>
+                    <p class="org">{e.org}{e.place && ` · ${e.place}`}</p>
+                  </div>
+                  {e.period && <p class="period">{e.period}</p>}
+                </div>
+                <ul>{e.points.map((pt) => <li>{pt}</li>)}</ul>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div id="education" class="group edu reveal">
+          <h3 class="group-title">{ex.educationHeading}</h3>
           <ul>
             {education.map((ed) => (
               <li><span class="t">{ed.title}</span><span class="o">{ed.org}</span><span class="p">{ed.period}</span></li>
@@ -183,11 +201,11 @@ const faqLd = {
           </ul>
         </div>
         {courses.length > 0 && (
-          <div id="courses" class="courses reveal">
-            <h3 id="courses-title">{ex.coursesHeading}</h3>
+          <div id="courses" class="group courses reveal">
+            <h3 id="courses-title" class="group-title">{ex.coursesHeading}</h3>
             <p class="courses-note">{ex.coursesNote}</p>
             <ul>
-              {courses.map((co) => (
+              {coursesTop.map((co) => (
                 <li>
                   <span class="t" lang="en">{co.name}</span>
                   <span class="o"><span lang="en">{co.issuer}</span> · {co.period}</span>
@@ -195,6 +213,20 @@ const faqLd = {
                 </li>
               ))}
             </ul>
+            {coursesRest.length > 0 && (
+              <details class="more-courses">
+                <summary><span class="closed">{fillTemplate(ex.showAllCourses, { n: String(courses.length) })}</span><span class="opened">{ex.showFewerCourses}</span><span class="chev" aria-hidden="true"></span></summary>
+                <ul>
+                  {coursesRest.map((co) => (
+                    <li>
+                  <span class="t" lang="en">{co.name}</span>
+                  <span class="o"><span lang="en">{co.issuer}</span> · {co.period}</span>
+                  <a class="cert" href={co.url} target="_blank" rel="noopener" data-goatcounter-click={ev.courseCertificate} data-goatcounter-title={co.name}>{ex.viewCertificate} <Icon name="arrow-up-right" /><span class="visually-hidden">{fillTemplate(ex.certificateFor, { name: co.name })}{ex.newTab}</span></a>
+                </li>
+                  ))}
+                </ul>
+              </details>
+            )}
           </div>
         )}
       </div>
@@ -380,24 +412,42 @@ const faqLd = {
   }
   @media (prefers-reduced-motion: reduce) { .qa-icon::before, .qa-icon::after { transition: none; } }
 
+  /* Experience, option A: sticky side column = heading + a small in-section index; main column = three groups
+     (Work as a timeline, Education & training, Courses) with light separators instead of four stacked cards. */
   .exp-grid { display: grid; gap: 2rem; }
-  @media (min-width: 960px) { .exp-grid { grid-template-columns: 0.8fr 1.2fr; align-items: start; } .exp-grid .section-head { position: sticky; top: 6rem; } }
-  .timeline { display: grid; gap: 1.25rem; }
-  .job, .edu { padding: 1.75rem; border-radius: var(--radius); background: linear-gradient(180deg, var(--surface), var(--bg-2)); border: 1px solid var(--line); }
-  .job-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1rem; margin-bottom: 1.1rem; }
-  .job h3, .edu h3 { font-size: 1.35rem; }
+  @media (min-width: 960px) { .exp-grid { grid-template-columns: 0.8fr 1.2fr; align-items: start; } .exp-side { position: sticky; top: 6rem; } }
+  .exp-index ol { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: .15rem; max-width: 19rem; }
+  .exp-index a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 2.75rem; padding: .35rem 0; border-bottom: 1px solid var(--line); color: var(--accent); font-weight: 560; text-decoration: none; transition: color .2s; }
+  .exp-index a span:first-child { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: .25em; transition: text-decoration-color .2s; }
+  .exp-index a:hover { color: var(--accent-2); }
+  .exp-index a:hover span:first-child { text-decoration-color: currentColor; }
+  .exp-index .n { font-family: var(--font-mono); font-size: .78rem; color: var(--faint); }
+  @media (max-width: 959px) { .exp-index { display: none; } }
+  .exp-main { display: grid; gap: clamp(2.5rem, 5vw, 3.5rem); }
+  .group { scroll-margin-top: 6rem; }
+  .group-title { font-family: var(--font-mono); font-size: .8rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); display: flex; align-items: center; gap: .75rem; margin-bottom: 1.25rem; }
+  .group-title::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+  .courses .group-title { margin-bottom: 0; }
+  /* Work timeline: a thin rail with one node per job; the current job's node is filled with the accent. */
+  .tl { list-style: none; margin: 0; padding: 0 0 0 1.75rem; border-inline-start: 1px solid var(--line-strong); display: grid; gap: 2rem; }
+  :global([dir='rtl']) .tl { padding: 0 1.75rem 0 0; }
+  .job { position: relative; }
+  .job::before { content: ''; position: absolute; inset-inline-start: calc(-1.75rem - 6px); top: .45rem; width: 11px; height: 11px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--accent); }
+  .job.current::before { background: var(--accent); box-shadow: 0 0 0 4px rgba(92, 200, 255, .16); }
+  .job-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 1rem; margin-bottom: .9rem; }
+  .job h4 { font-size: 1.35rem; margin: 0; line-height: 1.2; font-weight: 640; letter-spacing: -0.025em; }
   .org { color: var(--muted); margin-top: .3rem; }
   .period { font-family: var(--font-mono); font-size: .82rem; color: var(--accent-2); white-space: nowrap; }
   .job ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .55rem; color: var(--muted); }
   .job li::marker { color: var(--accent); }
-  .edu ul { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; }
+  .edu ul { list-style: none; margin: 0; padding: 0; display: grid; }
   .edu li { display: grid; grid-template-columns: 1fr auto; gap: .1rem 1rem; padding: .8rem 0; border-top: 1px solid var(--line); }
+  .edu li:first-child { border-top: 0; padding-top: 0; }
   .edu .t { font-weight: 560; }
   .edu .o { grid-column: 1; color: var(--faint); font-size: .92rem; }
   .edu .p { grid-row: 1; grid-column: 2; font-family: var(--font-mono); font-size: .82rem; color: var(--faint); }
-  /* Courses: same card as Education, one quiet row per course; the only colour is the shared link accent. */
-  .courses { padding: 1.75rem; border-radius: var(--radius); background: linear-gradient(180deg, var(--surface), var(--bg-2)); border: 1px solid var(--line); scroll-margin-top: 6rem; }
-  .courses h3 { font-size: 1.35rem; }
+  /* Course rows: one quiet line per course; the only colour is the shared link accent. */
+  .courses { scroll-margin-top: 6rem; }
   .courses-note { color: var(--muted); margin-top: .45rem; font-size: .95rem; }
   .courses ul { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; }
   .courses li { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .15rem 1rem; padding: .8rem 0; border-top: 1px solid var(--line); }
@@ -405,13 +455,27 @@ const faqLd = {
   .courses .o { grid-column: 1; color: var(--faint); font-size: .92rem; }
   .courses .cert { grid-row: 1 / span 2; grid-column: 2; display: inline-flex; align-items: center; gap: .35rem; min-height: 2.75rem; color: var(--accent); font-weight: 600; font-size: .92rem; text-decoration: underline; text-underline-offset: .2em; white-space: nowrap; transition: color .2s; }
   .courses .cert:hover { color: var(--accent-2); }
-  .courses .cert:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; border-radius: 4px; }
+  .courses .cert:focus-visible, .more-courses summary:focus-visible, .exp-index a:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; border-radius: 4px; }
   .courses .cert :global(svg) { width: 1em; height: 1em; flex: none; }
   /* Phones: the name takes the full width; date and link share the line below it. */
   @media (max-width: 520px) {
     .courses li { gap: .1rem .75rem; }
     .courses .t { grid-column: 1 / -1; }
     .courses .cert { grid-row: 2; grid-column: 2; min-height: 2.5rem; }
+  }
+  /* "Show all N courses": native <details>, no JS. The label swaps with [open]; the extra rows continue the same list. */
+  .more-courses > ul { margin-top: 0; }
+  .more-courses summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: .5rem; margin-top: .35rem; padding: .7rem 0; min-height: 2.75rem; color: var(--accent); font-weight: 600; font-size: .92rem; text-decoration: underline; text-underline-offset: .2em; transition: color .2s; }
+  .more-courses summary::-webkit-details-marker { display: none; }
+  .more-courses summary:hover { color: var(--accent-2); }
+  .more-courses .opened, .more-courses[open] .closed { display: none; }
+  .more-courses[open] .opened { display: inline; }
+  .more-courses .chev { width: .45rem; height: .45rem; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .25s var(--ease); }
+  .more-courses[open] .chev { transform: translateY(2px) rotate(-135deg); }
+  @media (prefers-reduced-motion: no-preference) {
+    .more-courses { interpolate-size: allow-keywords; }
+    .more-courses::details-content { block-size: 0; overflow-y: clip; transition: block-size .35s var(--ease), content-visibility .35s allow-discrete; }
+    .more-courses[open]::details-content { block-size: auto; }
   }
 
   .contact-card {

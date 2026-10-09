@@ -184,6 +184,13 @@ export const copy = {
     /** Screen-reader context for each "View certificate" link; {name} is the course name. */
     certificateFor: ' for {name}',
     newTab: ' (opens in a new tab)',
+    /** Small group label above the jobs. */
+    workHeading: 'Work',
+    /** Toggle for the courses after the first four; {n} is the total number of courses. */
+    showAllCourses: 'Show all {n} courses',
+    showFewerCourses: 'Show fewer',
+    /** Accessible name of the small in-section index (Work / Education / Courses). */
+    indexLabel: 'In this section',
   },
   /**
    * FAQ section (right before Contact) and the home page FAQPage JSON-LD.
