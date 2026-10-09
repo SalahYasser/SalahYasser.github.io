@@ -8,5 +8,5 @@ export default defineConfig({
   trailingSlash: 'always',
   // /projects/ is only a redirect to /#work, so it stays out of the sitemap (404 is excluded automatically).
   integrations: [sitemap({ filter: (page) => !page.endsWith('/projects/') })],
-  build: { inlineStylesheets: 'auto' },
+  build: { inlineStylesheets: 'always' },
 });

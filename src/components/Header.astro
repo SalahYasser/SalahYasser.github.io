@@ -6,9 +6,9 @@ const nav = copy.nav;
 ---
 <header class="site-header">
   <div class="container bar">
-    <a href="/" class="brand" aria-label={`${site.name}${copy.homeLabelSuffix}`} aria-current={onHome ? 'page' : undefined}>
+    <a href="/" class="brand" aria-current={onHome ? 'page' : undefined}>
       <span class="mark" aria-hidden="true">{site.brandMark}</span>
-      <span class="brand-text">{site.name}</span>
+      <span class="brand-text">{site.name}</span><span class="visually-hidden">{copy.homeLabelSuffix}</span>
     </a>
     <nav aria-label={copy.primaryNavLabel}>
       <ul>
@@ -36,7 +36,8 @@ const nav = copy.nav;
   .brand { transition: color .2s; }
   .brand:hover .brand-text { color: var(--accent-2); }
   @media (max-width: 640px) {
-    .brand-text { display: none; }
+    /* Hidden visually on phones but still read out, so the link keeps its accessible name. */
+    .brand-text { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
     nav a { padding: 0.45rem 0.55rem; font-size: 0.9rem; }
   }
   @media (max-width: 360px) { nav li:nth-child(2) { display: none; } }

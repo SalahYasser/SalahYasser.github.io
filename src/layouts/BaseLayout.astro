@@ -88,6 +88,12 @@ const graph = {
     <slot name="head" />
     <script is:inline>document.documentElement.classList.add('js');</script>
     {import.meta.env.PROD && site.analytics.goatcounter && (
+      <>
+        <link rel="preconnect" href={new URL(site.analytics.goatcounter).origin} />
+        <link rel="preconnect" href={new URL(site.analytics.script).origin} />
+      </>
+    )}
+    {import.meta.env.PROD && site.analytics.goatcounter && (
       <script is:inline async data-goatcounter={site.analytics.goatcounter} src={site.analytics.script}></script>
     )}
   </head>
