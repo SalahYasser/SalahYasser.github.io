@@ -396,11 +396,11 @@ const faqLd = {
   .qa summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.2rem 1.5rem; min-height: 3rem; font-weight: 600; font-size: 1.1rem; line-height: 1.35; border-radius: var(--radius-sm); }
   .qa summary::-webkit-details-marker { display: none; }
   .qa summary:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; border-radius: var(--radius-sm); }
-  .qa-icon { position: relative; flex: none; width: 1.75rem; height: 1.75rem; border-radius: 50%; border: 1px solid rgba(92, 200, 255, 0.45); color: var(--accent); transition: border-color .2s, color .2s; }
+  .qa-icon { position: relative; flex: none; width: 1.75rem; height: 1.75rem; border-radius: 50%; border: 1px solid var(--btn-line); color: var(--btn); transition: border-color .2s, color .2s; }
   .qa-icon::before, .qa-icon::after { content: ''; position: absolute; left: 50%; top: 50%; width: 0.7rem; height: 1.5px; background: currentColor; transform: translate(-50%, -50%); transition: transform .3s var(--ease); }
   .qa-icon::after { transform: translate(-50%, -50%) rotate(90deg); }
   .qa[open] .qa-icon::after { transform: translate(-50%, -50%) rotate(0deg); }
-  .qa summary:hover .qa-icon { border-color: var(--accent-2); color: var(--accent-2); }
+  .qa summary:hover .qa-icon { border-color: var(--btn); color: var(--btn); background: var(--btn-tint-hover); }
   .qa .a { padding: 0 1.5rem 1.35rem; color: var(--muted); max-width: 40rem; }
   .qa .a a { color: var(--accent); font-weight: 600; text-decoration: underline; transition: color .2s; }
   .qa .a a:hover { color: var(--accent-2); }

@@ -34,6 +34,14 @@
   --accent: #5cc8ff;
   --accent-2: #8be3ff;
   --accent-ink: #04121c;
+  /* Buttons (anything drawn as a button: pill CTAs, store buttons, round icon controls) are white;
+     text links keep the accent. One set of tokens, used by .btn and the round controls. */
+  --btn: #ffffff;
+  --btn-hover: #dfe6f3;
+  --btn-ink: #04121c;
+  --btn-line: rgba(255, 255, 255, 0.55);
+  --btn-tint: rgba(255, 255, 255, 0.04);
+  --btn-tint-hover: rgba(255, 255, 255, 0.1);
   --radius: 22px;
   --radius-sm: 14px;
   --max: 1180px;
@@ -83,7 +91,7 @@ p { margin: 0; }
 
 .skip-link {
   position: absolute; left: 1rem; top: -4rem; z-index: 100;
-  background: var(--accent); color: var(--accent-ink); padding: 0.6rem 1rem; border-radius: 10px; font-weight: 600;
+  background: var(--btn); color: var(--btn-ink); padding: 0.6rem 1rem; border-radius: 10px; font-weight: 600;
 }
 .skip-link:focus { top: 1rem; }
 
@@ -104,14 +112,14 @@ p { margin: 0; }
   transition: transform 0.25s var(--ease), background 0.25s var(--ease), border-color 0.25s var(--ease), color 0.25s;
 }
 .btn svg { width: 1.05em; height: 1.05em; flex: none; }
-/* Interaction colour system: the site accent is the only colour used on anything clickable.
-   Primary = accent fill + ink text. Secondary = accent outline + accent text. Hover/focus = --accent-2.
-   Per-project colours (--pa etc.) are reserved for non-interactive identity details. */
+/* Interaction colour system: text links use the site accent; buttons are white.
+   Primary = white fill + dark ink text. Secondary = white outline + white text. Hover = a softer white.
+   Focus = the shared --accent-2 ring (clearly visible against both). Per-project colours (--pa etc.) stay off clickable elements. */
 .btn:hover { transform: translateY(-2px); }
-.btn-primary { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
-.btn-primary:hover { background: var(--accent-2); border-color: transparent; }
-.btn-ghost { background: rgba(92, 200, 255, 0.04); color: var(--accent); border-color: rgba(92, 200, 255, 0.45); }
-.btn-ghost:hover { background: rgba(92, 200, 255, 0.1); color: var(--accent-2); border-color: var(--accent-2); }
+.btn-primary { background: var(--btn); color: var(--btn-ink); border-color: transparent; }
+.btn-primary:hover { background: var(--btn-hover); border-color: transparent; }
+.btn-ghost { background: var(--btn-tint); color: var(--btn); border-color: var(--btn-line); }
+.btn-ghost:hover { background: var(--btn-tint-hover); color: var(--btn); border-color: var(--btn); }
 @media (prefers-reduced-motion: reduce) { .btn, .btn:hover { transform: none; transition: background 0.2s, border-color 0.2s, color 0.2s; } }
 
 .chip {

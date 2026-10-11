@@ -245,7 +245,7 @@ const breadcrumbLd = {
   dt { font-family: var(--font-mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--faint); margin-bottom: .35rem; }
   dd { margin: 0; color: var(--muted); font-size: .97rem; }
   .links { display: flex; flex-wrap: wrap; gap: .75rem; }
-  /* Store buttons use the primary (site accent) style; project colour stays off clickable elements. */
+  /* Store buttons use the primary (white) button style; project colour stays off clickable elements. */
 
   .hero-shots { position: relative; height: clamp(22rem, 50vw, 32rem); }
   .hero-shots .shot { position: absolute; width: clamp(9.5rem, 20vw, 14rem); top: 50%; left: 50%; }
@@ -288,7 +288,7 @@ const breadcrumbLd = {
   .zoom img { transition: transform .5s var(--ease); }
   .zoom:hover img { transform: scale(1.03); }
   @media (prefers-reduced-motion: reduce) { .zoom img { transition: none; } .zoom:hover img { transform: none; } }
-  .zoom-ico { position: absolute; right: .7rem; top: .7rem; width: 2.1rem; height: 2.1rem; display: grid; place-items: center; border-radius: 50%; background: rgba(4,18,28,.72); color: var(--accent); border: 1px solid rgba(92,200,255,.45); opacity: 0; transition: opacity .25s; }
+  .zoom-ico { position: absolute; right: .7rem; top: .7rem; width: 2.1rem; height: 2.1rem; display: grid; place-items: center; border-radius: 50%; background: rgba(4,18,28,.72); color: var(--btn); border: 1px solid var(--btn-line); opacity: 0; transition: opacity .25s; }
   .zoom-ico :global(svg) { width: 1rem; height: 1rem; }
   .zoom:hover .zoom-ico, .zoom:focus-visible .zoom-ico { opacity: 1; }
   figcaption { font-size: .9rem; color: var(--muted); line-height: 1.45; }
@@ -318,10 +318,10 @@ const breadcrumbLd = {
     object-fit: contain; border-radius: clamp(14px, 1.6vw, 22px); box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 30px 80px -20px rgba(0,0,0,.7); background: var(--bg-2); }
   .lightbox figcaption { text-align: center; max-width: 34rem; padding-inline: .5rem; color: var(--muted); font-size: .95rem; line-height: 1.45; }
   .lb-btn { width: var(--lb-btn); height: var(--lb-btn); display: grid; place-items: center; padding: 0; margin: 0; border-radius: 50%;
-    border: 1px solid rgba(92,200,255,.45); background: rgba(4,18,28,.72); color: var(--accent); cursor: pointer;
+    border: 1px solid var(--btn-line); background: rgba(4,18,28,.72); color: var(--btn); cursor: pointer;
     transition: background .2s, color .2s, border-color .2s; }
   .lb-btn svg { width: 1.3rem; height: 1.3rem; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-  .lb-btn:hover { background: rgba(92,200,255,.14); color: var(--accent-2); border-color: var(--accent-2); }
+  .lb-btn:hover { background: rgba(255,255,255,.14); color: var(--btn); border-color: var(--btn); }
   .lb-btn:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; border-radius: 50%; }
   .lightbox .close { position: fixed; top: var(--lb-pad); right: var(--lb-pad); z-index: 2; }
   .lightbox .prev { grid-area: prev; }
