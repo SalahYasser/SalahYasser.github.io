@@ -1,10 +1,16 @@
 ---
 import type { Project } from '../data/projects';
 import { isPreview } from '../data/projects';
+import Icon from './Icon.astro';
 import { content, langFromPath } from '../lib/i18n';
 interface Props { project: Project }
 const { project: p } = Astro.props;
-const { copy } = content(langFromPath(Astro.url.pathname));
+const { copy, site } = content(langFromPath(Astro.url.pathname));
+const storeEvent = (href: string) => {
+  const host = new URL(href).hostname;
+  const store = host.endsWith('apple.com') ? 'app-store' : host === 'play.google.com' ? 'google-play' : host.replace(/\W+/g, '-');
+  return `${site.analytics.clicks.storePrefix}-${p.slug}-${store}`;
+};
 ---
 <article class="compact reveal" style={`--pa:${p.accent.base}`}>
   <p class="meta"><span>{p.kindLabel ?? p.kind}</span><span aria-hidden="true">·</span><span>{p.platform}</span></p>
@@ -13,6 +19,13 @@ const { copy } = content(langFromPath(Astro.url.pathname));
   <p class="sum">{p.summary}</p>
   <ul class="chips">{p.technologies.map((t) => <li class="chip">{t}</li>)}</ul>
   <p class="status">{p.status}</p>
+  {p.links.length > 0 && (
+    <div class="store-links">
+      {p.links.map((link) => (
+        <a href={link.href} target="_blank" rel="noopener" data-goatcounter-click={storeEvent(link.href)} data-goatcounter-title={`${p.title} · ${link.label}`}><Icon name={link.icon ?? 'arrow-up-right'} /> {link.label}<span class="visually-hidden">{copy.work.newTab}</span></a>
+      ))}
+    </div>
+  )}
   {isPreview && p.approval === 'pending' && <p class="pending-note">{copy.work.pendingPrefix} {p.approvalNote}</p>}
 </article>
 <style>
@@ -27,4 +40,7 @@ const { copy } = content(langFromPath(Astro.url.pathname));
   .tag { color: var(--pa); font-weight: 560; }
   .sum { color: var(--muted); font-size: 0.97rem; }
   .status { font-size: 0.85rem; color: var(--faint); font-family: var(--font-mono); }
+  .store-links { display: flex; flex-wrap: wrap; gap: .6rem; }
+  .store-links a { display: inline-flex; align-items: center; gap: .45rem; width: max-content; white-space: nowrap; color: var(--text); font-weight: 600; text-decoration: underline; text-underline-offset: .2em; }
+  .store-links a:hover { color: var(--pa); }
 </style>

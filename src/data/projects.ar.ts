@@ -260,17 +260,34 @@ const ar: Record<string, Text> = {
     summary: 'منصة SaaS تعتمد على الذكاء الاصطناعي، تحلّل الهوية المهنية للشخص وتُنشئ محتوى مخصصًا يُنشر تلقائيًا على LinkedIn وX.',
     role: 'مطوّر Flutter ضمن فريق BDC.',
     technologies: ['Flutter', 'الذكاء الاصطناعي', 'SaaS', 'REST APIs'],
-    status: 'على TestFlight · قُدِّم لمراجعة App Store',
+    status: 'على TestFlight',
   },
   'makkah-college': {
     title: 'Makkah College',
     kindLabel: 'ضمن عملي في BDC',
-    platform: 'iOS · React Native',
+    platform: 'iOS · Android · React Native',
     tagline: 'منصة للتعليم الجامعي للطلاب والعاملين.',
-    summary: 'منصة جامعية بميزات حسب الدور، وخدمات أكاديمية، وتواصل لحظي. مبنية بـ React Native وTypeScript.',
+    summary: 'منصة جامعية بميزات حسب الدور، وخدمات أكاديمية، وتواصل لحظي. مبنية بـ React Native وTypeScript. متاحة على Google Play، وقُدِّمت للمراجعة على App Store.',
     role: 'مطوّر ضمن فريق BDC.',
     technologies: ['React Native', 'TypeScript', 'REST APIs'],
-    status: 'على TestFlight · قُدِّم لمراجعة App Store',
+    status: 'متاحة على Google Play · قُدِّمت للمراجعة على App\u00a0Store',
+    links: [{ label: 'عرض على Google Play' }],
+    seoDescription: 'Makkah College: بوابة مبنية بـ React Native للطلاب وأعضاء هيئة التدريس للوصول إلى الخدمات الأكاديمية. متاحة على Google Play.',
+    screenshots: [
+      { alt: 'شاشة تسجيل الدخول إلى بوابة طلاب Makkah College بالعربية.', caption: 'تسجيل الدخول إلى بوابة الطلاب.' },
+      { alt: 'شاشة مقررات Makkah College بالعربية، تعرض مقررات الفصل الحالي.', caption: 'مقررات الفصل الحالي.' },
+    ],
+    sections: {
+      product: 'Makkah College بوابة لطلاب وأعضاء هيئة التدريس في كلية مكة التقنية لطب العيون. تجمع الخدمات الأكاديمية في تطبيق واحد، وتختلف الخدمات المتاحة حسب نوع الحساب وصلاحياته.',
+      roleDetail: 'عملت على التطبيق كمطوّر ضمن فريق BDC. التطبيق مبني باستخدام React Native وTypeScript.',
+      problem: 'يحتاج الطلاب والعاملون في الكلية إلى الوصول إلى معلومات وخدمات أكاديمية مختلفة بحسب أدوارهم وصلاحياتهم.',
+      decisions: [
+        { title: 'الوصول حسب الدور', body: 'تختلف الخدمات المتاحة حسب نوع الحساب وصلاحياته.' },
+        { title: 'الخدمات الأكاديمية في مكان واحد', body: 'يمكن للطلاب الوصول إلى المقررات والجداول والحضور والنتائج والرسوم والطلبات والمواد التعليمية المتاحة. ويمكن لأعضاء هيئة التدريس الوصول إلى المقررات والجداول وأدوات المتابعة الأكاديمية.' },
+      ],
+      implemented: ['الوصول إلى الخدمات الأكاديمية حسب الدور', 'المقررات والجداول', 'الحضور والنتائج', 'الرسوم والطلبات والمواد التعليمية'],
+      result: 'متاح على Google Play، وقُدِّم للمراجعة على App Store.',
+    },
   },
 };
 

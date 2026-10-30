@@ -340,5 +340,41 @@
         "src": "/images/projects/flexi/05-advances.webp"
       }
     ]
+  },
+  "/images/projects/makkah-college/01.webp": {
+    "width": 1080,
+    "height": 1920,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/makkah-college/01-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/makkah-college/01-440w.webp"
+      },
+      {
+        "w": 1080,
+        "src": "/images/projects/makkah-college/01.webp"
+      }
+    ]
+  },
+  "/images/projects/makkah-college/02.webp": {
+    "width": 1080,
+    "height": 1920,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/makkah-college/02-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/makkah-college/02-440w.webp"
+      },
+      {
+        "w": 1080,
+        "src": "/images/projects/makkah-college/02.webp"
+      }
+    ]
   }
 }

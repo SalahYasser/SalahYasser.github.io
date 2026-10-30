@@ -108,7 +108,7 @@ export const copy = {
     serif: 'from requirements',
     serifAccent: 'to release.',
     lede:
-      'Production Flutter apps with clean architecture, offline-first behaviour and polished iOS and Android delivery. Three of them are live on the App Store and Google Play, and in real people’s hands today.',
+      'Production mobile apps with clean architecture, offline-first behaviour and polished iOS and Android delivery. Four projects featured here are live on at least one app store.',
     primaryCta: 'View selected work',
     secondaryCta: 'Get in touch',
     cvCta: 'Download CV',
@@ -116,8 +116,8 @@ export const copy = {
     proofAria: 'At a glance',
     proof: {
       appsLive: {
-        singular: 'app featured here, live on the stores',
-        plural: 'apps featured here, live on the stores',
+        singular: 'app featured here, live on an app store',
+        plural: 'apps featured here, live on at least one app store',
       },
       ios: { k: 'iOS', v: 'provisioning, signing and release, end to end' },
       arabic: { k: 'ع', v: 'Arabic RTL and bilingual interfaces' },
@@ -170,7 +170,7 @@ export const copy = {
     titleBefore: 'A bit',
     titleSerif: 'about me.',
     body:
-      'I’m Salah, a Flutter developer based in Cairo with a B.Sc. in Computer Science. At BDC Business Services I build production apps like El Madrasah, and as a freelancer I take client apps from the requirements doc to a live store listing. I care about clean architecture, apps that keep working offline, and smooth releases on iOS and Android.',
+      'I’m Salah, a Flutter developer based in Cairo with 2+ years of experience and a B.Sc. in Computer Science. At BDC Business Services I build production apps including El Madrasah and Makkah College, and as a freelancer I take client apps from requirements to release. I care about clean architecture, apps that keep working offline, and smooth releases on iOS and Android.',
   },
   experience: {
     eyebrow: 'Experience',
@@ -298,7 +298,7 @@ export const experience = [
     period: 'Nov 2025 – Present',
     current: true,
     points: [
-      'Builds Flutter apps for education, HR and AI products, shipped through the App Store, Google Play and TestFlight.',
+      'Builds mobile apps for education, HR and AI products, shipped through the App Store, Google Play and TestFlight.',
       'Owns iOS provisioning, signing and distribution workflows for the team’s releases.',
       'Works with Clean Architecture and Bloc on large, multi-role applications with REST API integration and offline-first caching.',
       'Builds reusable widgets and a shared theming system to keep screens consistent across features.',
@@ -307,6 +307,7 @@ export const experience = [
   {
     role: 'Freelance Flutter Developer',
     org: 'Client projects',
+    period: 'Oct 2024 – Sep 2025',
     points: [
       'Built client apps from scratch as a solo developer, from the client’s requirements to release.',
       'Owned architecture, UI, APIs and store releases under my own developer account, including Al-Burda (App Store & Google Play) and FLEXI (App Store).',

@@ -29,7 +29,8 @@ All user-facing text lives in `src/data/` — pages and components only render i
 3. Every push to `main` runs `.github/workflows/deploy.yml`.
 4. If you use a different repo name or a custom domain, update `site` in `astro.config.mjs` (and add `base` for a project repo).
 
-## Content status (8 Oct 2026)
+## Content status (30 Oct 2026)
 - Al-Burda, FLEXI, El Madrasah: live on the App Store; case studies published (BDC approval confirmed by Salah for El Madrasah).
-- PersonaRise, Makkah College: compact cards; on TestFlight and submitted to App Store review. Add App Store links once approved.
+- Makkah College: live on Google Play with a case study; submitted for App Store review. Add its App Store link once approved.
+- PersonaRise: compact card, on TestFlight and submitted to App Store review. Add its App Store link once approved.
 - Phone number intentionally omitted. Run PageSpeed Insights on the live URL after deploying.

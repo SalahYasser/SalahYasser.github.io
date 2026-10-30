@@ -8,14 +8,14 @@ import { content, langFromPath, localePath, mailto, fill as fillTemplate } from 
 
 // Also rendered at /ar/ (src/pages/ar/index.astro); the locale comes from the URL.
 const lang = langFromPath(Astro.url.pathname);
-const { site, copy, experience, education, courses, skills, caseStudies, compactProjects } = content(lang);
+const { site, copy, experience, education, courses, skills, visibleProjects, caseStudies, compactProjects } = content(lang);
 
 const firstPerProject = caseStudies
   .map((p) => p.screenshots[p.heroShot ?? 0])
   .filter(Boolean);
 const fill = caseStudies[0]?.screenshots.slice(1, 2) ?? [];
 const hero = [...firstPerProject, ...fill].slice(0, 2);
-const shipped = caseStudies.filter((p) => /app store|google play/i.test(p.status)).length;
+const shipped = visibleProjects.filter((p) => p.links.some((link) => /^(https:\/\/apps\.apple\.com|https:\/\/play\.google\.com)/.test(link.href))).length;
 const h = copy.hero;
 const w = copy.work;
 const sk = copy.skills;
@@ -361,6 +361,9 @@ const faqLd = {
   .more { margin-top: clamp(3rem, 7vw, 5rem); }
   .more-title { font-size: 1.1rem; font-family: var(--font-mono); font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); margin-bottom: 1.25rem; }
   .compact-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+  @media (min-width: 700px) {
+    .compact-grid:has(> :only-child) { grid-template-columns: minmax(0, calc((100% - 1.25rem) / 2)); }
+  }
 
   .skill-grid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
   .skill { background: var(--bg-2); padding: 1.75rem; display: grid; gap: 0.9rem; align-content: start; }

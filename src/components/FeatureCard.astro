@@ -10,7 +10,7 @@ const lang = langFromPath(Astro.url.pathname);
 const { copy } = content(lang);
 const shots = p.screenshots.slice(0, 3);
 ---
-<article class="feature reveal" style={`--pa:${p.accent.base};--pink:${p.accent.ink};--pglow:${p.accent.glow}`}>
+<article class:list={["feature", "reveal", { "makkah-feature": p.slug === 'makkah-college' }]} style={`--pa:${p.accent.base};--pink:${p.accent.ink};--pglow:${p.accent.glow}`}>
   <div class="copy">
     <p class="meta"><span class="num">{String(index + 1).padStart(2, '0')}</span><span>{p.kindLabel ?? p.kind}</span><span aria-hidden="true">·</span><span>{p.platform}</span></p>
     <h3>
@@ -69,9 +69,30 @@ const shots = p.screenshots.slice(0, 3);
   .s0 { transform: translate(-50%, -50%) ; z-index: 3; }
   .s1 { transform: translate(-118%, -44%) rotate(-7deg) scale(.9); z-index: 2; opacity: .9; }
   .s2 { transform: translate(18%, -44%) rotate(7deg) scale(.9); z-index: 1; opacity: .9; }
+  /* Makkah's courses screenshot has right-aligned Arabic labels, so keep its
+     useful content exposed to the right of the primary portal screenshot. */
+  .makkah-feature .s0 { z-index: 3; }
+  .makkah-feature .s1 { transform: translate(34%, -44%) rotate(7deg) scale(.9); z-index: 2; opacity: .95; }
   @media (prefers-reduced-motion: no-preference) {
     .feature:hover .s1 { transform: translate(-128%, -46%) rotate(-9deg) scale(.9); }
     .feature:hover .s2 { transform: translate(28%, -46%) rotate(9deg) scale(.9); }
     .feature:hover .s0 { transform: translate(-50%, -53%); }
+    .makkah-feature:hover .s1 { transform: translate(40%, -46%) rotate(9deg) scale(.9); }
+  }
+  @media (max-width: 480px) {
+    .makkah-feature .s0 { transform: translate(-65%, -50%); }
+    .makkah-feature .s1 { transform: translate(-10%, -44%) rotate(7deg) scale(.9); }
+    @media (prefers-reduced-motion: no-preference) {
+      .makkah-feature:hover .s0 { transform: translate(-65%, -53%); }
+      .makkah-feature:hover .s1 { transform: translate(-4%, -46%) rotate(9deg) scale(.9); }
+    }
+  }
+  @media (max-width: 340px) {
+    .makkah-feature .s0 { transform: translate(-79%, -50%); }
+    .makkah-feature .s1 { transform: translate(-26%, -44%) rotate(7deg) scale(.9); }
+    @media (prefers-reduced-motion: no-preference) {
+      .makkah-feature:hover .s0 { transform: translate(-79%, -53%); }
+      .makkah-feature:hover .s1 { transform: translate(-20%, -46%) rotate(9deg) scale(.9); }
+    }
   }
 </style>
