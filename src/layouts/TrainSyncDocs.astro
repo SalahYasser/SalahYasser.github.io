@@ -1,0 +1,24 @@
+---
+import BaseLayout from './BaseLayout.astro';
+const { frontmatter } = Astro.props;
+const { title, description } = frontmatter;
+const ar = Astro.url.pathname.startsWith('/ar/');
+const prefix = ar ? '/ar' : '';
+---
+<BaseLayout title={title} description={description}>
+  <article class="docs">
+    <nav aria-label={ar ? 'صفحات التطبيق' : 'App pages'}>
+      <a href={prefix + '/trainsync/privacy/'}>{ar ? 'الخصوصية' : 'Privacy'}</a>
+      <a href={prefix + '/trainsync/support/'}>{ar ? 'الدعم' : 'Support'}</a>
+    </nav>
+    <h1>{title}</h1>
+    <slot />
+  </article>
+</BaseLayout>
+<style>
+  .docs { width: min(68ch, calc(100% - 2.5rem)); margin: 0 auto; padding-block: 3rem; font-size: 1.0625rem; line-height: 1.75; }
+  nav { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-block-end: 1.5rem; }
+  h1 { font-size: clamp(1.75rem, 5vw, 3rem); line-height: 1.2; margin-block-end: 1.5rem; }
+  .docs :global(p), .docs :global(ul) { margin-block: 1rem; }
+  .docs :global(a) { text-decoration: underline; overflow-wrap: anywhere; }
+</style>
