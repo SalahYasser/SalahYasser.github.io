@@ -33,7 +33,7 @@ export type Project = {
   nativeTitle?: string;
   /** Language of `nativeTitle` (defaults to Arabic). */
   nativeLang?: 'ar' | 'en';
-  kind: 'Client project' | 'Built at BDC';
+  kind: 'Client project' | 'Built at BDC' | 'Own product' | 'Team project';
   /** Displayed instead of `kind` when set (translations); `kind` stays the value code compares against. */
   kindLabel?: string;
   platform: string;
@@ -53,6 +53,8 @@ export type Project = {
   screenshots: Screenshot[];
   /** Index of the screenshot used on the homepage hero (defaults to 0). */
   heroShot?: number;
+  /** Store-listing screenshot indices for card and case-study lead images. */
+  displayShotOrder?: number[];
   sections?: {
     product: string;
     roleDetail: string;
@@ -242,11 +244,11 @@ export const projects: Project[] = [
     slug: 'flexi',
     title: 'FLEXI',
     kind: 'Client project',
-    platform: 'iOS · Flutter',
+    platform: 'iOS · Android · Flutter',
     tagline: 'An HR app for Fit4Less staff: attendance, shifts, leave and payroll in one place.',
     summary:
       'A role-based HR app for Fit4Less employees and managers, with location-verified attendance, QR check-in, shifts, leave, permissions and salary-advance requests, payroll documents and approval notifications.',
-    role: 'Built from scratch as a solo project: Flutter app, architecture, APIs and App Store release under my own account.',
+    role: 'Built from scratch as a solo project: Flutter app, architecture, APIs and releases to the App Store and Google Play.',
     technologies: ['Flutter', 'Clean Architecture', 'Bloc', 'REST APIs', 'Location verification', 'QR check-in', 'Role-based access'],
     approval: 'approved',
     caseStudy: true,
@@ -254,11 +256,12 @@ export const projects: Project[] = [
     icon: '/images/projects/flexi/icon.webp',
     ogImage: '/og/flexi.png',
     seoDescription:
-      'FLEXI: a role-based Flutter HR app for Fit4Less staff, with location-verified attendance, QR check-in, leave requests and payroll. Live on the App Store.',
+      'FLEXI: a role-based Flutter HR app for Fit4Less staff, with location-verified attendance, QR check-in, leave requests and payroll. On the App Store and Google Play.',
     appCategory: 'BusinessApplication', // App Store: Business
-    status: 'Live on the App Store',
+    status: 'Live on the App Store & Google Play',
     links: [
       { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/id6805243501' },
+      { label: 'View on Google Play', href: 'https://play.google.com/store/apps/details?id=com.flexi.hr', icon: 'play' },
     ],
     screenshots: [
       { src: '/images/projects/flexi/01-dashboard.webp', alt: 'FLEXI home screen in Arabic with today’s attendance card and shortcuts to advances, leave, records and payroll.', caption: 'Home: today’s attendance and quick access to every HR service.' },
@@ -270,7 +273,7 @@ export const projects: Project[] = [
       product:
         'FLEXI brings a company’s day-to-day HR services into one app for Fit4Less staff. Employees check in and out, scan a QR code for attendance, follow their schedules and shifts, request leave, permissions and salary advances, and view payroll documents. Managers get the employee data and approval actions their role allows.',
       roleDetail:
-        'Built from scratch as a solo project for a client, from their requirements. I owned it end to end: the Flutter app and its architecture, the API integration and the role-based flows, through to the App Store release under my own developer account.',
+        'Built from scratch as a solo project for a client, from their requirements. I owned it end to end: the Flutter app and its architecture, the API integration and the role-based flows, through to releases on the App Store and Google Play.',
       problem:
         'Attendance has to be trustworthy, so a check-in should only count when the employee is really at work. And the same app serves employees and managers, so every screen and action has to respect the permissions of the signed-in account.',
       decisions: [
@@ -296,7 +299,7 @@ export const projects: Project[] = [
         'Notifications for request status and approvals',
         'Manager tools for authorised employee actions',
       ],
-      result: 'Shipped to the App Store, available to authorised Fit4Less staff.',
+      result: 'Shipped to the App Store and Google Play, available to authorised Fit4Less staff.',
     },
     diagram: {
       title: 'Role-based routing',
@@ -335,7 +338,7 @@ export const projects: Project[] = [
     platform: 'iOS · Android · React Native',
     tagline: 'Higher-education platform for students and staff.',
     summary:
-      'University platform with role-based features, academic services and real-time communication. Built with React Native and TypeScript. Live on Google Play; submitted for App Store review.',
+      'University platform with role-based features, academic services and real-time communication. Built with React Native and TypeScript. Live on the App Store and Google Play.',
     role: 'Developer on the BDC team.',
     technologies: ['React Native', 'TypeScript', 'REST APIs'],
     approval: 'approved',
@@ -343,13 +346,22 @@ export const projects: Project[] = [
     accent: { base: '#7EE2B8', ink: '#05170F', glow: 'rgba(126,226,184,0.2)' },
     icon: '/images/projects/makkah-college/icon.webp',
     ogImage: '/og/makkah-college.png',
-    status: 'Live on Google Play · submitted for App Store review',
-    links: [{ label: 'View on Google Play', href: 'https://play.google.com/store/apps/details?id=com.makkacollege.edu', icon: 'play' }],
-    screenshots: [
-      { src: '/images/projects/makkah-college/02.webp', alt: 'Makkah College student portal sign-in screen in Arabic.', caption: 'Student portal sign-in.' },
-      { src: '/images/projects/makkah-college/01.webp', alt: 'Makkah College courses screen in Arabic showing courses for the current semester.', caption: 'Courses for the current semester.' },
+    status: 'Live on the App Store & Google Play',
+    links: [
+      { label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/makkah-college/id6813632607', icon: 'apple' },
+      { label: 'View on Google Play', href: 'https://play.google.com/store/apps/details?id=com.makkacollege.edu', icon: 'play' },
     ],
-    seoDescription: 'Makkah College: a React Native portal for students and faculty to access academic services. Available on Google Play.',
+    screenshots: [
+      { src: '/images/projects/makkah-college/01-dashboard.webp', alt: 'Makkah College student dashboard in Arabic with academic shortcuts, attendance and the next lecture.', caption: 'Student dashboard: academic services, attendance and the next lecture.' },
+      { src: '/images/projects/makkah-college/02-courses.webp', alt: 'Arabic courses screen showing current-semester subjects and progress.', caption: 'Courses and progress for the current semester.' },
+      { src: '/images/projects/makkah-college/03-course-content.webp', alt: 'Course content screen from the Makkah College App Store listing.', caption: 'Learning materials inside a course.' },
+      { src: '/images/projects/makkah-college/04-schedule.webp', alt: 'Academic schedule screen from the Makkah College App Store listing.', caption: 'Academic schedule.' },
+      { src: '/images/projects/makkah-college/05-faculty.webp', alt: 'Faculty view from the Makkah College App Store listing.', caption: 'Faculty tools and academic follow-up.' },
+      { src: '/images/projects/makkah-college/06-welcome.webp', alt: 'Makkah College welcome screen with the college crest and language selection.', caption: 'Welcome and language selection.' },
+    ],
+    heroShot: 0,
+    displayShotOrder: [5, 1, 0],
+    seoDescription: 'Makkah College: a React Native portal for students and faculty to access academic services. On the App Store and Google Play.',
     appCategory: 'EducationalApplication',
     storePublisher: 'BDC for Business Services',
     sections: {
@@ -361,10 +373,71 @@ export const projects: Project[] = [
         { title: 'Academic services in one place', body: 'Students can access courses, schedules, attendance, results, fees, requests and available learning materials. Faculty can access courses, schedules and academic tracking tools.' },
       ],
       implemented: ['Role-based access to academic services', 'Courses and schedules', 'Attendance and results', 'Fees, requests and learning materials'],
-      result: 'Available on Google Play; submitted for App Store review.',
+      result: 'Available on the App Store and Google Play.',
     },
   },
+  {
+    slug: 'train-sync',
+    title: 'Train&Sync',
+    kind: 'Own product',
+    platform: 'iOS · Flutter',
+    tagline: 'Plan workouts, log each session and see your progress in one personal training companion.',
+    summary: 'A bilingual workout planner and log for building routines, recording sets and cardio, timing rests and reviewing progress. Training records are saved on the device.',
+    role: 'My own product, built with Flutter and Dart from the training flow through the App Store release.',
+    technologies: ['Flutter', 'Dart', 'Workout planning', 'Local storage', 'Arabic & English'],
+    approval: 'approved',
+    caseStudy: true,
+    accent: { base: '#D9A8EC', ink: '#231326', glow: 'rgba(176,102,183,0.25)' },
+    icon: '/images/projects/train-sync/icon.webp',
+    ogImage: '/og/train-sync.png',
+    status: 'Live on the App Store · Android in closed testing',
+    links: [{ label: 'View on the App Store', href: 'https://apps.apple.com/eg/app/train-sync/id6834534014', icon: 'apple' }],
+    screenshots: [
+      { src: '/images/projects/train-sync/01-today.webp', alt: 'Train&Sync Today screen showing the next scheduled workout.', caption: 'Today: your next workout is ready to start.' },
+      { src: '/images/projects/train-sync/02-history.webp', alt: 'Workout history showing recorded sets, repetitions and weight.', caption: 'Workout history with the sets, reps and weight you logged.' },
+      { src: '/images/projects/train-sync/03-progress.webp', alt: 'Exercise progress comparing two workout sessions.', caption: 'Compare your latest session with the previous one.' },
+      { src: '/images/projects/train-sync/04-routine.webp', alt: 'Routine builder with training days, exercises, sets and reps.', caption: 'Build a routine around your exercises and training days.' },
+      { src: '/images/projects/train-sync/05-library.webp', alt: 'Exercise library in the Train&Sync app.', caption: 'Explore the exercise library.' },
+      { src: '/images/projects/train-sync/06-cycle.webp', alt: 'Repeating training-cycle setup in Train&Sync.', caption: 'Plan a repeating training cycle.' },
+    ],
+    seoDescription: 'Train&Sync is Salah Yasser’s Flutter workout planner and log for routines, sets, rest timing and progress. Live on the App Store.',
+    appCategory: 'Health & Fitness',
+    sections: {
+      product: 'Train&Sync brings workout planning and training records together in one app. You can build routines, follow a weekly schedule or repeating cycle, log strength sets and cardio, and review completed sessions. It supports Arabic and English.',
+      roleDetail: 'I created Train&Sync as my own product and built its Flutter app through the iOS release. The work spans the training flow, local records, bilingual interface and App Store delivery.',
+      problem: 'A workout plan is only useful when it stays close to the actual session. People need a clear path from what is scheduled today to what they performed, then a way to see how that changed over time.',
+      decisions: [
+        { title: 'Start with today', body: 'The Today screen brings the next workout forward so a plan can turn into a session without searching through the app.' },
+        { title: 'Record the details', body: 'Sets, repetitions, weight and cardio activity become a session record that can be reviewed later.' },
+        { title: 'Keep records portable', body: 'Training records are saved on the device, with an exportable backup that the user can keep.' },
+      ],
+      implemented: ['Weekly schedules and repeating training cycles', 'Personal routines and exercise library', 'Strength sets and cardio logging', 'Rest timer between sets', 'Workout history and session comparison', 'Local records and backup export', 'Arabic and English interface'],
+      result: 'Available on the App Store for iPhone. The Android version is in closed testing.',
+    },
+  },
+  {
+    slug: 'rfms',
+    title: 'RFMS',
+    kind: 'Team project',
+    platform: 'iOS · Flutter',
+    tagline: 'A mobile workspace for rabbit-farm operations.',
+    summary: 'A Flutter app for managing rabbits, cages, breeding, health cases and day-to-day farm tasks in one place.',
+    role: 'Flutter development on the mobile app.',
+    technologies: ['Flutter', 'Farm operations', 'REST APIs'],
+    approval: 'approved',
+    caseStudy: false,
+    accent: { base: '#8BCFA8', ink: '#0C2015', glow: 'rgba(139,207,168,0.2)' },
+    status: 'On TestFlight',
+    links: [],
+    screenshots: [],
+  },
 ];
+
+/** Select card and case-study lead shots while preserving the listing order in the gallery. */
+export function projectLeadShots(p: Project, limit: number): Screenshot[] {
+  const order = p.displayShotOrder ?? p.screenshots.map((_, i) => i);
+  return order.slice(0, limit).map((i) => p.screenshots[i]).filter(Boolean);
+}
 
 const showPending = import.meta.env.PUBLIC_SHOW_PENDING === 'true';
 

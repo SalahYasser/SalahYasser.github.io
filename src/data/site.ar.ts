@@ -46,7 +46,7 @@ export const copy: typeof copyEn = {
     lineBeforeSerif: 'أبني تطبيقات الموبايل',
     serif: 'من المتطلبات',
     serifAccent: 'حتى الإطلاق.',
-    lede: 'تطبيقات موبايل جاهزة للاستخدام الفعلي، ببنية نظيفة، وتعمل حتى دون اتصال بالإنترنت، وتُسلَّم بإتقان على iOS وAndroid. أربعة من المشاريع المعروضة هنا متاحة على متجر تطبيقات واحد على الأقل.',
+    lede: 'تطبيقات موبايل جاهزة للاستخدام الفعلي، ببنية نظيفة، وتعمل حتى دون اتصال بالإنترنت، وتُسلَّم بإتقان على iOS وAndroid. خمسة من المشاريع المعروضة هنا متاحة على متجر تطبيقات واحد على الأقل.',
     primaryCta: 'شاهد أبرز أعمالي',
     secondaryCta: 'تواصل معي',
     cvCta: 'تحميل السيرة الذاتية',
@@ -220,7 +220,7 @@ export const experience: typeof experienceEn = [
     points: [
       'بنيت تطبيقات لعملاء من الصفر بمفردي، من متطلبات العميل حتى الإطلاق.',
       // \u00a0 (no-break space) keeps each bracketed store name on one line: a line break inside Latin text in brackets scrambles the brackets in RTL.
-      'توليت البنية والواجهات وربط واجهات API والنشر على المتاجر من حساب المطوّر الخاص بي، ومن هذه التطبيقات «البُردة» (App\u00a0Store وGoogle\u00a0Play) وFLEXI (App\u00a0Store).',
+      'توليت البنية والواجهات وربط واجهات API لتطبيقات العملاء، ومنها «البُردة» وFLEXI. كلاهما متاح على App\u00a0Store وGoogle\u00a0Play.',
     ],
   },
 ];

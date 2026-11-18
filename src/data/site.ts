@@ -108,7 +108,7 @@ export const copy = {
     serif: 'from requirements',
     serifAccent: 'to release.',
     lede:
-      'Production mobile apps with clean architecture, offline-first behaviour and polished iOS and Android delivery. Four projects featured here are live on at least one app store.',
+      'Production mobile apps with clean architecture, offline-first behaviour and polished iOS and Android delivery. Five projects featured here are live on at least one app store.',
     primaryCta: 'View selected work',
     secondaryCta: 'Get in touch',
     cvCta: 'Download CV',
@@ -310,7 +310,7 @@ export const experience = [
     period: 'Oct 2024 – Sep 2025',
     points: [
       'Built client apps from scratch as a solo developer, from the client’s requirements to release.',
-      'Owned architecture, UI, APIs and store releases under my own developer account, including Al-Burda (App Store & Google Play) and FLEXI (App Store).',
+      'Owned architecture, UI and APIs for client apps, including Al-Burda and FLEXI. Both are live on the App Store and Google Play.',
     ],
   },
 ];

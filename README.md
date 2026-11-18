@@ -20,6 +20,7 @@ All user-facing text lives in `src/data/` — pages and components only render i
   - `caseStudy: true` + `sections` → gets its own page at `/projects/<slug>/`. Otherwise it shows as a compact card.
   - `role` is the short line on the homepage card and the case-study **Role** box; `sections.roleDetail` is the longer **My role** paragraph — keep them telling the same story.
   - `heroShot`: which screenshot appears in the homepage hero (default 0).
+  - `displayShotOrder`: optional visual order for the card and case-study lead; the screenshot gallery keeps store order.
   - `screenshots`: put images in `public/images/projects/<slug>/` and add `src`, `alt`, `caption`.
 - **CV download:** add the PDF to `public/cv/` and set `cvPath` in `site.ts` (keep it `null` until a public CV without the phone number is ready).
 
@@ -29,8 +30,15 @@ All user-facing text lives in `src/data/` — pages and components only render i
 3. Every push to `main` runs `.github/workflows/deploy.yml`.
 4. If you use a different repo name or a custom domain, update `site` in `astro.config.mjs` (and add `base` for a project repo).
 
-## Content status (30 Oct 2026)
-- Al-Burda, FLEXI, El Madrasah: live on the App Store; case studies published (BDC approval confirmed by Salah for El Madrasah).
-- Makkah College: live on Google Play with a case study; submitted for App Store review. Add its App Store link once approved.
-- PersonaRise: compact card, on TestFlight and submitted to App Store review. Add its App Store link once approved.
+## Content status (18 Nov 2026)
+- Al-Burda, FLEXI, El Madrasah and Makkah College: live on the App Store and Google Play. FLEXI keeps the App Store screenshots in its case study; Makkah College uses its current App Store screenshots.
+- Train&Sync: Salah's own product, live on the App Store. Android is in closed testing; the case study describes only verified released features.
+- PersonaRise and RFMS: compact cards marked On TestFlight. RFMS is described as a team project because its employer attribution and Salah's detailed role have not been verified.
+- BDC approval confirmed by Salah for El Madrasah.
 - Phone number intentionally omitted. Run PageSpeed Insights on the live URL after deploying.
+
+## Verification sources and display decisions (18 Nov 2026)
+- [Makkah College on the App Store](https://apps.apple.com/eg/app/makkah-college/id6813632607): live iOS listing and six official listing screenshots. Its welcome screen leads the portfolio card, with courses on the right; the gallery keeps Apple's listing order.
+- [FLEXI on Google Play](https://play.google.com/store/apps/details?id=com.flexi.hr): confirms the Android release. The existing App Store screenshots remain the visual source for its case study.
+- [Train&Sync on the App Store](https://apps.apple.com/eg/app/train-sync/id6834534014) and [its README](https://github.com/SalahYasser/training_sync): describe the released product and six listing screenshots. Android closed-testing status was supplied by Salah. Unreleased development features are excluded from the case study.
+- [RFMS repository](https://github.com/Abdullah-mamdouh/rfms-mobile): app purpose and Flutter stack; its TestFlight status was supplied by Salah. The card uses neutral team-project attribution until an exact role or employer is verified.

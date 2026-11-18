@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import FlowDiagram from '../../components/FlowDiagram.astro';
-import { caseStudies, isPreview, type Project } from '../../data/projects';
+import { caseStudies, isPreview, projectLeadShots, type Project } from '../../data/projects';
 import { responsive, shotSizes } from '../../lib/images';
 import { content, fill, langFromPath, localePath, mailto } from '../../lib/i18n';
 
@@ -87,7 +87,7 @@ const breadcrumbLd = {
           )}
         </div>
         <div class="hero-shots" aria-hidden="true">
-          {p.screenshots.slice(0, 2).map((sh, i) => (
+          {projectLeadShots(p, 2).map((sh, i) => (
             <div class={`shot hs${i}`} style={i === 0 ? `view-transition-name: cs-shot-${p.slug}` : undefined}><img src={sh.src} srcset={responsive(sh.src).srcset} sizes={shotSizes.caseHero} alt="" width="590" height="1280" fetchpriority={i === 0 ? 'high' : 'auto'} /></div>
           ))}
         </div>

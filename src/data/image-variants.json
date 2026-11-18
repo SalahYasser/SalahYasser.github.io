@@ -341,39 +341,267 @@
       }
     ]
   },
-  "/images/projects/makkah-college/01.webp": {
-    "width": 1080,
-    "height": 1920,
+  "/images/projects/makkah-college/01-dashboard.webp": {
+    "width": 1206,
+    "height": 2622,
     "variants": [
       {
         "w": 320,
-        "src": "/images/projects/makkah-college/01-320w.webp"
+        "src": "/images/projects/makkah-college/01-dashboard-320w.webp"
       },
       {
         "w": 440,
-        "src": "/images/projects/makkah-college/01-440w.webp"
+        "src": "/images/projects/makkah-college/01-dashboard-440w.webp"
       },
       {
-        "w": 1080,
-        "src": "/images/projects/makkah-college/01.webp"
+        "w": 1180,
+        "src": "/images/projects/makkah-college/01-dashboard-1180w.webp"
+      },
+      {
+        "w": 1206,
+        "src": "/images/projects/makkah-college/01-dashboard.webp"
       }
     ]
   },
-  "/images/projects/makkah-college/02.webp": {
-    "width": 1080,
-    "height": 1920,
+  "/images/projects/makkah-college/02-courses.webp": {
+    "width": 1206,
+    "height": 2622,
     "variants": [
       {
         "w": 320,
-        "src": "/images/projects/makkah-college/02-320w.webp"
+        "src": "/images/projects/makkah-college/02-courses-320w.webp"
       },
       {
         "w": 440,
-        "src": "/images/projects/makkah-college/02-440w.webp"
+        "src": "/images/projects/makkah-college/02-courses-440w.webp"
       },
       {
-        "w": 1080,
-        "src": "/images/projects/makkah-college/02.webp"
+        "w": 1180,
+        "src": "/images/projects/makkah-college/02-courses-1180w.webp"
+      },
+      {
+        "w": 1206,
+        "src": "/images/projects/makkah-college/02-courses.webp"
+      }
+    ]
+  },
+  "/images/projects/makkah-college/03-course-content.webp": {
+    "width": 1206,
+    "height": 2622,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/makkah-college/03-course-content-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/makkah-college/03-course-content-440w.webp"
+      },
+      {
+        "w": 1180,
+        "src": "/images/projects/makkah-college/03-course-content-1180w.webp"
+      },
+      {
+        "w": 1206,
+        "src": "/images/projects/makkah-college/03-course-content.webp"
+      }
+    ]
+  },
+  "/images/projects/makkah-college/04-schedule.webp": {
+    "width": 1206,
+    "height": 2622,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/makkah-college/04-schedule-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/makkah-college/04-schedule-440w.webp"
+      },
+      {
+        "w": 1180,
+        "src": "/images/projects/makkah-college/04-schedule-1180w.webp"
+      },
+      {
+        "w": 1206,
+        "src": "/images/projects/makkah-college/04-schedule.webp"
+      }
+    ]
+  },
+  "/images/projects/makkah-college/05-faculty.webp": {
+    "width": 1206,
+    "height": 2622,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/makkah-college/05-faculty-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/makkah-college/05-faculty-440w.webp"
+      },
+      {
+        "w": 1180,
+        "src": "/images/projects/makkah-college/05-faculty-1180w.webp"
+      },
+      {
+        "w": 1206,
+        "src": "/images/projects/makkah-college/05-faculty.webp"
+      }
+    ]
+  },
+  "/images/projects/makkah-college/06-welcome.webp": {
+    "width": 1206,
+    "height": 2622,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/makkah-college/06-welcome-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/makkah-college/06-welcome-440w.webp"
+      },
+      {
+        "w": 1180,
+        "src": "/images/projects/makkah-college/06-welcome-1180w.webp"
+      },
+      {
+        "w": 1206,
+        "src": "/images/projects/makkah-college/06-welcome.webp"
+      }
+    ]
+  },
+  "/images/projects/train-sync/01-today.webp": {
+    "width": 1206,
+    "height": 2620,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/train-sync/01-today-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/train-sync/01-today-440w.webp"
+      },
+      {
+        "w": 1180,
+        "src": "/images/projects/train-sync/01-today-1180w.webp"
+      },
+      {
+        "w": 1206,
+        "src": "/images/projects/train-sync/01-today.webp"
+      }
+    ]
+  },
+  "/images/projects/train-sync/02-history.webp": {
+    "width": 1206,
+    "height": 2620,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/train-sync/02-history-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/train-sync/02-history-440w.webp"
+      },
+      {
+        "w": 1180,
+        "src": "/images/projects/train-sync/02-history-1180w.webp"
+      },
+      {
+        "w": 1206,
+        "src": "/images/projects/train-sync/02-history.webp"
+      }
+    ]
+  },
+  "/images/projects/train-sync/03-progress.webp": {
+    "width": 1206,
+    "height": 2620,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/train-sync/03-progress-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/train-sync/03-progress-440w.webp"
+      },
+      {
+        "w": 1180,
+        "src": "/images/projects/train-sync/03-progress-1180w.webp"
+      },
+      {
+        "w": 1206,
+        "src": "/images/projects/train-sync/03-progress.webp"
+      }
+    ]
+  },
+  "/images/projects/train-sync/04-routine.webp": {
+    "width": 1206,
+    "height": 2620,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/train-sync/04-routine-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/train-sync/04-routine-440w.webp"
+      },
+      {
+        "w": 1180,
+        "src": "/images/projects/train-sync/04-routine-1180w.webp"
+      },
+      {
+        "w": 1206,
+        "src": "/images/projects/train-sync/04-routine.webp"
+      }
+    ]
+  },
+  "/images/projects/train-sync/05-library.webp": {
+    "width": 1206,
+    "height": 2620,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/train-sync/05-library-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/train-sync/05-library-440w.webp"
+      },
+      {
+        "w": 1180,
+        "src": "/images/projects/train-sync/05-library-1180w.webp"
+      },
+      {
+        "w": 1206,
+        "src": "/images/projects/train-sync/05-library.webp"
+      }
+    ]
+  },
+  "/images/projects/train-sync/06-cycle.webp": {
+    "width": 1206,
+    "height": 2620,
+    "variants": [
+      {
+        "w": 320,
+        "src": "/images/projects/train-sync/06-cycle-320w.webp"
+      },
+      {
+        "w": 440,
+        "src": "/images/projects/train-sync/06-cycle-440w.webp"
+      },
+      {
+        "w": 1180,
+        "src": "/images/projects/train-sync/06-cycle-1180w.webp"
+      },
+      {
+        "w": 1206,
+        "src": "/images/projects/train-sync/06-cycle.webp"
       }
     ]
   }
