@@ -24,7 +24,7 @@ export const site = {
     alt: 'Salah Yasser',
   },
   /** Default 1200×630 share image (og:image) for pages without their own. */
-  shareImage: '/og.png',
+  shareImage: '/og/home-2026-11.png',
   /** Homepage meta description (<= 155 characters). */
   description:
     'Salah Yasser is a Flutter developer in Cairo building iOS & Android apps from requirements to release, with apps live on the App Store & Google Play.',
@@ -70,8 +70,8 @@ export const copy = {
   skipToContent: 'Skip to content',
   primaryNavLabel: 'Primary',
   homeLabelSuffix: ', home',
-  /** Alt text for the default share image (public/og.png). */
-  ogImageAlt: 'Salah Yasser, Flutter developer: I build mobile apps from requirements to release.',
+  /** Alt text for the bilingual homepage share posters. */
+  ogImageAlt: 'Salah Yasser, Flutter developer, with screens from Al-Burda, El Madrasah and Train&Sync.',
   previewBanner:
     'Preview build · includes projects still awaiting Salah’s confirmation or employer approval',
   nav: [
