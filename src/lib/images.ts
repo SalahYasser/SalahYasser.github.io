@@ -11,8 +11,8 @@ const manifest = variants as Record<string, Entry>;
 const card = '(max-width: 654px) 9rem, (max-width: 981px) 22vw, 13.5rem';
 const gallery = '(max-width: 872px) 12rem, (max-width: 1163px) 22vw, 16rem';
 export const shotSizes = {
-  /** index.astro .hero-stage .shot (renders 6.25–7.5rem on phones, up to 15rem on desktop) */
-  homeHero: '(max-width: 654px) 9rem, (max-width: 959px) 22vw, (max-width: 999px) 24vw, 15rem',
+  /** index.astro .hero-stage .shot (renders 6.25–7.5rem on phones, up to 13rem on desktop) */
+  homeHero: '(max-width: 654px) 9rem, (max-width: 959px) 7.5rem, (max-width: 991px) 21vw, 13rem',
   /** FeatureCard.astro .stage .shot: clamp(9rem, 22vw, 13.5rem) */
   card,
   /** [slug].astro .hero-shots .shot (9–14rem); same choice as the gallery below it */
