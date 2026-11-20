@@ -1,0 +1,38 @@
+---
+interface Props { lang: 'ar' | 'en' }
+const { lang } = Astro.props;
+const arabic = lang === 'ar';
+const target = `https://salahyasser.github.io/trainsync-privacy/${arabic ? 'ar/' : ''}`;
+const title = arabic ? 'سياسة خصوصية Train&Sync' : 'Train&Sync Privacy Policy';
+const message = arabic ? 'انتقلت سياسة الخصوصية إلى صفحة Train&Sync المستقلة.' : 'The privacy policy has moved to the independent Train&Sync page.';
+const action = arabic ? 'افتح سياسة الخصوصية' : 'Open the privacy policy';
+---
+<!doctype html>
+<html lang={lang} dir={arabic ? 'rtl' : 'ltr'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={target} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main>
+      <h1>{title}</h1>
+      <p>{message}</p>
+      <a href={target}>{action}</a>
+    </main>
+  </body>
+</html>
+<style>
+  :root { color-scheme: dark; background: #834870; color: #F9F0F0; }
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; background: #F9F0F0; color: #834870; }
+  }
+  body { margin: 0; font: 1rem/1.75 system-ui, sans-serif; }
+  main { max-width: 42rem; margin: 8vh auto; padding: 1.5rem; }
+  h1 { font-size: 1.5rem; overflow-wrap: anywhere; }
+  a { display: inline-flex; align-items: center; min-height: 48px; color: inherit; }
+  a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+</style>
